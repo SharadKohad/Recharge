@@ -21,7 +21,7 @@
         <shape>
             <padding android:top="0.5dp" android:right="1.5dp" android:bottom="1.5dp" android:left="0.5dp" />
             <corners android:radius="0dp" />
-            <solid android:color="#50CCCCCC" />
+            <solid android:color="@color/green_100" />
         </shape>
     </item>
 

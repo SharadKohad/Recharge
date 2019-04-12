@@ -312,7 +312,7 @@
     <color name="grey_900">#212121</color>
     <color name="grey_1000">#1a1a1a</color>
 
-
+    <color name="white">#fff</color>
 
     <color name="colorSignin">#0bc6a0</color>
     <color name="textSub">#76818a</color>
@@ -320,7 +320,6 @@
     <color name="black">#000000</color>
     <color name="color_gender">#B2DFDB</color>
     <color name="viewColor">#bcb9b9</color>
-    <color name="colorWhite">#fff</color>
     <color name="green">#31a037</color>
     <color name="fabColor">#f44242</color>
     <color name="seeMoreColor">#58c4c4</color>

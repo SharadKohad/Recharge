@@ -7,5 +7,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="gifrandoffer">Gift &amp; Offer</string>
+    <string name="Rs">\u20B9</string>
 
 </resources>
