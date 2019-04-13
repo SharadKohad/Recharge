@@ -24,6 +24,11 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_20sdp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
         <LinearLayout
             android:id="@+id/ll_contest_list"
@@ -83,8 +88,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_20sdp"/>
 
-
                 </RelativeLayout>
+
 
             </LinearLayout>
 
@@ -111,6 +116,22 @@
                     android:textColor="@color/white" />
 
             </LinearLayout>
+
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_top_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_3"
+                android:text="See Top Score"
+                android:paddingLeft="@dimen/_20sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/red_600"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_5sdp"
+                android:paddingTop="@dimen/_5sdp"/>
+
 
         </LinearLayout>
 

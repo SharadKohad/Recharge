@@ -32,8 +32,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         init();
     }
 
-    public void init()
-    {
+    public void init() {
         ET_Name = (EditText) findViewById(R.id.EditText_ProfileName);
         ET_Email = (EditText) findViewById(R.id.EditText_ProfileEmailId);
         ET_MobileNo = (EditText) findViewById(R.id.EditText_PhoneNumber);

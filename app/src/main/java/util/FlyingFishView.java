@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 import com.logicaltech.rechargepannel.GameOverActivity;
+import com.logicaltech.rechargepannel.JumpFishActivity;
 import com.logicaltech.rechargepannel.R;
 
 public class FlyingFishView extends View
@@ -120,6 +121,7 @@ public class FlyingFishView extends View
                 Intent intent = new Intent(getContext(), GameOverActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("score",score);
+                intent.putExtra("srno", JumpFishActivity.SRNO);
                 getContext().startActivity(intent);
             }
         }

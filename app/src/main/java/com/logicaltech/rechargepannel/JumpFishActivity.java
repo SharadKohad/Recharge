@@ -14,6 +14,7 @@ public class JumpFishActivity extends AppCompatActivity
     FlyingFishView gameView;
     private Handler handler= new Handler();
     private final static long Interval = 30;
+    public static String SRNO="";
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -21,6 +22,7 @@ public class JumpFishActivity extends AppCompatActivity
         gameView = new FlyingFishView(this);
         setContentView(gameView);
         Timer timer = new Timer();
+        SRNO = getIntent().getExtras().getString("srno");
         timer.schedule(new TimerTask()
         {
             @Override

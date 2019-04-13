@@ -8,6 +8,13 @@
     android:background="@drawable/splash"
     tools:context=".GameOverActivity">
 
+    <ProgressBar
+        android:id="@+id/progrebar_gameover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,9 +41,10 @@
         android:padding="10dp"
         android:layout_marginLeft="@dimen/_20sdp"
         android:text="Play Again"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textColor="#fff"
         android:textStyle="bold"
+        android:visibility="gone"
         android:textSize="18dp"/>
 
         <Button
@@ -46,25 +54,23 @@
             android:layout_below="@+id/game_over"
             android:background="@drawable/btn_round_green"
             android:padding="10dp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_alignParentRight="true"
             android:text="Home"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="18dp"/>
 
-
         <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_below="@+id/play_again_btn"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp"
-            android:text="My"
-        android:textColor="@color/colorAccent"/>
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

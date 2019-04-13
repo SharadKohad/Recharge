@@ -10,6 +10,15 @@ public class ContestModel
     String date;
     String time_left;
     String total_joining;
+    String srno;
+
+    public String getSrno() {
+        return srno;
+    }
+
+    public void setSrno(String srno) {
+        this.srno = srno;
+    }
 
     public String getTotal_joining() {
         return total_joining;

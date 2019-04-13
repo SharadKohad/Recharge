@@ -32,6 +32,8 @@ public class SessionManeger
     public static final String FIRST_LAUNCH = "first_launch";
     public static final String MEMBER_ID = "member_id";
 
+    public static final String FLY_FISH_SCORE = "0";
+
     private static SessionManeger instance;
 
     public static SessionManeger getInstance(Context context){
@@ -60,10 +62,10 @@ public class SessionManeger
         //  getWishListVolley(userId);
     }
 
-    public void createSessionWithMobile(String mobile)
+    public void createSessionFlyFish(String HighScore)
     {
         editor.putBoolean(IS_LOGIN,true);
-        editor.putString(KEY_PHONE,mobile);
+        editor.putString(FLY_FISH_SCORE,HighScore);
         editor.commit();
     }
 
@@ -107,10 +109,10 @@ public class SessionManeger
 
     // Get mobile number to store in session
 
-    public HashMap<String,String> getUserMobileNumber()
+    public HashMap<String,String> getFlyFishHighScore()
     {
         HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put(KEY_PHONE,preferences.getString(KEY_PHONE,null));
+        hashMap.put(FLY_FISH_SCORE,preferences.getString(FLY_FISH_SCORE,"0"));
         return hashMap;
     }
 

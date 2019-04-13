@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -23,7 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
@@ -38,6 +41,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.ContestModel;
 import util.Constant;
+import util.MySingalton;
+import util.SessionManeger;
 
 public class ContestListActivity extends AppCompatActivity
 {
@@ -45,19 +50,28 @@ public class ContestListActivity extends AppCompatActivity
     ArrayList<ContestModel> arrayList =new ArrayList<>();
     RecyclerView RecyclerView_Contest_Type;
     GridLayoutManager mGridLayoutManagerBrand;
-    String gtype;
+    String gtype,userId,srno;
     TextView TV_gametitle;
+    SessionManeger sessionManeger;
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contest_list);
+        sessionManeger = new SessionManeger(getApplicationContext());
+        HashMap<String, String> hashMap = sessionManeger.getUserDetails();
+
+        userId = hashMap.get(SessionManeger.MEMBER_ID);
+
         Img_Back = (ImageView) findViewById(R.id.img_back_arrow_change_password);
         RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_contest);
         mGridLayoutManagerBrand = new GridLayoutManager(ContestListActivity.this, 1);
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
+        progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
 
         gtype = getIntent().getExtras().getString("gtype");
 
@@ -73,8 +87,8 @@ public class ContestListActivity extends AppCompatActivity
 
     }
 
-    public void operatorType(final String gametype)
-    {
+    public void operatorType(final String gametype) {
+        progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getGameSettingByType?Type="+gametype;
@@ -85,10 +99,12 @@ public class ContestListActivity extends AppCompatActivity
             {
                 try
                 {
+                    progressBar.setVisibility(View.INVISIBLE);
                     arrayList.clear();
                     for (int i = 0; i < response.length(); i++)
                     {
                         JSONObject jsonObject2 = response.getJSONObject(i);
+                        String srno = jsonObject2.getString("srno");
                         String total_Memb = jsonObject2.getString("total_Memb");
                         String total_time = jsonObject2.getString("max_time");
                         String winning_amt = jsonObject2.getString("winning_amt");
@@ -100,9 +116,11 @@ public class ContestListActivity extends AppCompatActivity
                         String total_joining = jsonObject2.getString("total_joining");
                         TV_gametitle.setText(""+game_name);
                         ContestModel model = new ContestModel();
+                        model.setSrno(srno);
                         model.setTotal_Memb(total_Memb);
                         model.setTotal_time(total_time);
                         model.setWiningprice(winning_amt);
+                        model.setTotal_joining(total_joining);
                         model.setTime_left(time_left);
                         model.setEnteryfee(entry_amt);
                         model.setFlag(flag);
@@ -114,6 +132,7 @@ public class ContestListActivity extends AppCompatActivity
                 }
                 catch (JSONException e)
                 {
+                    progressBar.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 }
             }
@@ -122,6 +141,7 @@ public class ContestListActivity extends AppCompatActivity
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                progressBar.setVisibility(View.INVISIBLE);
                 //This code is executed if there is an error.
                 String message= "";
                 if (error instanceof ServerError)
@@ -168,40 +188,46 @@ public class ContestListActivity extends AppCompatActivity
         @Override
         public void onBindViewHolder(final RecyclerViewHolder holder, final int position)
         {
+
             final ContestModel account_model = orderList.get(position);
             holder.TV_Win_Amount.setText("\u20B9 "+account_model.getWiningprice());
             holder.TV_Entry_fee.setText(account_model.getEnteryfee());
-            holder.TV_spot_remaing.setText("1 Spot Left ");
             holder.TV_total_spot.setText(account_model.getTotal_Memb()+" Spot");
-
             int total_member = Integer.parseInt(account_model.getTotal_Memb());
-
             int total_member_by_per = 100/total_member;
-            int remain_member = 4*total_member_by_per;
+            int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
             holder.progressBar.setProgress(remain_member);
-            //    holder.TV_remaing_time.setText(account_model.getTotal_time());
+
+            holder.TV_spot_remaing.setText(total_member-Integer.parseInt(account_model.getTotal_joining())+" Left spot");
             int sec  = Integer.parseInt(account_model.getTime_left());
             // sec = sec*60*60;
             reverseTimer(sec,holder.TV_remaing_time);
+            final String flag = account_model.getFlag();
             holder.LinearLayout_Cotest.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    if (gtype.equals("1"))
+                    if (gtype.equals("1")&&flag.equals("Active"))
                     {
-                        Intent intent = new Intent(ContestListActivity.this,JumpFishActivity.class);
-                        startActivity(intent);
+                        srno = account_model.getSrno();
+                        joinContest(userId,srno);
                     }
                     else
                     {
-                       /* Intent intent=new Intent(mContext,DTHActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                        intent.putExtra("token","1");
-                        intent.putExtra("code",orderList.get(position).getCode());
-                        intent.putExtra("operator",orderList.get(position).getOperate());
-                        mContext.getApplicationContext().startActivity(intent);*/
+                        Toast.makeText(getApplicationContext(),"Select Active Contest",Toast.LENGTH_SHORT).show();
                     }
+                }
+            });
+
+            holder.TV_top_score.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent intent = new Intent(ContestListActivity.this,TopScoreActivity.class);
+                    intent.putExtra("srno",account_model.getSrno());
+                    startActivity(intent);
                 }
             });
         }
@@ -212,7 +238,7 @@ public class ContestListActivity extends AppCompatActivity
         }
         public class RecyclerViewHolder extends RecyclerView.ViewHolder
         {
-            TextView TV_Win_Amount,TV_Entry_fee,TV_spot_remaing,TV_total_spot,TV_remaing_time;
+            TextView TV_Win_Amount,TV_Entry_fee,TV_spot_remaing,TV_total_spot,TV_remaing_time,TV_top_score;
             LinearLayout LinearLayout_Cotest;
             ProgressBar progressBar;
             public RecyclerViewHolder(View itemView)
@@ -224,13 +250,13 @@ public class ContestListActivity extends AppCompatActivity
                 TV_spot_remaing = (TextView) itemView.findViewById(R.id.tv_remaining_left);
                 TV_remaing_time = (TextView) itemView.findViewById(R.id.tv_remaing_time);
                 LinearLayout_Cotest = (LinearLayout) itemView.findViewById(R.id.ll_contest_list);
+                TV_top_score = (TextView) itemView.findViewById(R.id.tv_top_score);
                 progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar_show_persentage);
             }
         }
     }
 
-    public void reverseTimer(int Seconds,final TextView tv)
-    {
+    public void reverseTimer(int Seconds,final TextView tv) {
         new CountDownTimer(Seconds* 1000+1000, 1000)
         {
             public void onTick(long millisUntilFinished)
@@ -249,4 +275,73 @@ public class ContestListActivity extends AppCompatActivity
         }.start();
     }
 
+    public void joinContest(final String MemberCode, final String Srno)
+    {
+        progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"addContest";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("msg");
+                    if (status.equals("1"))
+                    {
+                        Toast.makeText(ContestListActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ContestListActivity.this,JumpFishActivity.class);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(status.equals("2"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,JumpFishActivity.class);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(ContestListActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("membercode", MemberCode);
+                params.put("srno",Srno);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
+    }
 }

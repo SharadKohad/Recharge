@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ContestListActivity">
+    tools:context=".TopScoreActivity">
 
     <ProgressBar
-        android:id="@+id/progrebar_contest"
+        android:id="@+id/progrebar_top_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -17,13 +17,13 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_contest_list"
+        android:id="@+id/rl_top_score"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:background="@color/colorPrimary">
 
         <ImageView
-            android:id="@+id/img_back_arrow_change_password"
+            android:id="@+id/img_back_arrow_top_score"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:src="@drawable/ic_arrow_back"
@@ -34,18 +34,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:layout_toRightOf="@+id/img_back_arrow_change_password"
+            android:layout_toRightOf="@+id/img_back_arrow_top_score"
             android:layout_centerVertical="true"
+            android:text="Top Score"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"/>
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_contest"
+        android:id="@+id/rv_top_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_contest_list">
+        android:layout_below="@+id/rl_top_score">
 
     </android.support.v7.widget.RecyclerView>
 

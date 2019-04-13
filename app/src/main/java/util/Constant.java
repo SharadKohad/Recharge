@@ -9,6 +9,8 @@ public class Constant
     public static String TOTAL_BALANCE = "";
     public static String DIRECT_INCOME = "";
     public static String TOTAL_REF = "";
+    public static int HIGH_SCORE=0;
+   // public static String SRNO="";
 
     public static final String URL = " http://site17.bidbch.com/api/";
     public static boolean isValidEmail(String email)

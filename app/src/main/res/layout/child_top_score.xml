@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/grey_3"
+        android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/tv_top_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jagga"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/tv_top_userscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="200"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_20sdp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
