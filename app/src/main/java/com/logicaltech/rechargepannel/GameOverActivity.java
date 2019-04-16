@@ -36,8 +36,9 @@ public class GameOverActivity extends AppCompatActivity
     private TextView tvscore;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
-    String userId,srno,highscoreFish=null;
+    String userId,srno,sessionScoreFish="0",session_srno="0";
     int topScore=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,42 +47,30 @@ public class GameOverActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
+      //  HashMap<String, String> hashMap2 = sessionManeger.getCurrentSrno();
         userId = hashMap.get(SessionManeger.MEMBER_ID);
-        highscoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
-        if (highscoreFish.equals("0"))
-        {
-            topScore = 0;
-        }
-        else
-        {
-            topScore = Integer.parseInt(highscoreFish);
-        }
+      //  sessionScoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
+
         progressBar = (ProgressBar) findViewById(R.id.progrebar_gameover);
-        //    StartGameAgain = (Button) findViewById(R.id.play_again_btn);
+        StartGameAgain = (Button) findViewById(R.id.play_again_btn);
         tvscore = (TextView) findViewById(R.id.score);
         Btn_Home = (Button) findViewById(R.id.btn_home_btn);
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
+      //  sessionManeger.createSessionFlyFish(Integer.toString(scorevalue));
+        submitScore(userId,srno,Integer.toString(scorevalue));
 
-        if (scorevalue>topScore)
-        {
-            sessionManeger.createSessionFlyFish(Integer.toString(scorevalue));
-            submitScore(userId,srno,Integer.toString(scorevalue));
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Your Priview High Score submit before",Toast.LENGTH_SHORT);
-        }
-
-       /* StartGameAgain.setOnClickListener(new View.OnClickListener()
+        StartGameAgain.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 Intent intent = new Intent(GameOverActivity.this,JumpFishActivity.class);
+                intent.putExtra("srno",srno);
                 startActivity(intent);
             }
-        });*/
+        });
+
         tvscore.setText("Score: "+scorevalue);
 
         Btn_Home.setOnClickListener(new View.OnClickListener()

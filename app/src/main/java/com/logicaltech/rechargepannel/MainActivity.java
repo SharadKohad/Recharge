@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -33,25 +32,21 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import util.Constant;
 import util.SessionManeger;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     SliderLayout sliderLayout;
-    HashMap<String, Integer> HashMapForLocalRes ;
+    HashMap<String, Integer> HashMapForLocalRes;
     LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -99,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             textSliderView.getBundle().putString("extra",name);
             sliderLayout.addSlider(textSliderView);
         }
+
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
@@ -187,7 +183,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.nav_share)
         {
-
+            intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "http://www.arenaitech.com/");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
+            startActivity(Intent.createChooser(intent, "Share"));
         }
         else if (id == R.id.nav_logout)
         {

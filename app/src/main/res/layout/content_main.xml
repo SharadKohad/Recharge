@@ -324,7 +324,7 @@
                             android:id="@+id/tv_total_income"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="500 Rs"
+                            android:text="00 Rs"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:textColor="@color/green_500" />
 
@@ -405,7 +405,7 @@
                             android:id="@+id/tv_directt_income"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="500 Rs"
+                            android:text="00 Rs"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:textColor="@color/green_500" />
 
@@ -486,7 +486,7 @@
                             android:id="@+id/tv_total_ref"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="500 Rs"
+                            android:text="00 Rs"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:textColor="@color/green_500" />
 

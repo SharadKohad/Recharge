@@ -32,7 +32,8 @@ public class SessionManeger
     public static final String FIRST_LAUNCH = "first_launch";
     public static final String MEMBER_ID = "member_id";
 
-    public static final String FLY_FISH_SCORE = "0";
+    public static final String FLY_FISH_SCORE = "fly_fish_score";
+    public static final String SRNO = "srno";
 
     private static SessionManeger instance;
 
@@ -62,23 +63,21 @@ public class SessionManeger
         //  getWishListVolley(userId);
     }
 
-    public void createSessionFlyFish(String HighScore)
+    public void createSessionFlyFish(String highScore)
     {
         editor.putBoolean(IS_LOGIN,true);
-        editor.putString(FLY_FISH_SCORE,HighScore);
+        editor.putString(FLY_FISH_SCORE,highScore);
         editor.commit();
     }
 
-    public boolean checkLoginAtHome(){
-        if (!this.isLoggedIn()){
-//            Intent intent=new Intent(context, SigninActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent);
-            return true;
-        }
-        return false;
+    public void createSessionSrno(String Srno)
+    {
+        editor.putBoolean(IS_LOGIN,true);
+        editor.putString(SRNO,Srno);
+        editor.commit();
     }
+
+
     public boolean checkLogin()
     {
         if (!this.isLoggedIn())
@@ -97,7 +96,8 @@ public class SessionManeger
         return preferences.getBoolean(IS_LOGIN, false);
     }
 
-    public HashMap<String,String> getUserDetails() {
+    public HashMap<String,String> getUserDetails()
+    {
         HashMap<String,String> hashMap=new HashMap<>();
         hashMap.put(KEY_ID,preferences.getString(KEY_ID,null));
         hashMap.put(KEY_NAME,preferences.getString(KEY_NAME,null));
@@ -113,6 +113,13 @@ public class SessionManeger
     {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put(FLY_FISH_SCORE,preferences.getString(FLY_FISH_SCORE,"0"));
+        return hashMap;
+    }
+
+    public HashMap<String,String> getCurrentSrno()
+    {
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put(SRNO,preferences.getString(SRNO,"0"));
         return hashMap;
     }
 

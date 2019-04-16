@@ -59,6 +59,7 @@ public class TopScoreActivity extends AppCompatActivity
                 finish();
             }
         });
+
         topScorePerticulerContst(getIntent().getExtras().getString("srno"));
     }
 

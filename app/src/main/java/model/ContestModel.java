@@ -11,6 +11,15 @@ public class ContestModel
     String time_left;
     String total_joining;
     String srno;
+    String payout_status;
+
+    public String getPayout_status() {
+        return payout_status;
+    }
+
+    public void setPayout_status(String payout_status) {
+        this.payout_status = payout_status;
+    }
 
     public String getSrno() {
         return srno;

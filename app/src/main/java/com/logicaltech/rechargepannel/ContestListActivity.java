@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,6 @@ public class ContestListActivity extends AppCompatActivity
     SessionManeger sessionManeger;
     ProgressBar progressBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -63,18 +63,14 @@ public class ContestListActivity extends AppCompatActivity
         setContentView(R.layout.activity_contest_list);
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
-
         userId = hashMap.get(SessionManeger.MEMBER_ID);
-
         Img_Back = (ImageView) findViewById(R.id.img_back_arrow_change_password);
         RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_contest);
         mGridLayoutManagerBrand = new GridLayoutManager(ContestListActivity.this, 1);
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
-
         gtype = getIntent().getExtras().getString("gtype");
-
         Img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -82,12 +78,11 @@ public class ContestListActivity extends AppCompatActivity
                 finish();
             }
         });
-
-        operatorType(gtype);
-
+        contestList(gtype);
     }
 
-    public void operatorType(final String gametype) {
+    public void contestList(final String gametype)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -114,6 +109,7 @@ public class ContestListActivity extends AppCompatActivity
                         String time_left = jsonObject2.getString("time_left");
                         String game_name = jsonObject2.getString("game_name");
                         String total_joining = jsonObject2.getString("total_joining");
+                        String payout_status = jsonObject2.getString("payout_status");
                         TV_gametitle.setText(""+game_name);
                         ContestModel model = new ContestModel();
                         model.setSrno(srno);
@@ -125,6 +121,7 @@ public class ContestListActivity extends AppCompatActivity
                         model.setEnteryfee(entry_amt);
                         model.setFlag(flag);
                         model.setDate(ttime);
+                        model.setPayout_status(payout_status);
                         arrayList.add(model);
                     }
                     CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
@@ -173,7 +170,6 @@ public class ContestListActivity extends AppCompatActivity
     {
         public ArrayList<ContestModel> orderList;
         public Context mContext;
-        String operatorType;
         public CotestAdpter(ArrayList<ContestModel> orderList , Context context)
         {
             this.orderList = orderList;
@@ -192,17 +188,30 @@ public class ContestListActivity extends AppCompatActivity
             final ContestModel account_model = orderList.get(position);
             holder.TV_Win_Amount.setText("\u20B9 "+account_model.getWiningprice());
             holder.TV_Entry_fee.setText(account_model.getEnteryfee());
-            holder.TV_total_spot.setText(account_model.getTotal_Memb()+" Spot");
-            int total_member = Integer.parseInt(account_model.getTotal_Memb());
-            int total_member_by_per = 100/total_member;
-            int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
-            holder.progressBar.setProgress(remain_member);
-
-            holder.TV_spot_remaing.setText(total_member-Integer.parseInt(account_model.getTotal_joining())+" Left spot");
-            int sec  = Integer.parseInt(account_model.getTime_left());
-            // sec = sec*60*60;
-            reverseTimer(sec,holder.TV_remaing_time);
             final String flag = account_model.getFlag();
+
+            if (flag.equals("InActive"))
+            {
+                holder.RL_partisipet.setVisibility(View.GONE);
+                holder.progressBar.setVisibility(View.GONE);
+                String payout_status = account_model.getPayout_status();
+                if (payout_status.equals("UnPaid"))
+                {
+                    amountDistribution(account_model.getSrno());
+                }
+            }
+            else
+            {
+                int total_member = Integer.parseInt(account_model.getTotal_Memb());
+                int total_member_by_per = 100/total_member;
+                int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
+                holder.progressBar.setProgress(remain_member);
+                holder.TV_total_spot.setText(account_model.getTotal_Memb()+" spot");
+                holder.TV_spot_remaing.setText(total_member-Integer.parseInt(account_model.getTotal_joining())+" Left spot");
+            }
+
+            int sec  = Integer.parseInt(account_model.getTime_left());
+            reverseTimer(sec,holder.TV_remaing_time);
             holder.LinearLayout_Cotest.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -236,10 +245,10 @@ public class ContestListActivity extends AppCompatActivity
         {
             return orderList.size();
         }
-        public class RecyclerViewHolder extends RecyclerView.ViewHolder
-        {
+        public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             TextView TV_Win_Amount,TV_Entry_fee,TV_spot_remaing,TV_total_spot,TV_remaing_time,TV_top_score;
             LinearLayout LinearLayout_Cotest;
+            RelativeLayout RL_partisipet;
             ProgressBar progressBar;
             public RecyclerViewHolder(View itemView)
             {
@@ -252,6 +261,7 @@ public class ContestListActivity extends AppCompatActivity
                 LinearLayout_Cotest = (LinearLayout) itemView.findViewById(R.id.ll_contest_list);
                 TV_top_score = (TextView) itemView.findViewById(R.id.tv_top_score);
                 progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar_show_persentage);
+                RL_partisipet = (RelativeLayout) itemView.findViewById(R.id.rl_partisipet);
             }
         }
     }
@@ -275,8 +285,7 @@ public class ContestListActivity extends AppCompatActivity
         }.start();
     }
 
-    public void joinContest(final String MemberCode, final String Srno)
-    {
+    public void joinContest(final String MemberCode, final String Srno) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addContest";
@@ -336,6 +345,66 @@ public class ContestListActivity extends AppCompatActivity
             {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("membercode", MemberCode);
+                params.put("srno",Srno);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
+    }
+
+    public void amountDistribution(final String Srno)
+    {
+        progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"addFinalAmtByContest";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("msg");
+                    if (status.equals("1"))
+                    {
+                        Toast.makeText(ContestListActivity.this,"point Distribution: "+message,Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(ContestListActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("srno",Srno);
                 return params;
             }

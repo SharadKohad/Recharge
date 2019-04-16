@@ -39,12 +39,12 @@
         android:layout_below="@+id/game_over"
         android:background="@drawable/btn_round_green"
         android:padding="10dp"
-        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_25sdp"
         android:text="Play Again"
         android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:visibility="gone"
         android:textSize="18dp"/>
 
         <Button
@@ -57,6 +57,8 @@
             android:text="Home"
             android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_25sdp"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="18dp"/>
@@ -69,6 +71,7 @@
             android:layout_marginTop="@dimen/_100sdp"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
+            android:text="200"
             android:textColor="@color/colorAccent"/>
 
     </RelativeLayout>
