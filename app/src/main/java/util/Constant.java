@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Constant
 {
     public static String FISHSCORE = "";
-    public static String TOTAL_BALANCE = "";
+    public static int TOTAL_BALANCE = 0;
     public static String DIRECT_INCOME = "";
     public static String TOTAL_REF = "";
     public static int HIGH_SCORE=0;

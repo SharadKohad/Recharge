@@ -22,6 +22,7 @@
             android:textSize="@dimen/_10sdp"
             android:gravity="center"
             android:layout_marginTop="@dimen/_5sdp"
+            android:textStyle="bold"
             android:layout_marginLeft="@dimen/_20sdp"/>
 
         <LinearLayout
@@ -78,16 +79,22 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_remaining_left"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL PLAYER"
+                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
-                        android:id="@+id/tv_total_enrty"
+                        android:id="@+id/tv_total_player_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_20sdp"/>
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:drawableLeft="@drawable/ic_supervisor_account"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="8/10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
 
                 </RelativeLayout>
 
@@ -116,6 +123,16 @@
                     android:text=""
                     android:textColor="@color/white" />
 
+
+                <TextView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/btn_rounded_green_300"
+                    android:gravity="center"
+                    android:text="PLAY NOW"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/white" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -128,9 +145,10 @@
                 android:text="See Top Score"
                 android:paddingLeft="@dimen/_20sdp"
                 android:textSize="@dimen/_12sdp"
-                android:textColor="@color/red_600"
+                android:textColor="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingBottom="@dimen/_5sdp"
+                android:textStyle="bold"
                 android:paddingTop="@dimen/_5sdp"/>
 
 

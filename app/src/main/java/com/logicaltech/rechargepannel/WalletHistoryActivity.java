@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -28,28 +27,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import adpter.TopScoreAdpter;
-import model.ContestModel;
-import model.TopScoreModel;
+import adpter.WalletAdapter;
+import model.WithdrawHistoryModel;
 import util.Constant;
+import util.SessionManeger;
 
-public class TopScoreActivity extends AppCompatActivity
+public class WalletHistoryActivity extends AppCompatActivity
 {
     ImageView Img_Back;
-    ArrayList<TopScoreModel> arrayList =new ArrayList<>();
+    ArrayList<WithdrawHistoryModel> arrayList =new ArrayList<>();
     RecyclerView RecyclerView_Contest_Type;
     GridLayoutManager mGridLayoutManagerBrand;
     ProgressBar progressBar;
+    SessionManeger sessionManeger;
+    String memberCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_score);
-        Img_Back = (ImageView) findViewById(R.id.img_back_arrow_top_score);
-        RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_top_score);
-        mGridLayoutManagerBrand = new GridLayoutManager(TopScoreActivity.this, 1);
+        setContentView(R.layout.activity_wallet_history);
+        Img_Back = (ImageView) findViewById(R.id.img_back_arrow_wallet_history);
+        RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_contest_history);
+        progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
+        sessionManeger = new SessionManeger(getApplicationContext());
+        HashMap<String, String> hashMap = sessionManeger.getUserDetails();
+        memberCode = hashMap.get(SessionManeger.MEMBER_ID);
+        mGridLayoutManagerBrand = new GridLayoutManager(WalletHistoryActivity.this, 1);
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
-        progressBar = (ProgressBar) findViewById(R.id.progrebar_top_score);
 
         Img_Back.setOnClickListener(new View.OnClickListener()
         {
@@ -60,14 +65,15 @@ public class TopScoreActivity extends AppCompatActivity
             }
         });
 
-        topScorePerticulerContst(getIntent().getExtras().getString("srno"));
+        walletHistory(memberCode);
     }
 
-    public void topScorePerticulerContst(final String srno) {
+    public void walletHistory(final String memberCode)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getHighestScoreByContest?ContestID="+srno;
+        String url = Constant.URL+"getAdminFundDetails?membercode="+memberCode;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override
@@ -80,14 +86,18 @@ public class TopScoreActivity extends AppCompatActivity
                     for (int i = 0; i < response.length(); i++)
                     {
                         JSONObject jsonObject2 = response.getJSONObject(i);
-                        String score = jsonObject2.getString("score");
-                        String username = jsonObject2.getString("username");
-                        TopScoreModel model = new TopScoreModel();
-                        model.setScore(score);
-                        model.setUsername(username);
+                        String EMail = jsonObject2.getString("EMail");
+                        String amount = jsonObject2.getString("amount");
+                        String tdate = jsonObject2.getString("tdate");
+
+                        WithdrawHistoryModel model = new WithdrawHistoryModel();
+                        model.setEmail(EMail);
+                        model.setAmount(amount);
+                        model.setTdate(tdate);
                         arrayList.add(model);
+
                     }
-                    TopScoreAdpter operator_adapter = new TopScoreAdpter(arrayList,getApplicationContext());
+                    WalletAdapter operator_adapter = new WalletAdapter(arrayList,getApplicationContext());
                     RecyclerView_Contest_Type.setAdapter(operator_adapter);
                 }
                 catch (JSONException e)
@@ -128,4 +138,5 @@ public class TopScoreActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
 }

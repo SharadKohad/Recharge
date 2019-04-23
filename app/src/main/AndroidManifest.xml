@@ -3,6 +3,12 @@
     package="com.logicaltech.rechargepannel">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -11,12 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TopScoreActivity"></activity>
-        <activity android:name=".ContestListActivity" />
-        <activity android:name=".ProfileDetailActivity" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".ChecksumActivity"></activity>
         <activity android:name=".SpashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WalletHistoryActivity" />
+        <activity android:name=".ContextParticipetionActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".SingleContestDetailActivity" />
+        <activity android:name=".TopScoreActivity" />
+        <activity android:name=".ContestListActivity" />
+        <activity android:name=".ProfileDetailActivity" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".GameOverActivity" />
         <activity android:name=".JumpFishActivity" />
         <activity android:name=".GameZoneActivity" />

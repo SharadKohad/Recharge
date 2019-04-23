@@ -81,7 +81,7 @@
         </LinearLayout>
 
 
-       <!-- <LinearLayout
+        <LinearLayout
             android:id="@+id/linear_layout_Account_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/icon_paytm"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -108,140 +108,140 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_Update_kyc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/box_shadow">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_account"/>
-
-            <TextView
+        <!--    <LinearLayout
+                android:id="@+id/linear_layout_Update_kyc"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:text="Update KYC"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/_10sdp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/box_shadow">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/ic_account"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Update KYC"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/_10sdp" />
+
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_my_network"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/box_shadow">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_direct_income"/>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/linear_layout_my_network"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:text="Direct Network"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/_10sdp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/box_shadow">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/ic_direct_income"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Direct Network"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/_10sdp" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_downlineTeam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/box_shadow">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_downline_team"/>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/linear_layout_downlineTeam"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:text="Downline Team"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/_10sdp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/box_shadow">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/ic_downline_team"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Downline Team"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/_10sdp" />
+
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_recharge_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/box_shadow">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_recharge_history"/>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/linear_layout_recharge_history"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:text="Recharge History"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/_10sdp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/box_shadow">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/ic_recharge_history"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Recharge History"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/_10sdp" />
+
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_withdrawal_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/box_shadow">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/icon_withdraw_history"/>
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/linear_layout_withdrawal_history"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:text="Withdrawal History"
-                android:gravity="center|left"
-                android:paddingLeft="@dimen/_10sdp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/box_shadow">
 
-        </LinearLayout>-->
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/icon_withdraw_history"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Withdrawal History"
+                    android:gravity="center|left"
+                    android:paddingLeft="@dimen/_10sdp" />
+
+            </LinearLayout>-->
 
 
     </LinearLayout>

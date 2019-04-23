@@ -81,12 +81,11 @@ public class ContestListActivity extends AppCompatActivity
         contestList(gtype);
     }
 
-    public void contestList(final String gametype)
-    {
+    public void contestList(final String gametype) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getGameSettingByType?Type="+gametype;
+        String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID=";
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override
@@ -111,18 +110,22 @@ public class ContestListActivity extends AppCompatActivity
                         String total_joining = jsonObject2.getString("total_joining");
                         String payout_status = jsonObject2.getString("payout_status");
                         TV_gametitle.setText(""+game_name);
-                        ContestModel model = new ContestModel();
-                        model.setSrno(srno);
-                        model.setTotal_Memb(total_Memb);
-                        model.setTotal_time(total_time);
-                        model.setWiningprice(winning_amt);
-                        model.setTotal_joining(total_joining);
-                        model.setTime_left(time_left);
-                        model.setEnteryfee(entry_amt);
-                        model.setFlag(flag);
-                        model.setDate(ttime);
-                        model.setPayout_status(payout_status);
-                        arrayList.add(model);
+
+                        if (flag.equals("Active"))
+                        {
+                            ContestModel model = new ContestModel();
+                            model.setSrno(srno);
+                            model.setTotal_Memb(total_Memb);
+                            model.setTotal_time(total_time);
+                            model.setWiningprice(winning_amt);
+                            model.setTotal_joining(total_joining);
+                            model.setTime_left(time_left);
+                            model.setEnteryfee(entry_amt);
+                            model.setFlag(flag);
+                            model.setDate(ttime);
+                            model.setPayout_status(payout_status);
+                            arrayList.add(model);
+                        }
                     }
                     CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
                     RecyclerView_Contest_Type.setAdapter(operator_adapter);
@@ -166,8 +169,7 @@ public class ContestListActivity extends AppCompatActivity
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder>
-    {
+    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder> {
         public ArrayList<ContestModel> orderList;
         public Context mContext;
         public CotestAdpter(ArrayList<ContestModel> orderList , Context context)
@@ -187,7 +189,7 @@ public class ContestListActivity extends AppCompatActivity
 
             final ContestModel account_model = orderList.get(position);
             holder.TV_Win_Amount.setText("\u20B9 "+account_model.getWiningprice());
-            holder.TV_Entry_fee.setText(account_model.getEnteryfee());
+            holder.TV_Entry_fee.setText(account_model.getEnteryfee()+"0");
             final String flag = account_model.getFlag();
 
             if (flag.equals("InActive"))
@@ -206,8 +208,8 @@ public class ContestListActivity extends AppCompatActivity
                 int total_member_by_per = 100/total_member;
                 int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
                 holder.progressBar.setProgress(remain_member);
-                holder.TV_total_spot.setText(account_model.getTotal_Memb()+" spot");
-                holder.TV_spot_remaing.setText(total_member-Integer.parseInt(account_model.getTotal_joining())+" Left spot");
+              //  holder.TV_total_spot.setText(account_model.getTotal_Memb()+" spot");
+                holder.TV_total_spot.setText(account_model.getTotal_joining()+"/"+account_model.getTotal_Memb());
             }
 
             int sec  = Integer.parseInt(account_model.getTime_left());
@@ -217,10 +219,15 @@ public class ContestListActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-                    if (gtype.equals("1")&&flag.equals("Active"))
+                   // if (gtype.equals("1")&&flag.equals("Active"))
+                    if (gtype.equals("1"))
                     {
                         srno = account_model.getSrno();
-                        joinContest(userId,srno);
+                //        joinContest(userId,srno);.
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+
                     }
                     else
                     {
@@ -246,18 +253,17 @@ public class ContestListActivity extends AppCompatActivity
             return orderList.size();
         }
         public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-            TextView TV_Win_Amount,TV_Entry_fee,TV_spot_remaing,TV_total_spot,TV_remaing_time,TV_top_score;
+            TextView TV_Win_Amount,TV_Entry_fee,TV_total_spot,TV_remaing_time,TV_top_score;
             LinearLayout LinearLayout_Cotest;
             RelativeLayout RL_partisipet;
             ProgressBar progressBar;
             public RecyclerViewHolder(View itemView)
             {
                 super(itemView);
+                TV_remaing_time = (TextView) itemView.findViewById(R.id.tv_remaing_time);
                 TV_Win_Amount = (TextView) itemView.findViewById(R.id.tv_win_amount);
                 TV_Entry_fee = (TextView) itemView.findViewById(R.id.text_view_entry_fee);
-                TV_total_spot = (TextView) itemView.findViewById(R.id.tv_total_enrty);
-                TV_spot_remaing = (TextView) itemView.findViewById(R.id.tv_remaining_left);
-                TV_remaing_time = (TextView) itemView.findViewById(R.id.tv_remaing_time);
+                TV_total_spot = (TextView) itemView.findViewById(R.id.tv_total_player_list);
                 LinearLayout_Cotest = (LinearLayout) itemView.findViewById(R.id.ll_contest_list);
                 TV_top_score = (TextView) itemView.findViewById(R.id.tv_top_score);
                 progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar_show_persentage);

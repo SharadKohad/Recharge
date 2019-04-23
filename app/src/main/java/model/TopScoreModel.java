@@ -4,6 +4,15 @@ public class TopScoreModel
 {
     String username;
     String score;
+    String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
     public String getUsername() {
         return username;

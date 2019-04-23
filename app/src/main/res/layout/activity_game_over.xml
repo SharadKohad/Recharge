@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash"
+    android:background="@color/colorPrimary"
     tools:context=".GameOverActivity">
 
     <ProgressBar
@@ -17,26 +17,71 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/game_over"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:text="Game Over"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
         android:textSize="60dp"
         android:textStyle="bold" />
 
-    <Button
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_top_three_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_over"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/spacing_middle"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_top_score_game_over"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:visibility="gone"
+                android:background="@drawable/top_backgroung">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_100sdp"
+                    android:gravity="top"
+                    android:padding="@dimen/_2sdp"
+                    android:text="CURRENT HEROS"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_top_three_score_gover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_20sdp">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <Button
         android:id="@+id/play_again_btn"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/game_over"
+        android:layout_below="@+id/cv_top_three_score"
         android:background="@drawable/btn_round_green"
         android:padding="10dp"
         android:layout_marginLeft="@dimen/_25sdp"
@@ -51,7 +96,7 @@
             android:id="@+id/btn_home_btn"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/game_over"
+            android:layout_below="@+id/cv_top_three_score"
             android:background="@drawable/btn_round_green"
             android:padding="10dp"
             android:text="Home"
@@ -64,15 +109,66 @@
             android:textSize="18dp"/>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:text="YOUR SCORE:"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_marginTop="@dimen/_20sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:text="High SCORE:"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_marginTop="@dimen/_20sdp"/>
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/scoreboard"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_20sdp"/>
+
+
+        <TextView
             android:id="@+id/score"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_below="@+id/play_again_btn"
-            android:layout_marginTop="@dimen/_100sdp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_marginLeft="@dimen/_55sdp"
             android:textSize="20dp"
-            android:text="200"
-            android:textColor="@color/colorAccent"/>
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/scoreboard"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_20sdp"/>
+
+
+        <TextView
+            android:id="@+id/highscore"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/play_again_btn"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_marginRight="@dimen/_55sdp"
+            android:layout_alignParentRight="true"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
     </RelativeLayout>
 

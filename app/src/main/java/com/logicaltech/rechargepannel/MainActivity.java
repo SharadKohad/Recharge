@@ -39,11 +39,12 @@ import java.util.Map;
 import util.Constant;
 import util.SessionManeger;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
         LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
         LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
+        LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
@@ -94,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             textSliderView.getBundle().putString("extra",name);
             sliderLayout.addSlider(textSliderView);
         }
-
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
@@ -107,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view)
             {
                 intent = new Intent(MainActivity.this,MobileRechargeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LL_Total_Balance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(MainActivity.this,WalletHistoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -173,9 +182,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(MainActivity.this,AccountActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_slideshow)
+        else if (id == R.id.nav_participetion_list)
         {
-
+            intent = new Intent(MainActivity.this,ContextParticipetionActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_manage)
         {
@@ -227,13 +237,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 try
                 {
                     JSONObject jsonObject = new JSONObject(response);
-                    String total_Balance = jsonObject.getString("Total_Balance");
+                    int total_Balance = jsonObject.getInt("Total_Balance");
                     String Total_Direct_Income = jsonObject.getString("Total_Direct_Income");
                     String Total_Direct_Referral = jsonObject.getString("Total_Direct_Referral");
                     Constant.TOTAL_BALANCE = total_Balance;
                     Constant.DIRECT_INCOME = Total_Direct_Income;
                     Constant.TOTAL_REF = Total_Direct_Referral;
-                    TextViewTotalBalance.setText(total_Balance);
+                    TextViewTotalBalance.setText(""+total_Balance);
                     TextViewDirectIncome.setText(Total_Direct_Income);
                     TextViewRefernce.setText(Total_Direct_Referral);
                     Toast.makeText(MainActivity.this,"DashBoard Successfull",Toast.LENGTH_SHORT).show();

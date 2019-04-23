@@ -11,26 +11,65 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/grey_3"
-        android:padding="@dimen/_10sdp">
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp">
+
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/icon_profile"
+            android:padding="@dimen/_10sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/tv_top_username"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:text="Jagga"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15sdp"/>
+        android:text="SHARAD"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/grey_90"
+        android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/tv_top_userscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:text="200"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_20sdp"/>
+            android:textColor="@color/grey_90"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_top_username"
+            android:layout_marginLeft="@dimen/_30sdp" />
+
+
+           <TextView
+           android:id="@+id/tv_top_rank"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="1"
+           android:textColor="@color/grey_90"
+           android:textSize="@dimen/_12sdp"
+           android:layout_centerVertical="true"
+           android:layout_toRightOf="@+id/tv_top_userscore"
+           android:layout_toLeftOf="@+id/tv_top_price"
+           android:gravity="center"/>
+
+
+        <TextView
+            android:id="@+id/tv_top_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2"
+            android:textColor="@color/grey_90"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_10sdp" />
+
 
     </RelativeLayout>
 

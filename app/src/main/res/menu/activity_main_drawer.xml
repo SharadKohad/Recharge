@@ -15,11 +15,11 @@
             android:icon="@drawable/icon_game"
             android:title="Game Zone" />
 
-
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_participetion_list"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Contest History" />
+
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
