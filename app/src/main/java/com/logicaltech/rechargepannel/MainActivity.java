@@ -26,25 +26,30 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import util.Constant;
+import util.MySingalton;
 import util.SessionManeger;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    SliderLayout sliderLayout;
+   // SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
@@ -56,12 +61,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionManeger = new SessionManeger(getApplicationContext());
-        sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
+     //   sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
         LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
         LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
         LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
+        LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
         TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
         TextViewRefernce = (TextView) findViewById(R.id.tv_total_ref);
@@ -87,8 +93,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         AddImageUrlFormLocalRes();
         dashBoardData(membercode);
+        contestList("1");
 
-        for(String name : HashMapForLocalRes.keySet())
+       /* for(String name : HashMapForLocalRes.keySet())
         {
             TextSliderView textSliderView = new TextSliderView(MainActivity.this);
             textSliderView.description(name).image(HashMapForLocalRes.get(name)).setScaleType(BaseSliderView.ScaleType.Fit);
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(3000);
+        sliderLayout.setDuration(3000);*/
         //  sliderLayout.addOnPageChangeListener(MainActivity.this);
 
         LL_Mobile_Recharge.setOnClickListener(new View.OnClickListener()
@@ -136,6 +143,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view)
             {
                 intent = new Intent(MainActivity.this,FlightBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LL_FishGame_Home.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //  intent = new Intent(GameZoneActivity.this,JumpFishActivity.class);
+                intent = new Intent(MainActivity.this,ContestListActivity.class);
+                intent.putExtra("gtype","1");
                 startActivity(intent);
             }
         });
@@ -283,5 +302,126 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
+    public void contestList(final String gametype)
+    {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
+        String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID=&Status=";
+        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
+        {
+            @Override
+            public void onResponse(JSONArray response)
+            {
+                try
+                {
+                    for (int i = 0; i < response.length(); i++)
+                    {
+                        JSONObject jsonObject2 = response.getJSONObject(i);
+                        String flag = jsonObject2.getString("flag");
+                        if (flag.equals("InActive"))
+                        {
+                            String payout_status = jsonObject2.getString("payout_status");
+                            if (payout_status.equals("UnPaid"))
+                            {
+                                String srno = jsonObject2.getString("srno");
+                                System.out.println("My Context"+i+ " "+srno);
+                                //amountDistribution(srno);
+                            }
+                        }
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
+    }
+
+   /* public void amountDistribution(final String Srno) {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"addFinalAmtByContest";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("msg");
+                    if (status.equals("1"))
+                    {
+                        Toast.makeText(MainActivity.this,"point Distribution: "+message,Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("srno",Srno);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
+    }
+*/
 
 }

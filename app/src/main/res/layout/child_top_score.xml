@@ -24,15 +24,15 @@
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true" />
 
-    <TextView
-        android:id="@+id/tv_top_username"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="wrap_content"
-        android:text="SHARAD"
-        android:layout_marginLeft="@dimen/_40sdp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/grey_90"
-        android:textSize="@dimen/_12sdp" />
+        <TextView
+            android:id="@+id/tv_top_username"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="SHARAD"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grey_90"
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/tv_top_userscore"
@@ -47,16 +47,17 @@
 
 
            <TextView
-           android:id="@+id/tv_top_rank"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="1"
-           android:textColor="@color/grey_90"
-           android:textSize="@dimen/_12sdp"
-           android:layout_centerVertical="true"
-           android:layout_toRightOf="@+id/tv_top_userscore"
-           android:layout_toLeftOf="@+id/tv_top_price"
-           android:gravity="center"/>
+                android:id="@+id/tv_top_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/grey_90"
+                android:textSize="@dimen/_12sdp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_top_userscore"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_toLeftOf="@+id/tv_top_price"
+                android:gravity="center"/>
 
 
         <TextView

@@ -38,7 +38,7 @@ public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.Recycler
         final TopScoreModel account_model = orderList.get(position);
         holder.TV_Top_User_Name.setText(account_model.getUsername());
         holder.TV_Top_Score.setText(account_model.getScore());
-        holder.TV_Price.setText("10 \u20B9");
+        holder.TV_Price.setText(account_model.getPrice()+" \u20B9");
         count++;
         holder.TV_Top_Rank.setText(""+count);
         if (count%2==0)

@@ -53,7 +53,7 @@ import util.SessionManeger;
 
 public class SingleContestDetailActivity extends AppCompatActivity
 {
-    String srno,userId,playerstatus,message;
+    String srno,userId,playerstatus="0",message;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     ArrayList<PriceModel> arrayList1 =new ArrayList<>();
     CardView CV_Price_Dis;
@@ -81,7 +81,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         srno = getIntent().getExtras().getString("srno");
 
         joinContestStatus(userId,srno);
-        contestList("1",srno);
+        singleContestDetail("1",srno);
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
 
@@ -99,13 +99,26 @@ public class SingleContestDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                joinContest(userId,srno);
+               // joinContest(userId,srno);
+                if (playerstatus.equals("1"))
+                {
+                    showCustomDialog();
+                }
+                else if(playerstatus.equals("2"))
+                {
+                    Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(SingleContestDetailActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    public void init()
-    {
+    public void init() {
         TV_Price = (TextView) findViewById(R.id.tv_wining_price);
         TV_Total_Player  = (TextView) findViewById(R.id.tv_total_player);
         TV_Cotest_Join = (TextView) findViewById(R.id.tv_contest_amount);
@@ -123,7 +136,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
-    public void contestList(final String gametype,final String srno) {
+    public void singleContestDetail(final String gametype,final String srno) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -203,7 +216,8 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
-    public void topScorePerticulerContst(final String srno) {
+    public void topScorePerticulerContst(final String srno)
+    {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getHighestScoreByContest?ContestID="+srno;
@@ -292,7 +306,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 return headers;
             }
         };
-        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
     public void reverseTimer(int Seconds,final TextView tv) {
@@ -313,8 +327,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         }.start();
     }
-    private void showCustomDialog()
-    {
+    private void showCustomDialog() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_contest_conform);
@@ -369,9 +382,10 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 }
                 else
                 {
-                    Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
-                    intent.putExtra("srno",srno);
-                    startActivity(intent);
+                   // Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                    //intent.putExtra("srno",srno);
+                   // startActivity(intent);
+                    joinContest(userId,srno);
                 }
             }
         });
@@ -391,13 +405,9 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 {
         //            progressBar.setVisibility(View.INVISIBLE);
                     JSONObject jsonObject = new JSONObject(response);
-                   // playerstatus = jsonObject.getString("status");
-                  //  message = jsonObject.getString("msg");
-                    if (playerstatus.equals("1"))
-                        {
-                            showCustomDialog();
-                        }
-                    else if(playerstatus.equals("2"))
+                    String  pstatus = jsonObject.getString("status");
+                    String  msg = jsonObject.getString("msg");
+                    if (pstatus.equals("1")||pstatus.equals("2"))
                         {
                             Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
                             intent.putExtra("srno",srno);
@@ -405,7 +415,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         }
                     else
                         {
-                            Toast.makeText(SingleContestDetailActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SingleContestDetailActivity.this," "+msg,Toast.LENGTH_SHORT).show();
                         }
                 }
                 catch (JSONException e)
@@ -443,8 +453,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
-    public void topScorePriceDistribution(final String srno)
-    {
+    public void topScorePriceDistribution(final String srno) {
     //    progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -520,9 +529,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
-
-    public void joinContestStatus(final String MemberCode, final String Srno)
-    {
+    public void joinContestStatus(final String MemberCode, final String Srno) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"checkplayerExists?membercode="+MemberCode+"&srno="+Srno;

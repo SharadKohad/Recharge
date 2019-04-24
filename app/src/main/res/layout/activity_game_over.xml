@@ -71,26 +71,23 @@
 
             </RelativeLayout>
 
-
         </android.support.v7.widget.CardView>
 
 
-
-
         <Button
-        android:id="@+id/play_again_btn"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cv_top_three_score"
-        android:background="@drawable/btn_round_green"
-        android:padding="10dp"
-        android:layout_marginLeft="@dimen/_25sdp"
-        android:text="Play Again"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentLeft="true"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:textSize="18dp"/>
+            android:id="@+id/play_again_btn"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_top_three_score"
+            android:background="@drawable/btn_round_green"
+            android:padding="10dp"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:text="Play Again"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentLeft="true"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
 
         <Button
             android:id="@+id/btn_home_btn"

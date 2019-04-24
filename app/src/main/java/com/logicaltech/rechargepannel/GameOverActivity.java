@@ -1,6 +1,8 @@
 package com.logicaltech.rechargepannel;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -52,6 +54,7 @@ public class GameOverActivity extends AppCompatActivity
     RecyclerView RecyclerView_Top_Three_Contest;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     RelativeLayout RL_Top_Score;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,10 +63,10 @@ public class GameOverActivity extends AppCompatActivity
         setContentView(R.layout.activity_game_over);
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
-        HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
+     //   HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
         userId = hashMap.get(SessionManeger.MEMBER_ID);
-        sessionScoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
-        topScore =  Integer.parseInt(sessionScoreFish);
+      //  sessionScoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
+        //topScore =  Integer.parseInt(sessionScoreFish);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_gameover);
         StartGameAgain = (Button) findViewById(R.id.play_again_btn);
         tvscore = (TextView) findViewById(R.id.score);
@@ -76,22 +79,8 @@ public class GameOverActivity extends AppCompatActivity
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
         topScorePerticulerContst(srno);
+        getHighScoreByContest(userId,srno);
 
-        if (topScore<=0)
-        {
-            sessionManeger.createSessionFlyFish(Integer.toString(scorevalue));
-            TV_High_Score.setText(""+scorevalue);
-        }
-        else if (topScore<scorevalue)
-        {
-            sessionManeger.createSessionFlyFish(Integer.toString(scorevalue));
-            TV_High_Score.setText(""+scorevalue);
-        }
-        else
-        {
-            Toast.makeText(GameOverActivity.this,"High Score Submit ",Toast.LENGTH_SHORT).show();
-            TV_High_Score.setText(""+topScore);
-        }
 
         submitScore(userId,srno,Integer.toString(scorevalue));
 
@@ -100,7 +89,7 @@ public class GameOverActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(GameOverActivity.this,JumpFishActivity.class);
+                intent = new Intent(GameOverActivity.this,JumpFishActivity.class);
                 intent.putExtra("srno",srno);
                 startActivity(intent);
             }
@@ -113,14 +102,13 @@ public class GameOverActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(GameOverActivity.this,MainActivity.class);
+                intent = new Intent(GameOverActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void submitScore(final String MemberCode, final String Srno, final String Score)
-    {
+    public void submitScore(final String MemberCode, final String Srno, final String Score) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addPlayedGameScore";
@@ -281,6 +269,86 @@ public class GameOverActivity extends AppCompatActivity
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit game?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface arg0, int arg1)
+                    {
+                        intent = new Intent(GameOverActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                }).create().show();
+    }
+
+    public void getHighScoreByContest(final String MemberCode, final String Srno) {
+        //progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"getPlayerHighscoreByContest?membercode="+MemberCode+"&ContestID="+Srno;
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                        JSONObject jsonObject = new JSONObject(response);
+                        sessionScoreFish = jsonObject.getString("score");
+                        if (sessionScoreFish.equals("null"))
+                        {
+                            TV_High_Score.setText(""+scorevalue);
+                        }
+                        else
+                        {
+                            topScore =  Integer.parseInt(sessionScoreFish);
+                            if (topScore<=scorevalue)
+                            {
+                                // sessionManeger.createSessionFlyFish(Integer.toString(scorevalue));
+                                TV_High_Score.setText(""+scorevalue);
+                            }
+                            else
+                            {
+                                TV_High_Score.setText(""+topScore);
+                            }
+                        }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
     }
 
 }

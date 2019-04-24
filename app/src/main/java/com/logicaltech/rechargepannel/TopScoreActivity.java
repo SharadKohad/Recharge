@@ -40,6 +40,7 @@ public class TopScoreActivity extends AppCompatActivity
     RecyclerView RecyclerView_Contest_Type;
     GridLayoutManager mGridLayoutManagerBrand;
     ProgressBar progressBar;
+    String price;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,10 +61,12 @@ public class TopScoreActivity extends AppCompatActivity
             }
         });
 
+        price = getIntent().getExtras().getString("price");
         topScorePerticulerContst(getIntent().getExtras().getString("srno"));
     }
 
-    public void topScorePerticulerContst(final String srno) {
+    public void topScorePerticulerContst(final String srno)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -85,6 +88,7 @@ public class TopScoreActivity extends AppCompatActivity
                         TopScoreModel model = new TopScoreModel();
                         model.setScore(score);
                         model.setUsername(username);
+                        model.setPrice(price);
                         arrayList.add(model);
                     }
                     TopScoreAdpter operator_adapter = new TopScoreAdpter(arrayList,getApplicationContext());

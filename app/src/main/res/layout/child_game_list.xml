@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginRight="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/rr_contest_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gamebackground">
+
+        <RelativeLayout
+            android:id="@+id/rl_time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hr"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/_50sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sec"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_45sdp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_time_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_time_text"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/tv_remaing_hr"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:text="12"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:background="@drawable/box_time_background"/>
+
+        <TextView
+            android:id="@+id/tv_remaing_min"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:text="50"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:background="@drawable/box_time_background"/>
+
+        <TextView
+            android:id="@+id/tv_remaing_sec"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:text="25"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:background="@drawable/box_time_background"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_show_persentage"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_below="@+id/rl_time_value"
+        android:progressBackgroundTint="@color/white"
+        android:indeterminateTint="@color/white"
+        android:progressTint="@color/white"
+        android:minWidth="220dp" />
+
+    <RelativeLayout
+        android:id="@+id/ll_contest_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@+id/progressBar_show_persentage">
+
+        <LinearLayout
+            android:id="@+id/ll_price"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/box_time_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PRICE"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_win_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+       <LinearLayout
+           android:id="@+id/ll_left"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toRightOf="@+id/ll_price"
+            android:background="@drawable/box_time_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LEFT"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_member_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/ll_left"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:background="@drawable/box_time_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TOTAL"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_total_player_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/box_time_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ENTRY"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/text_view_entry_fee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_play_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_contest_list"
+        android:background="@drawable/box_shadow"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="PLAY"
+        android:visibility="gone"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_3"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/btn_play_game">
+
+                <TextView
+                    android:id="@+id/tv_top_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See Top Score"
+                    android:textStyle="bold"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_alignParentLeft="true"
+                    android:paddingBottom="@dimen/_5sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLAY NOW"
+                    android:textStyle="bold"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="@dimen/_5sdp" />
+
+            </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_3"
+        android:text="See Top Score"
+        android:paddingLeft="@dimen/_20sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:paddingTop="@dimen/_5sdp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+    <!--<TextView
+        android:id="@+id/tv_remaing_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red_600"
+        android:textSize="@dimen/_10sdp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/_20sdp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gamebackground"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_contest_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_large">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="Price Win" />
+
+                <TextView
+                    android:id="@+id/tv_win_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rs 500"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/indigo_900"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar_show_persentage"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:minWidth="220dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_partisipet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL PLAYER"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_total_player_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:drawableLeft="@drawable/ic_supervisor_account"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="8/10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="Entry Fee" />
+
+                <TextView
+                    android:id="@+id/text_view_entry_fee"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/btn_rounded_green_300"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/btn_rounded_green_300"
+                    android:gravity="center"
+                    android:text="PLAY NOW"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_top_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_3"
+            android:text="See Top Score"
+            android:paddingLeft="@dimen/_20sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/_5sdp"/>
+
+
+    </LinearLayout>-->
+
+
+</RelativeLayout>

@@ -13,7 +13,7 @@
         android:id="@+id/rl_contest_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        android:background="@color/blue_grey_600">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/img_back_arrow_contest_detail"
@@ -98,7 +98,6 @@
                         android:layout_below="@+id/tv_cotest_name"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
-                        android:text=" 400"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold" />
@@ -138,7 +137,6 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:drawableLeft="@drawable/ic_supervisor_account"
                         android:drawablePadding="@dimen/_5sdp"
-                        android:text="8/10"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 
