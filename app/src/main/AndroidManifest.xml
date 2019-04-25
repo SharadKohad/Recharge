@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChecksumActivity"></activity>
+        <activity android:name=".WebView2048Activity"></activity>
+        <activity android:name=".ChecksumActivity" />
         <activity android:name=".SpashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

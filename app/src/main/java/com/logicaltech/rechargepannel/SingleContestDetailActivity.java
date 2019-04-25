@@ -53,7 +53,7 @@ import util.SessionManeger;
 
 public class SingleContestDetailActivity extends AppCompatActivity
 {
-    String srno,userId,playerstatus="0",message;
+    String srno,userId,playerstatus="0",message,gametype;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     ArrayList<PriceModel> arrayList1 =new ArrayList<>();
     CardView CV_Price_Dis;
@@ -79,9 +79,10 @@ public class SingleContestDetailActivity extends AppCompatActivity
         init();
 
         srno = getIntent().getExtras().getString("srno");
+        gametype = getIntent().getExtras().getString("gametype");
 
         joinContestStatus(userId,srno);
-        singleContestDetail("1",srno);
+        singleContestDetail(gametype,srno);
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
 
@@ -106,9 +107,16 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 }
                 else if(playerstatus.equals("2"))
                 {
-                    Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
-                    intent.putExtra("srno",srno);
-                    startActivity(intent);
+                    if (gametype.equals("1"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+
+                    }
                 }
                 else
                 {
@@ -216,8 +224,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
-    public void topScorePerticulerContst(final String srno)
-    {
+    public void topScorePerticulerContst(final String srno) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getHighestScoreByContest?ContestID="+srno;
@@ -409,9 +416,19 @@ public class SingleContestDetailActivity extends AppCompatActivity
                     String  msg = jsonObject.getString("msg");
                     if (pstatus.equals("1")||pstatus.equals("2"))
                         {
-                            Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
-                            intent.putExtra("srno",srno);
-                            startActivity(intent);
+                            if (gametype.equals("1"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if (gametype.equals("2"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://logicalsolutiontech.com/game/index.html");
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
                         }
                     else
                         {
@@ -450,7 +467,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         };
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
-        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
     public void topScorePriceDistribution(final String srno) {

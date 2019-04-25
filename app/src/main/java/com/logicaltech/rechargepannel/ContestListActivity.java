@@ -166,7 +166,8 @@ public class ContestListActivity extends AppCompatActivity
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder> {
+    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder>
+    {
         public ArrayList<ContestModel> orderList;
         public Context mContext;
         public CotestAdpter(ArrayList<ContestModel> orderList , Context context)
@@ -215,12 +216,20 @@ public class ContestListActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-                   // if (gtype.equals("1")&&flag.equals("Active"))
+                    srno = account_model.getSrno();
+                    // if (gtype.equals("1")&&flag.equals("Active"))
                     if (gtype.equals("1"))
                     {
-                        srno = account_model.getSrno();
                 //        joinContest(userId,srno);.
                         Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("2"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }

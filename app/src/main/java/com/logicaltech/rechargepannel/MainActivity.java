@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
    // SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
         LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
+        LL_2048_Game = (LinearLayout) findViewById(R.id.linear_layout_2048);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
         TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
         TextViewRefernce = (TextView) findViewById(R.id.tv_total_ref);
@@ -159,6 +160,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        LL_2048_Game.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //  intent = new Intent(GameZoneActivity.this,JumpFishActivity.class);
+                intent = new Intent(MainActivity.this,ContestListActivity.class);
+                intent.putExtra("gtype","2");
+                startActivity(intent);
+            }
+        });
+
         LL_refernce_social_media.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -173,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
