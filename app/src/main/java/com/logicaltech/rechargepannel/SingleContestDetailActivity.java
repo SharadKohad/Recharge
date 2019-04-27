@@ -59,7 +59,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
     CardView CV_Price_Dis;
     RecyclerView RecyclerView_Top_Three_Contest,RV_Price_Distribution;
     ProgressBar progressBar;
-    TextView TV_Price,TV_Total_Player,TV_Cotest_Join,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List;
+    TextView TV_Price,TV_Total_Player,TV_Cotest_Join,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List,TV_Dis_Player,TV_Dis_Price;
     int join_contest_amt;
     ImageView img_back_arrow;
     RelativeLayout RL_play_game;
@@ -82,7 +82,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         gametype = getIntent().getExtras().getString("gametype");
 
         joinContestStatus(userId,srno);
-        singleContestDetail(gametype,srno);
+        singleContestDetail(gametype,srno,"1");
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
 
@@ -113,9 +113,12 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
-                    else
+                    else if(gametype.equals("2"))
                     {
-
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site17.bidbch.com/game/index.html");
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
                     }
                 }
                 else
@@ -132,23 +135,26 @@ public class SingleContestDetailActivity extends AppCompatActivity
         TV_Cotest_Join = (TextView) findViewById(R.id.tv_contest_amount);
         TV_Game_Name = (TextView) findViewById(R.id.tv_cotest_name);
         TV_Remaing_Time = (TextView) findViewById(R.id.tv_remaing_time_contest_detail);
+        TV_Dis_Player = (TextView) findViewById(R.id.tv_total_player_price_distribution);
         img_back_arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
         RL_play_game = (RelativeLayout) findViewById(R.id.rl_play_game);
         CV_Price_Dis = (CardView) findViewById(R.id.cv_cotest_price_distribution);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_single_contest);
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
         RV_Price_Distribution = (RecyclerView) findViewById(R.id.rv_price_disctribution);
+        TV_Dis_Price = (TextView) findViewById(R.id.tv_total_player_price_total);
         mGridLayoutManagerBrand = new GridLayoutManager(SingleContestDetailActivity.this, 1);
         RV_Price_Distribution.setLayoutManager(mGridLayoutManagerBrand);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
-    public void singleContestDetail(final String gametype,final String srno) {
+
+    public void singleContestDetail(final String gametype,final String srno,final String status) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID="+srno;
+        String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID="+srno+"&Status="+status;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override
@@ -171,7 +177,9 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         String total_joining = jsonObject2.getString("total_joining");
                         TV_Game_Name.setText(""+game_name);
                         TV_Price.setText("\u20B9 "+winning_amt);
+                        TV_Dis_Price.setText("\u20B9 "+winning_amt);
                         TV_Total_Player.setText(total_joining+"/"+total_Memb);
+                        TV_Dis_Player.setText(""+total_joining+"/"+total_Memb);
                     //    join_contest_amt = Integer.parseInt(entry_amt);
                         int sec  = Integer.parseInt(time_left);
                         reverseTimer(sec,TV_Remaing_Time);
@@ -425,7 +433,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                             else if (gametype.equals("2"))
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
-                                intent.putExtra("url","http://logicalsolutiontech.com/game/index.html");
+                                intent.putExtra("url","http://site17.bidbch.com/game/index.html");
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
                             }

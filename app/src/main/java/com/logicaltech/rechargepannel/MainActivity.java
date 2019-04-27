@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
    // SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Refernce;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
@@ -69,9 +69,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
         LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
         LL_2048_Game = (LinearLayout) findViewById(R.id.linear_layout_2048);
+        LL_Fist_Arrow = (LinearLayout) findViewById(R.id.linear_layout_jump_game_four);
+        LL_Catch_Dot = (LinearLayout) findViewById(R.id.linear_layout_six);
+        LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
         TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
         TextViewRefernce = (TextView) findViewById(R.id.tv_total_ref);
+        LL_Table_Tenic = (LinearLayout) findViewById(R.id.linear_layout_game_five);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -147,6 +151,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+
+        LL_Fist_Arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(MainActivity.this,WebView2048Activity.class);
+                intent.putExtra("url","https://buy-instant-html5games.com/fast-arrow");
+                intent.putExtra("srno","4");
+                startActivity(intent);
+            }
+        });
+
+        LL_Table_Tenic.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,WebView2048Activity.class);
+                intent.putExtra("url","https://buy-instant-html5games.com/ping-pong");
+                intent.putExtra("srno","5");
+                startActivity(intent);
+            }
+        });
+
+        LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,WebView2048Activity.class);
+                intent.putExtra("url","https://buy-instant-html5games.com/catch-dots");
+                intent.putExtra("srno","6");
+                startActivity(intent);
+            }
+        });
+
+        LL_Refernce.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "http://www.arenaitech.com/");
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
+                startActivity(Intent.createChooser(intent, "Share"));
+            }
+        });
+
 
         LL_FishGame_Home.setOnClickListener(new View.OnClickListener()
         {

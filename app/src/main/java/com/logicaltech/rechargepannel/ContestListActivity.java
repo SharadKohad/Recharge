@@ -51,10 +51,12 @@ public class ContestListActivity extends AppCompatActivity
     ArrayList<ContestModel> arrayList =new ArrayList<>();
     RecyclerView RecyclerView_Contest_Type;
     GridLayoutManager mGridLayoutManagerBrand;
+    LinearLayout LL_Current_Tournaments,LL_Current_Heroes,LL_Show_Tournaments;
     String gtype,userId,srno;
     TextView TV_gametitle;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
+    RelativeLayout RL_Background_colour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,6 +72,10 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
+        LL_Current_Tournaments = (LinearLayout) findViewById(R.id.ll_current_tournament);
+        LL_Current_Heroes = (LinearLayout) findViewById(R.id.ll_current_heroes);
+        RL_Background_colour = (RelativeLayout) findViewById(R.id.rl_contest_list_background);
+        LL_Show_Tournaments = (LinearLayout)findViewById(R.id.ll_ballel);
         gtype = getIntent().getExtras().getString("gtype");
         Img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +85,25 @@ public class ContestListActivity extends AppCompatActivity
             }
         });
         contestList(gtype);
+        LL_Current_Tournaments.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                LL_Show_Tournaments.setVisibility(View.VISIBLE);
+                RL_Background_colour.setBackgroundColor(getResources().getColor(R.color.white));
+            }
+        });
+
+        LL_Current_Heroes.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                LL_Show_Tournaments.setVisibility(View.GONE);
+                RL_Background_colour.setBackgroundColor(getResources().getColor(R.color.red_600));
+            }
+        });
     }
 
     public void contestList(final String gametype) {
@@ -166,8 +191,7 @@ public class ContestListActivity extends AppCompatActivity
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder>
-    {
+    public class CotestAdpter extends RecyclerView.Adapter<CotestAdpter.RecyclerViewHolder> {
         public ArrayList<ContestModel> orderList;
         public Context mContext;
         public CotestAdpter(ArrayList<ContestModel> orderList , Context context)

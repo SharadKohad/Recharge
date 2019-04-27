@@ -12,7 +12,7 @@
     <RelativeLayout
         android:id="@+id/rl_contest_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="@dimen/_65sdp"
         android:background="@color/colorPrimary">
 
         <ImageView
@@ -20,11 +20,12 @@
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:src="@drawable/ic_arrow_back"
+            android:layout_centerVertical="true"
             android:padding="@dimen/_10sdp"/>
 
         <TextView
             android:id="@+id/tv_game_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_toRightOf="@+id/img_back_arrow_contest_detail"
@@ -32,6 +33,60 @@
             android:text="Contest Detail"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_all_game"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_game_title"
+            android:layout_marginLeft="@dimen/_20sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/icons_circled_menu"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Games"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_8sdp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_all_how_to_play"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/rl_all_game"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/icons_query"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How To Play"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -196,44 +251,95 @@
                 android:layout_marginLeft="@dimen/spacing_middle"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/_50sdp"
                 app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
                 android:visibility="gone"
+                app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/green_A100">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_100sdp"
-                        android:gravity="top"
-                        android:padding="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
                         android:text="PRICE BREAKUP"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
+                        android:background="@color/green_500"
                         android:textSize="@dimen/_10sdp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Player"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/_10sdp"/>
+
+                        <TextView
+                            android:id="@+id/tv_total_player_price_distribution"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:drawableLeft="@drawable/ic_supervisor_account"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:text="2014/3000"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prize Pool"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/_10sdp"/>
+
+
+                        <TextView
+                            android:id="@+id/tv_total_player_price_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:text="3000 Rs"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_20sdp"
                         android:text="Final price will be gived after tournament ends"
-                        android:textColor="@color/red_600" />
+                        android:textColor="@color/red_600"
+                        android:layout_gravity="center"/>
 
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_price_disctribution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_30sdp">
 
                     </android.support.v7.widget.RecyclerView>
 
-                </RelativeLayout>
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
 

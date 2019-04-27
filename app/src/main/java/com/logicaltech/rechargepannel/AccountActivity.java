@@ -50,7 +50,6 @@ public class AccountActivity extends AppCompatActivity
     Dialog dialog;
     WindowManager.LayoutParams lp;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -1,6 +1,8 @@
 package com.logicaltech.rechargepannel;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -39,6 +41,22 @@ public class WebView2048Activity extends AppCompatActivity
                 return super.shouldOverrideUrlLoading(view,url);
             }
         });
+    }
 
+    @Override
+    public void onBackPressed()
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit game?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface arg0, int arg1)
+                    {
+                        Intent intent = new Intent(WebView2048Activity.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                }).create().show();
     }
 }

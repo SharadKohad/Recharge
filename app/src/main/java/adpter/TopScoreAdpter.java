@@ -43,7 +43,7 @@ public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.Recycler
         holder.TV_Top_Rank.setText(""+count);
         if (count%2==0)
         {
-            holder.rl_top_score.setBackgroundColor(Color.WHITE);
+            holder.rl_top_score.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         }
     }
     @Override

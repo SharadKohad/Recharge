@@ -81,7 +81,6 @@ public class GameOverActivity extends AppCompatActivity
         topScorePerticulerContst(srno);
         getHighScoreByContest(userId,srno);
 
-
         submitScore(userId,srno,Integer.toString(scorevalue));
 
         StartGameAgain.setOnClickListener(new View.OnClickListener()
@@ -108,7 +107,8 @@ public class GameOverActivity extends AppCompatActivity
         });
     }
 
-    public void submitScore(final String MemberCode, final String Srno, final String Score) {
+    public void submitScore(final String MemberCode, final String Srno, final String Score)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addPlayedGameScore";
@@ -272,8 +272,7 @@ public class GameOverActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Really Exit?")
                 .setMessage("Are you sure you want to exit game?")

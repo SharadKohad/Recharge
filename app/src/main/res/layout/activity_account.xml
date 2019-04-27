@@ -108,7 +108,7 @@
         </LinearLayout>
 
 
-        <!--    <LinearLayout
+          <!-- <LinearLayout
                 android:id="@+id/linear_layout_Update_kyc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,10 +132,10 @@
                     android:gravity="center|left"
                     android:paddingLeft="@dimen/_10sdp" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
-            <LinearLayout
+        <!--     <LinearLayout
                 android:id="@+id/linear_layout_my_network"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

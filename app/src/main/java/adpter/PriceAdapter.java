@@ -1,10 +1,12 @@
 package adpter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.logicaltech.rechargepannel.R;
@@ -34,6 +36,11 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.RecyclerView
     {
         final PriceModel account_model = orderList.get(position);
         String valueto = account_model.getRankto();
+        count++;
+        if (count%2==0)
+        {
+            holder.RL_Top_Score.setBackgroundColor(mContext.getResources().getColor(R.color.green_A200));
+        }
         if (valueto.equals("null"))
         {
             holder.TV_Price_From.setText("Rank: "+account_model.getRankfrom());
@@ -52,11 +59,12 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.RecyclerView
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
         TextView TV_Price_From,TV_Price;
+        RelativeLayout RL_Top_Score;
         public RecyclerViewHolder(View itemView)
         {
             super(itemView);
             TV_Price_From = (TextView) itemView.findViewById(R.id.tv_rank);
-         //   TV_Price_To = (TextView) itemView.findViewById(R.id.tv_top_rank);
+            RL_Top_Score = (RelativeLayout) itemView.findViewById(R.id.rl_top_Score);
             TV_Price = (TextView) itemView.findViewById(R.id.tv_price);
         }
     }

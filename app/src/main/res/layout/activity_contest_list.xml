@@ -19,7 +19,7 @@
     <RelativeLayout
         android:id="@+id/rl_contest_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
         <ImageView
@@ -35,19 +35,90 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_toRightOf="@+id/img_back_arrow_change_password"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:text="My Title"
             android:textSize="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/rr_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_back_arrow_change_password"
+            android:paddingLeft="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/_5sdp"
+            android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/ll_current_tournament"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="TOURNAENTS"
+                        android:textColor="@color/black"
+                        android:drawableTop="@drawable/ic_favorite_white"
+                        android:background="@color/white"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_current_heroes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="HEROES"
+                        android:textColor="@color/white"
+                        android:drawableTop="@drawable/ic_favorite_white"
+                        android:gravity="center"
+                        android:background="@color/red_600"/>
+
+                </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_contest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_contest_list_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/rl_contest_list">
 
-    </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:id="@+id/ll_ballel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select a Tournament"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_20sdp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_contest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
