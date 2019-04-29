@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
    // SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Refernce;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Refernce,LL_Book;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
         LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
         LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
+        LL_Book = (LinearLayout) findViewById(R.id.linear_layout_three_game);
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
         LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
@@ -158,6 +159,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this,WebView2048Activity.class);
                 intent.putExtra("url","https://buy-instant-html5games.com/fast-arrow");
                 intent.putExtra("srno","4");
+                startActivity(intent);
+            }
+        });
+        LL_Book.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(MainActivity.this,WebView2048Activity.class);
+                intent.putExtra("url","https://buy-instant-html5games.com/books-tower");
+                intent.putExtra("srno","3");
                 startActivity(intent);
             }
         });
@@ -369,8 +380,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public void contestList(final String gametype)
-    {
+    public void contestList(final String gametype) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID=&Status=";

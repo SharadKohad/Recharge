@@ -11,466 +11,1528 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_contest_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_60sdp">
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/colorPrimary">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="@dimen/_105sdp"
+        <ImageView
+            android:id="@+id/img_back_arrow_contest_detail"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="2dp"
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_alignParentLeft="true"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:id="@+id/linear_layout_jump_fish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/blue_50">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/game1" />
-
-                </RelativeLayout>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/icon_price_win"
-                    android:padding="@dimen/_5sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_65sdp"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="FLYING FISH"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/icons_rupee"
-                        android:padding="@dimen/_1sdp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="1234568"
-                        android:textColor="@color/brown_400"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Won by 102354 player"
-                    android:textSize="@dimen/_8sdp"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/_10sdp"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="@dimen/_105sdp"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="2dp"
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_centerHorizontal="true"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:id="@+id/linear_layout_2048"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/blue_50">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/game_two" />
-
-                    </RelativeLayout>
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/icon_price_win"
-                        android:padding="@dimen/_5sdp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_65sdp"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="3rd Game "
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/icons_rupee"
-                        android:padding="@dimen/_1sdp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="1234568"
-                        android:textColor="@color/brown_400"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Won by 102354 player"
-                    android:textSize="@dimen/_8sdp"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/_10sdp"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="@dimen/_105sdp"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="2dp"
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_alignParentRight="true"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:id="@+id/linear_layout_three_game"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/blue_50">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/game1" />
-
-                    </RelativeLayout>
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/icon_price_win"
-                        android:padding="@dimen/_5sdp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_65sdp"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2048"
-                    android:textColor="@color/black"
-                    android:gravity="center"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:src="@drawable/icons_rupee"
-                        android:padding="@dimen/_1sdp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="1234568"
-                        android:textColor="@color/brown_400"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Won by 102354 player"
-                    android:textSize="@dimen/_8sdp"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/_10sdp"/>
-
-
-                <!--
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Jump Fish"
-                                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                                        android:textColor="@color/green_900"
-                                        android:textSize="@dimen/_15sdp"/>
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Play And Earn At same time"
-                                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                        android:textColor="@color/grey_40" />
-
-                                </LinearLayout>
-                -->
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/img_back_arrow_contest_detail"
+            android:layout_centerVertical="true"
+            android:text="Game List"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"/>
 
     </RelativeLayout>
-    
-<!--
-    <android.support.v7.widget.CardView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="2dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:id="@+id/linear_layout_jump_fish"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/spacing_large">
-
-            <RelativeLayout
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginTop="1dp">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/fish1"/>
-
-            </RelativeLayout>
-
-            <View
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="0dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jump Fish"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textColor="@color/green_900"
-                    android:textSize="@dimen/_15sdp"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Play And Earn At same time"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_40" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1000"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/green_500" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Score"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_40" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
--->
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="2dp"
-        android:visibility="gone"
-        app:cardUseCompatPadding="true">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/spacing_large">
+            android:orientation="vertical"
+            >
+
 
             <RelativeLayout
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginTop="1dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/game_two"/>
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentLeft="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_jump_fish"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game1" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="FLYING FISH"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_2048"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game_two" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2048 "
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_three_game"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/game3" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Third Game"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                        <!--
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Jump Fish"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                                android:textColor="@color/green_900"
+                                                android:textSize="@dimen/_15sdp"/>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Play And Earn At same time"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                                android:textColor="@color/grey_40" />
+
+                                        </LinearLayout>
+                        -->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
 
             </RelativeLayout>
 
-            <View
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="0dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
-                    android:text="2048"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textColor="@color/green_900"
-                    android:textSize="@dimen/_15sdp"/>
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentLeft="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_jump_game_four"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game4" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="FAST ARROW"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
-                    android:text="fresh your mind and earn"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_40" />
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linear_layout_game_five"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game5" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="PING PONG "
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_six"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/game6" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="CATCH DOT"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                        <!--
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Jump Fish"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                                android:textColor="@color/green_900"
+                                                android:textSize="@dimen/_15sdp"/>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Play And Earn At same time"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                                android:textColor="@color/grey_40" />
+
+                                        </LinearLayout>
+                        -->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
-                    android:text="1000"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/green_500" />
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentLeft="true"
+                    app:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/linear_layout_jump_game_seven"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game7" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="DOTS PONG"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="wrap_content"
-                    android:text="Score"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_40" />
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linear_layout_game_eight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game8" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="GO TO DOT "
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_nine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/game9" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SAVE ROCKET"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                        <!--
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Jump Fish"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                                android:textColor="@color/green_900"
+                                                android:textSize="@dimen/_15sdp"/>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Play And Earn At same time"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                                android:textColor="@color/grey_40" />
+
+                                        </LinearLayout>
+                        -->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentLeft="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_jump_game_ten"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game10" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="RETRO SPEED"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_game_eleven"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game11" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SANTA RUN"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_fiveteen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/game15" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SAW"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                        <!--
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Jump Fish"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                                android:textColor="@color/green_900"
+                                                android:textSize="@dimen/_15sdp"/>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Play And Earn At same time"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                                android:textColor="@color/grey_40" />
+
+                                        </LinearLayout>
+                        -->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentLeft="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_jump_game_thirteen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game13" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="COLOR TOWER"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_centerHorizontal="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_game_fourteen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/game14" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="FALL BOTTLE"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_twelve"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue_50">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/game12" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:src="@drawable/icon_price_win"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_65sdp"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="COLOR CIRCUL"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icons_rupee"
+                                android:padding="@dimen/_1sdp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1234568"
+                                android:textColor="@color/brown_400"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"/>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Won by 102354 player"
+                            android:textSize="@dimen/_8sdp"
+                            android:gravity="center"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                        <!--
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Jump Fish"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                                android:textColor="@color/green_900"
+                                                android:textSize="@dimen/_15sdp"/>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Play And Earn At same time"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                                android:textColor="@color/grey_40" />
+
+                                        </LinearLayout>
+                        -->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+
+    </ScrollView>
+
 
 
 

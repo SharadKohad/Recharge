@@ -263,7 +263,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/game1" />
+                                    android:src="@drawable/game3" />
 
                             </RelativeLayout>
 
@@ -347,9 +347,7 @@
 
                 </android.support.v7.widget.CardView>
 
-
             </RelativeLayout>
-
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -398,17 +396,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="REFER AND EARN"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                             android:textColor="@color/orange_900"
                             android:paddingLeft="@dimen/_50sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:gravity="center"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="100 Rs"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                             android:textColor="@color/orange_900"
                             android:paddingLeft="@dimen/_50sdp"
                             android:textSize="@dimen/_15sdp"
@@ -1375,7 +1371,6 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-
 
         </LinearLayout>
     </ScrollView>

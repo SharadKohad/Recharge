@@ -72,8 +72,7 @@
                     android:id="@+id/ll_current_heroes"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone">
+                    android:layout_weight="1">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -100,6 +99,7 @@
             android:id="@+id/ll_ballel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <TextView
@@ -107,15 +107,88 @@
                 android:layout_height="wrap_content"
                 android:text="Select a Tournament"
                 android:textColor="@color/black"
-                android:visibility="gone"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_contest"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
 
             </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_todays_heroes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TODAY'S"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/tv_game_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAME NAME HEROES"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_heroes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_cotest_top_four_contest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv_top_three_score"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/_50sdp"
+                app:cardCornerRadius="6dp"
+                android:visibility="gone"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/box_time_background">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_top_four_contest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
         </LinearLayout>
 
