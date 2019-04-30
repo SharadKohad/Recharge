@@ -110,13 +110,39 @@ public class SingleContestDetailActivity extends AppCompatActivity
                     if (gametype.equals("1"))
                     {
                         Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                        intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
                     else if(gametype.equals("2"))
                     {
                         Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
-                        intent.putExtra("url","http://site17.bidbch.com/game/index.html");
+                        intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("3"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/catchdots/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("4"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/fastarrow/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("5"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                        intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
@@ -383,7 +409,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         });
 
-
         final String finalTokenmy = tokenmy;
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,13 +452,39 @@ public class SingleContestDetailActivity extends AppCompatActivity
                             if (gametype.equals("1"))
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
+                                intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
                             }
                             else if (gametype.equals("2"))
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
-                                intent.putExtra("url","http://site17.bidbch.com/game/index.html");
+                                intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("3"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://logicalsolutiontech.com/game/catchdots/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("4"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://logicalsolutiontech.com/game/fastarrow/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("5"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                                intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
                             }

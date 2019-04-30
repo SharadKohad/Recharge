@@ -153,19 +153,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        LL_Fist_Arrow.setOnClickListener(new View.OnClickListener() {
+        LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                intent = new Intent(MainActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/fast-arrow");
-                intent.putExtra("srno","4");
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,ContestListActivity.class);
+                intent.putExtra("gtype","3");
+                startActivity(intent);
+            }
+        });
+
+        LL_Fist_Arrow.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,ContestListActivity.class);
+                intent.putExtra("gtype","4");
                 startActivity(intent);
             }
         });
         LL_Book.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 intent = new Intent(MainActivity.this,WebView2048Activity.class);
                 intent.putExtra("url","https://buy-instant-html5games.com/books-tower");
                 intent.putExtra("srno","3");
@@ -178,24 +191,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(MainActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/ping-pong");
-                intent.putExtra("srno","5");
+                intent = new Intent(MainActivity.this,ContestListActivity.class);
+                intent.putExtra("gtype","5");
                 startActivity(intent);
             }
         });
 
-        LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/catch-dots");
-                intent.putExtra("srno","6");
-                startActivity(intent);
-            }
-        });
 
         LL_Refernce.setOnClickListener(new View.OnClickListener()
         {

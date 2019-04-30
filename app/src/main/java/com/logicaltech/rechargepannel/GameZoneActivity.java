@@ -17,6 +17,10 @@ public class GameZoneActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_zone);
+        init();
+    }
+
+    public void init() {
         LL_jump_fish = (LinearLayout) findViewById(R.id.linear_layout_jump_fish);
         LL_2048 = (LinearLayout) findViewById(R.id.linear_layout_2048);
         LL_Three = (LinearLayout) findViewById(R.id.linear_layout_three_game);
@@ -31,7 +35,7 @@ public class GameZoneActivity extends AppCompatActivity
         LL_twelve = (LinearLayout) findViewById(R.id.linear_layout_twelve);
         LL_thirtten = (LinearLayout) findViewById(R.id.linear_layout_jump_game_thirteen);
         LL_fourtheen = (LinearLayout) findViewById(R.id.linear_layout_game_fourteen);
-        LL_fiveteen = (LinearLayout) findViewById(R.id.linear_layout_fiveteen);
+        LL_fiveteen = (LinearLayout) findViewById(R.id.linear_layout_fiftheen);
 
         imageView_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
 
@@ -42,158 +46,111 @@ public class GameZoneActivity extends AppCompatActivity
             }
         });
 
-        LL_jump_fish.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-              //  intent = new Intent(GameZoneActivity.this,JumpFishActivity.class);
-                intent = new Intent(GameZoneActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","1");
-                startActivity(intent);
-            }
-        });
-
-        LL_2048.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","http://site17.bidbch.com/game/index.html");
-                intent.putExtra("srno","2");
-                startActivity(intent);
-            }
-        });
-
-        LL_Three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/books-tower");
-                intent.putExtra("srno","3");
-                startActivity(intent);
-            }
-        });
-
-        LL_four.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/fast-arrow");
-                intent.putExtra("srno","4");
-                startActivity(intent);
-            }
-        });
-
-        LL_Five.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/ping-pong");
-                intent.putExtra("srno","5");
-                startActivity(intent);
-            }
-        });
-
-        LL_Six.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/catch-dots");
-                intent.putExtra("srno","6");
-                startActivity(intent);
-            }
-        });
-
-        LL_Seven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/dots-pong");
-                intent.putExtra("srno","7");
-                startActivity(intent);
-            }
-        });
-
-        LL_Eight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/go-to-dot");
-                intent.putExtra("srno","8");
-                startActivity(intent);
-            }
-        });
-
-        LL_Nine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/color-circle");
-                intent.putExtra("srno","9");
-                startActivity(intent);
-            }
-        });
-
-        LL_Ten.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/retro-speed");
-                intent.putExtra("srno","10");
-                startActivity(intent);
-            }
-        });
-
-        LL_eleven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/santa-runner");
-                intent.putExtra("srno","11");
-                startActivity(intent);
-            }
-        });
-
-        LL_twelve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/save-rocket-html5-game");
-                intent.putExtra("srno","12");
-                startActivity(intent);
-            }
-        });
-
-        LL_thirtten.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/color-tower");
-                intent.putExtra("srno","13");
-                startActivity(intent);
-            }
-        });
-
-        LL_fourtheen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/falling-bottle-challenge");
-                intent.putExtra("srno","14");
-                startActivity(intent);
-            }
-        });
-
-        LL_fiveteen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/saws");
-                intent.putExtra("srno","15");
-                startActivity(intent);
-            }
-        });
     }
+
+    public void buttonClicked(View view) {
+
+        if (view.getId() == R.id.linear_layout_jump_fish) {
+            intent = new Intent(GameZoneActivity.this,ContestListActivity.class);
+            intent.putExtra("gtype","1");
+            startActivity(intent);
+
+        } else if (view.getId() == R.id.linear_layout_2048) {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","http://site17.bidbch.com/game/index.html");
+            intent.putExtra("srno","2");
+            startActivity(intent);
+            //button2 action
+        } else if (view.getId() == R.id.linear_layout_three_game) {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/books-tower");
+            intent.putExtra("srno","3");
+            startActivity(intent);
+        }
+        else if(view.getId() == R.id.linear_layout_jump_game_four)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/fast-arrow");
+            intent.putExtra("srno","4");
+            startActivity(intent);
+        }
+        else if(view.getId() == R.id.linear_layout_game_five)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/ping-pong");
+            intent.putExtra("srno","5");
+            startActivity(intent);
+        }
+        else if(view.getId() == R.id.linear_layout_six)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/catch-dots");
+            intent.putExtra("srno","6");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_jump_game_seven)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/dots-pong");
+            intent.putExtra("srno","7");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_game_eight)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/go-to-dot");
+            intent.putExtra("srno","8");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_nine)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/color-circle");
+            intent.putExtra("srno","9");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_jump_game_ten)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/retro-speed");
+            intent.putExtra("srno","10");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_game_eleven)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/santa-runner");
+            intent.putExtra("srno","11");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_twelve)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/save-rocket-html5-game");
+            intent.putExtra("srno","12");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_jump_game_thirteen)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/color-tower");
+            intent.putExtra("srno","13");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_game_fourteen)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/falling-bottle-challenge");
+            intent.putExtra("srno","14");
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.linear_layout_fiftheen)
+        {
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","https://buy-instant-html5games.com/saws");
+            intent.putExtra("srno","15");
+            startActivity(intent);
+        }
+    }
+
 }

@@ -68,6 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -155,6 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -242,6 +244,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -363,6 +366,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -449,6 +453,7 @@
                         android:id="@+id/linear_layout_game_five"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="buttonClicked"
                         android:orientation="vertical"
                         android:padding="@dimen/_5sdp">
 
@@ -537,6 +542,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -659,6 +665,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -746,6 +753,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -832,6 +840,7 @@
                         android:id="@+id/linear_layout_nine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="buttonClicked"
                         android:orientation="vertical"
                         android:padding="@dimen/_5sdp">
 
@@ -865,7 +874,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="SAVE ROCKET"
+                            android:text="COLOR CIRCUL"
                             android:textColor="@color/black"
                             android:gravity="center"/>
 
@@ -901,37 +910,9 @@
                             android:gravity="center"
                             android:layout_marginBottom="@dimen/_10sdp"/>
 
-
-                        <!--
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Jump Fish"
-                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                                                android:textColor="@color/green_900"
-                                                android:textSize="@dimen/_15sdp"/>
-
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Play And Earn At same time"
-                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                                android:textColor="@color/grey_40" />
-
-                                        </LinearLayout>
-                        -->
-
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
 
             </RelativeLayout>
 
@@ -955,6 +936,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -1042,6 +1024,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -1125,7 +1108,7 @@
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:id="@+id/linear_layout_fiveteen"
+                        android:id="@+id/linear_layout_twelve"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -1251,6 +1234,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -1337,6 +1321,7 @@
                         android:id="@+id/linear_layout_game_fourteen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="buttonClicked"
                         android:orientation="vertical"
                         android:padding="@dimen/_5sdp">
 
@@ -1421,10 +1406,11 @@
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:id="@+id/linear_layout_twelve"
+                        android:id="@+id/linear_layout_fiftheen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:onClick="buttonClicked"
                         android:padding="@dimen/_5sdp">
 
                         <RelativeLayout
@@ -1527,13 +1513,8 @@
 
             </RelativeLayout>
 
-
         </LinearLayout>
 
-
     </ScrollView>
-
-
-
 
 </LinearLayout>

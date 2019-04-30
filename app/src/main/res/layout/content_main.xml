@@ -244,7 +244,7 @@
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:id="@+id/linear_layout_three_game"
+                        android:id="@+id/linear_layout_six"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -263,7 +263,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/game3" />
+                                    android:src="@drawable/game6" />
 
                             </RelativeLayout>
 
@@ -280,7 +280,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Third Game"
+                            android:text="CATCH DOT"
                             android:textColor="@color/black"
                             android:gravity="center"/>
 
@@ -631,7 +631,7 @@
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                        android:id="@+id/linear_layout_six"
+                        android:id="@+id/linear_layout_three_game"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -650,7 +650,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/_80sdp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/game6" />
+                                    android:src="@drawable/game3" />
 
                             </RelativeLayout>
 
@@ -667,7 +667,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CATCH DOT"
+                            android:text="BOOKS TOWER"
                             android:textColor="@color/black"
                             android:gravity="center"/>
 
@@ -703,40 +703,11 @@
                             android:gravity="center"
                             android:layout_marginBottom="@dimen/_10sdp"/>
 
-
-                        <!--
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Jump Fish"
-                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                                                android:textColor="@color/green_900"
-                                                android:textSize="@dimen/_15sdp"/>
-
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Play And Earn At same time"
-                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                                android:textColor="@color/grey_40" />
-
-                                        </LinearLayout>
-                        -->
-
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
-
             </RelativeLayout>
-
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

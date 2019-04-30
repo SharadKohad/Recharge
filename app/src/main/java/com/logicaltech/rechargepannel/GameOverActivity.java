@@ -49,7 +49,7 @@ public class GameOverActivity extends AppCompatActivity
     private TextView tvscore,TV_High_Score;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
-    String userId,srno,sessionScoreFish="0";
+    String userId,srno,sessionScoreFish="0",gtype;
     int topScore=0;
     RecyclerView RecyclerView_Top_Three_Contest;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
@@ -75,10 +75,12 @@ public class GameOverActivity extends AppCompatActivity
         Btn_Home = (Button) findViewById(R.id.btn_home_btn);
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
+        gtype = getIntent().getExtras().getString("gtype");
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score_gover);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
         topScorePerticulerContst(srno);
+
         getHighScoreByContest(userId,srno);
 
         submitScore(userId,srno,Integer.toString(scorevalue));
@@ -88,9 +90,44 @@ public class GameOverActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(GameOverActivity.this,JumpFishActivity.class);
-                intent.putExtra("srno",srno);
-                startActivity(intent);
+                if (gtype.equals("1"))
+                {
+                    intent = new Intent(GameOverActivity.this,JumpFishActivity.class);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("2"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("3"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/catchdots/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("4"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/fastarrow/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("5"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -107,8 +144,7 @@ public class GameOverActivity extends AppCompatActivity
         });
     }
 
-    public void submitScore(final String MemberCode, final String Srno, final String Score)
-    {
+    public void submitScore(final String MemberCode, final String Srno, final String Score) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addPlayedGameScore";

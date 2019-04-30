@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 public class WebView2048Activity extends AppCompatActivity
 {
     WebView mywebview;
-    String current_url,srno;
+    String current_url,srno,gtype;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -20,6 +20,7 @@ public class WebView2048Activity extends AppCompatActivity
         mywebview = (WebView)findViewById(R.id.webView2048);
         current_url = getIntent().getStringExtra("url");
         srno = getIntent().getStringExtra("srno");
+        gtype = getIntent().getStringExtra("gtype");
         mywebview  = new WebView(this);
         mywebview.getSettings().setJavaScriptEnabled(true); // enable javascript
         mywebview .loadUrl(current_url);
@@ -29,15 +30,13 @@ public class WebView2048Activity extends AppCompatActivity
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
-                if (url.contains("bestscore"))
-                {
-                    Intent intent = new Intent(WebView2048Activity.this,GameOverActivity.class);
-                    startActivity(intent);
-                }
-                else if(url.contains("fail"))
-                {
-                    finish();
-                }
+                String numberOnly= url.replaceAll("[^0-9]", "");
+                Intent intent = new Intent(WebView2048Activity.this,GameOverActivity.class);
+                intent.putExtra("score",Integer.parseInt(numberOnly));
+                intent.putExtra("gtype",gtype);
+                intent.putExtra("srno",srno);
+                startActivity(intent);
+
                 return super.shouldOverrideUrlLoading(view,url);
             }
         });
