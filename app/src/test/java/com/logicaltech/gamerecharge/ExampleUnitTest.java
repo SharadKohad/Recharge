@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import org.junit.Test;
 

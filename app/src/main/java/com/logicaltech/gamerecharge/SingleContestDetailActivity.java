@@ -1,12 +1,10 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +41,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adpter.PriceAdapter;
-import adpter.TopScoreAdpter;
 import adpter.TopthreeScoreAdapter;
 import model.PriceModel;
 import model.TopScoreModel;
@@ -62,7 +59,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
     TextView TV_Price,TV_Total_Player,TV_Cotest_Join,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List,TV_Dis_Player,TV_Dis_Price;
     int join_contest_amt;
     ImageView img_back_arrow;
-    RelativeLayout RL_play_game;
+    RelativeLayout RL_play_game,RL_Video_Game,RL_Game_List;
     Dialog dialog;
     SessionManeger sessionManeger;
     GridLayoutManager mGridLayoutManagerBrand;
@@ -146,6 +143,22 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
+                    else if(gametype.equals("6"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("7"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
                 }
                 else
                 {
@@ -166,16 +179,33 @@ public class SingleContestDetailActivity extends AppCompatActivity
         RL_play_game = (RelativeLayout) findViewById(R.id.rl_play_game);
         CV_Price_Dis = (CardView) findViewById(R.id.cv_cotest_price_distribution);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_single_contest);
+        RL_Video_Game = (RelativeLayout) findViewById(R.id.rl_all_how_to_play);
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
         RV_Price_Distribution = (RecyclerView) findViewById(R.id.rv_price_disctribution);
         TV_Dis_Price = (TextView) findViewById(R.id.tv_total_player_price_total);
         mGridLayoutManagerBrand = new GridLayoutManager(SingleContestDetailActivity.this, 1);
         RV_Price_Distribution.setLayoutManager(mGridLayoutManagerBrand);
-
+        RL_Game_List = (RelativeLayout) findViewById(R.id.rl_all_game);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
-    }
 
+        RL_Video_Game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleContestDetailActivity.this,GameVideoActivity.class);
+                intent.putExtra("gametype",gametype);
+                startActivity(intent);
+            }
+        });
+
+        RL_Game_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleContestDetailActivity.this,GameZoneActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     public void singleContestDetail(final String gametype,final String srno,final String status) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -387,12 +417,10 @@ public class SingleContestDetailActivity extends AppCompatActivity
         TV_Remaing_Amount = (TextView) dialog.findViewById(R.id.tv_remaining_left_amount);
         img_close = (ImageView) dialog.findViewById(R.id.img_tournament_close);
         btn = (Button) dialog.findViewById(R.id.btn_join_contest);
-
         TV_Total_Amount.setText(""+Constant.TOTAL_BALANCE);
         TV_Cotest_Amount.setText(""+join_contest_amt);
         int RemaingAmt = Constant.TOTAL_BALANCE - join_contest_amt;
         TV_Remaing_Amount.setText(""+RemaingAmt);
-
         if (Constant.TOTAL_BALANCE<join_contest_amt)
         {
             Toast.makeText(SingleContestDetailActivity.this,"insufficient balance ",Toast.LENGTH_SHORT).show();
@@ -484,6 +512,22 @@ public class SingleContestDetailActivity extends AppCompatActivity
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
                                 intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("6"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("7"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);

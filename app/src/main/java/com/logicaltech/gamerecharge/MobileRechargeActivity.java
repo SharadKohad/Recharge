@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;

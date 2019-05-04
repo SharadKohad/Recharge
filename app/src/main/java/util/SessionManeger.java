@@ -3,7 +3,7 @@ package util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import com.logicaltech.rechargepannel.LoginActivity;
+import com.logicaltech.gamerecharge.LoginActivity;
 import java.util.HashMap;
 
 public class SessionManeger

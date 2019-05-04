@@ -1,11 +1,10 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -128,6 +127,14 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("srno",srno);
                     startActivity(intent);
                 }
+                else if(gtype.equals("7"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -163,10 +170,10 @@ public class GameOverActivity extends AppCompatActivity
                     {
                         Toast.makeText(GameOverActivity.this,"Your score submit "+message,Toast.LENGTH_SHORT).show();
                     }
-                    else
+                    /*else
                     {
                         Toast.makeText(GameOverActivity.this," "+message,Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
                 catch (JSONException e)
                 {

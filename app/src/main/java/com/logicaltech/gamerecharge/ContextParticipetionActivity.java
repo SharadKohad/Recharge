@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,15 +27,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import adpter.WalletAdapter;
-import model.WithdrawHistoryModel;
+import adpter.ContestHistoryAdapter;
+import model.ContestJoinHisModel;
 import util.Constant;
 import util.SessionManeger;
 
-public class WalletHistoryActivity extends AppCompatActivity
+public class ContextParticipetionActivity extends AppCompatActivity
 {
     ImageView Img_Back;
-    ArrayList<WithdrawHistoryModel> arrayList =new ArrayList<>();
+    ArrayList<ContestJoinHisModel> arrayList =new ArrayList<>();
     RecyclerView RecyclerView_Contest_Type;
     GridLayoutManager mGridLayoutManagerBrand;
     ProgressBar progressBar;
@@ -46,18 +46,17 @@ public class WalletHistoryActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wallet_history);
-        Img_Back = (ImageView) findViewById(R.id.img_back_arrow_wallet_history);
+        setContentView(R.layout.activity_context_participetion);
+        Img_Back = (ImageView) findViewById(R.id.img_back_arrow_join);
         RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_contest_history);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         memberCode = hashMap.get(SessionManeger.MEMBER_ID);
-        mGridLayoutManagerBrand = new GridLayoutManager(WalletHistoryActivity.this, 1);
+        mGridLayoutManagerBrand = new GridLayoutManager(ContextParticipetionActivity.this, 1);
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
 
-        Img_Back.setOnClickListener(new View.OnClickListener()
-        {
+        Img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -65,15 +64,15 @@ public class WalletHistoryActivity extends AppCompatActivity
             }
         });
 
-        walletHistory(memberCode);
+        contestHistory(memberCode);
     }
 
-    public void walletHistory(final String memberCode)
+    public void contestHistory(final String memberCode)
     {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getAdminFundDetails?membercode="+memberCode;
+        String url = Constant.URL+"getContestParticipateDtl?membercode="+memberCode;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override
@@ -86,18 +85,18 @@ public class WalletHistoryActivity extends AppCompatActivity
                     for (int i = 0; i < response.length(); i++)
                     {
                         JSONObject jsonObject2 = response.getJSONObject(i);
-                        String EMail = jsonObject2.getString("EMail");
-                        String amount = jsonObject2.getString("amount");
-                        String tdate = jsonObject2.getString("tdate");
+                        String srno = jsonObject2.getString("srno");
+                        String ttime = jsonObject2.getString("ttime");
+                        String entry_amt = jsonObject2.getString("entry_amt");
 
-                        WithdrawHistoryModel model = new WithdrawHistoryModel();
-                        model.setEmail(EMail);
-                        model.setAmount(amount);
-                        model.setTdate(tdate);
-                        arrayList.add(model);
+                            ContestJoinHisModel model = new ContestJoinHisModel();
+                            model.setSrno(srno);
+                            model.setTtime(ttime);
+                            model.setEntry_amt(entry_amt);
+                            arrayList.add(model);
 
                     }
-                    WalletAdapter operator_adapter = new WalletAdapter(arrayList,getApplicationContext());
+                    ContestHistoryAdapter operator_adapter = new ContestHistoryAdapter(arrayList,getApplicationContext());
                     RecyclerView_Contest_Type.setAdapter(operator_adapter);
                 }
                 catch (JSONException e)

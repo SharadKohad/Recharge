@@ -1,11 +1,11 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,7 +26,6 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -38,21 +37,29 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import adpter.GameAdapter;
+import model.GameModel;
 import util.Constant;
-import util.MySingalton;
 import util.SessionManeger;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-   // SliderLayout sliderLayout;
+    SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Refernce,LL_Book;
+    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_Refernce;/*,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Book;*/
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
+    RecyclerView recyclerView_Game_type;
+    GridLayoutManager mGridLayoutManagerBrand;
+    ArrayList<GameModel> arrayList =new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -61,23 +68,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionManeger = new SessionManeger(getApplicationContext());
-     //   sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
+        sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
         LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
         LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
         LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
-        LL_Book = (LinearLayout) findViewById(R.id.linear_layout_three_game);
+    //    LL_Book = (LinearLayout) findViewById(R.id.linear_layout_three_game);
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
-        LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
-        LL_2048_Game = (LinearLayout) findViewById(R.id.linear_layout_2048);
-        LL_Fist_Arrow = (LinearLayout) findViewById(R.id.linear_layout_jump_game_four);
-        LL_Catch_Dot = (LinearLayout) findViewById(R.id.linear_layout_six);
+      //  LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
+     //   LL_2048_Game = (LinearLayout) findViewById(R.id.linear_layout_2048);
+    //    LL_Fist_Arrow = (LinearLayout) findViewById(R.id.linear_layout_jump_game_four);
+     //   LL_Catch_Dot = (LinearLayout) findViewById(R.id.linear_layout_six);
         LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
         TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
         TextViewRefernce = (TextView) findViewById(R.id.tv_total_ref);
-        LL_Table_Tenic = (LinearLayout) findViewById(R.id.linear_layout_game_five);
+     //   LL_Table_Tenic = (LinearLayout) findViewById(R.id.linear_layout_game_five);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        recyclerView_Game_type = (RecyclerView) findViewById(R.id.rv_gametype);
+        mGridLayoutManagerBrand = new GridLayoutManager(MainActivity.this, 3);
+
+        recyclerView_Game_type.setLayoutManager(mGridLayoutManagerBrand);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -94,14 +105,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String userName = hashMap.get(SessionManeger.KEY_NAME);
         String userEmail = hashMap.get(SessionManeger.KEY_EMAIL);
         String membercode = hashMap.get(SessionManeger.MEMBER_ID);
+
         TextViewUserName.setText(userName);
         TextViewUserEmail.setText(userEmail);
 
         AddImageUrlFormLocalRes();
         dashBoardData(membercode);
         contestList("1");
+        gameList();
 
-       /* for(String name : HashMapForLocalRes.keySet())
+        for(String name : HashMapForLocalRes.keySet())
         {
             TextSliderView textSliderView = new TextSliderView(MainActivity.this);
             textSliderView.description(name).image(HashMapForLocalRes.get(name)).setScaleType(BaseSliderView.ScaleType.Fit);
@@ -109,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             textSliderView.getBundle().putString("extra",name);
             sliderLayout.addSlider(textSliderView);
         }
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Default);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(3000);*/
+        sliderLayout.setDuration(5000);
         //  sliderLayout.addOnPageChangeListener(MainActivity.this);
 
         LL_Mobile_Recharge.setOnClickListener(new View.OnClickListener()
@@ -153,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
+      /*  LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -195,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("gtype","5");
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         LL_Refernce.setOnClickListener(new View.OnClickListener()
@@ -211,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
+/*
         LL_FishGame_Home.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -234,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("gtype","2");
                 startActivity(intent);
             }
-        });
+        });*/
 
         LL_refernce_social_media.setOnClickListener(new View.OnClickListener()
         {
@@ -284,10 +297,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(MainActivity.this,ContextParticipetionActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_manage)
-        {
-
-        }
         else if (id == R.id.nav_share)
         {
             intent = new Intent(Intent.ACTION_SEND);
@@ -317,10 +326,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void AddImageUrlFormLocalRes() {
         HashMapForLocalRes = new HashMap<String, Integer>();
-        HashMapForLocalRes.put("Product", R.drawable.slider1);
-        HashMapForLocalRes.put("Sale", R.drawable.slider2);
-        HashMapForLocalRes.put("Vendor", R.drawable.slider3);
-        HashMapForLocalRes.put("Online Shoping", R.drawable.slider4);
+        HashMapForLocalRes.put("Friengs Refernce", R.drawable.sharad2);
+        HashMapForLocalRes.put("Game", R.drawable.slider2);
+        HashMapForLocalRes.put("Point Earn", R.drawable.slider3);
+        HashMapForLocalRes.put("paytm Cashback", R.drawable.slide4);
     }
 
     public void dashBoardData(final String memberId) {
@@ -444,6 +453,74 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
+    public void gameList()
+    {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
+        final String url = Constant.URL+"getGameType";
+        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
+        {
+            @Override
+            public void onResponse(JSONArray response)
+            {
+                try
+                {
+                    arrayList.clear();
+                    for (int i = 0; i < response.length(); i++)
+                    {
+                        JSONObject jsonObject2 = response.getJSONObject(i);
+                        String srno = jsonObject2.getString("srno");
+                        String game_name = jsonObject2.getString("game_name");
+                        String flag = jsonObject2.getString("flag");
+                        String logo = jsonObject2.getString("logo");
+                        GameModel gameModel = new GameModel();
+                        gameModel.setSrno(srno);
+                        gameModel.setGame_type(game_name);
+                        gameModel.setFlag(flag);
+                        gameModel.setLogo("http://site17.bidbch.com/"+logo);
+                        arrayList.add(gameModel);
+                    }
+                    GameAdapter gameAdapter = new GameAdapter(arrayList,getApplicationContext());
+                    recyclerView_Game_type.setAdapter(gameAdapter);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
+    }
+
 
    /* public void amountDistribution(final String Srno) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());

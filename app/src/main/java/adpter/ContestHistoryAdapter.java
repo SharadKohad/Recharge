@@ -5,10 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.logicaltech.rechargepannel.R;
+import com.logicaltech.gamerecharge.R;
 
 import java.util.ArrayList;
 

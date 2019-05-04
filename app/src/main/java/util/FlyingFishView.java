@@ -9,10 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
-import com.logicaltech.rechargepannel.GameOverActivity;
-import com.logicaltech.rechargepannel.JumpFishActivity;
-import com.logicaltech.rechargepannel.R;
+
+import com.logicaltech.gamerecharge.GameOverActivity;
+import com.logicaltech.gamerecharge.JumpFishActivity;
+import com.logicaltech.gamerecharge.R;
 
 public class FlyingFishView extends View
 {

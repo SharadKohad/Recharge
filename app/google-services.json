@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1048853703711",
+    "firebase_url": "https://demoproject-79cb3.firebaseio.com",
+    "project_id": "demoproject-79cb3",
+    "storage_bucket": "demoproject-79cb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048853703711:android:6e5009355ef7edb8",
+        "android_client_info": {
+          "package_name": "com.logicaltech.gamerecharge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048853703711-mv53clu2cfb2iot444bc3dvsu5h2rqfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.logicaltech.gamerecharge",
+            "certificate_hash": "abc133e9cd2e286a98883326147ef11b022cfa7e"
+          }
+        },
+        {
+          "client_id": "1048853703711-icmd60j8djq5ns69mscob951k6q8no63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaxvTwPo6f1L0ugkmFB0pTtYreZXGjcGk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048853703711-icmd60j8djq5ns69mscob951k6q8no63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

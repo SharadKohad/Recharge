@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,12 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonArray;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,14 +39,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adpter.TopFour_Contest_List;
-import adpter.TopScoreAdpter;
 import adpter.TopThree_Contest_ListAdapter;
-import adpter.TopthreeScoreAdapter;
-import de.hdodenhof.circleimageview.CircleImageView;
 import model.ContestModel;
 import model.TopScoreModel;
 import util.Constant;
-import util.MySingalton;
 import util.SessionManeger;
 
 public class ContestListActivity extends AppCompatActivity
@@ -85,6 +77,7 @@ public class ContestListActivity extends AppCompatActivity
 
         RecyclerView_Contest_Type1.setLayoutManager(mGridLayoutManagerBrand1);
         mGridLayoutManagerBrand = new GridLayoutManager(ContestListActivity.this, 1);
+
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
 
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
@@ -299,6 +292,13 @@ public class ContestListActivity extends AppCompatActivity
                         startActivity(intent);
                     }
                     else if(gtype.equals("5"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("7"))
                     {
                         Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
                         intent.putExtra("gametype",gtype);

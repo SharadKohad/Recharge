@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

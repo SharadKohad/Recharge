@@ -1,12 +1,8 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +11,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -45,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity
     CheckBox checkBox_SponserId;
     ProgressBar progressBar;
     ImageView Img_SignUp_Close;
+    String fname,lname,email,token="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +47,18 @@ public class SignUpActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         init();
+        token = getIntent().getExtras().getString("token");
+
+        if (token.equals("1"))
+        {
+            fname = getIntent().getExtras().getString("first_name");
+            lname = getIntent().getExtras().getString("last_name");
+            email = getIntent().getExtras().getString("email");
+
+            TIET_MemberName.setText(fname+" "+lname);
+            TIET_email_id.setText(""+email);
+            TIET_name.setText(""+fname);
+        }
     }
 
     public void init()
@@ -66,7 +73,6 @@ public class SignUpActivity extends AppCompatActivity
         Btn_SignUp = (Button) findViewById(R.id.btn_signup);
         checkBox_SponserId = (CheckBox) findViewById(R.id.checkboxspoinerId);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_signup);
-
         checkBox_SponserId.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override

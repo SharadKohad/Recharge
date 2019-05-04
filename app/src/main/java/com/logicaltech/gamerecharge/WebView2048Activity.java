@@ -1,4 +1,4 @@
-package com.logicaltech.rechargepannel;
+package com.logicaltech.gamerecharge;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,7 +41,6 @@ public class WebView2048Activity extends AppCompatActivity
             }
         });
     }
-
     @Override
     public void onBackPressed()
     {
