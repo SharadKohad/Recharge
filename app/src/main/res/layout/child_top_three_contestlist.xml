@@ -22,18 +22,18 @@
             <RelativeLayout
                 android:id="@+id/rl_name_top_three"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@color/grey_10">
 
                 <TextView
                     android:id="@+id/tv_top_threeusername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:text="rhrhrjh fdjdfjsdfjfj"
                     android:textColor="@color/grey_800"
                     android:textSize="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -64,8 +64,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_topthree_profile"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/icon_man"/>
 

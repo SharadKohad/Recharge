@@ -145,8 +145,9 @@ public class GameOverActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(GameOverActivity.this,MainActivity.class);
+                Intent intent = new Intent(GameOverActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

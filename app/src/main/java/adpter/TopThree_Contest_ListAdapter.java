@@ -50,8 +50,7 @@ public class TopThree_Contest_ListAdapter extends RecyclerView.Adapter<TopThree_
     {
         return orderList.size();
     }
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder
-    {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView TV_Topthree_User_Name,TV_Topthree_Rank,TV_Score;
         RelativeLayout rl_top_score;
         CircleImageView circularImageView;

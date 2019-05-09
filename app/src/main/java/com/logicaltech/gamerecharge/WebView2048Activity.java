@@ -25,6 +25,7 @@ public class WebView2048Activity extends AppCompatActivity
         mywebview.getSettings().setJavaScriptEnabled(true); // enable javascript
         mywebview .loadUrl(current_url);
         setContentView(mywebview);
+
         mywebview.setWebViewClient(new WebViewClient()
         {
             @Override
@@ -36,17 +37,14 @@ public class WebView2048Activity extends AppCompatActivity
                 intent.putExtra("gtype",gtype);
                 intent.putExtra("srno",srno);
                 startActivity(intent);
-
+                finish();
                 return super.shouldOverrideUrlLoading(view,url);
             }
         });
     }
     @Override
-    public void onBackPressed()
-    {
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit game?")
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setTitle("Really Exit?").setMessage("Are you sure you want to exit game?")
                 .setNegativeButton(android.R.string.no, null)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
                 {

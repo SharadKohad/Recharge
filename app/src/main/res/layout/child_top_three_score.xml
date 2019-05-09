@@ -14,8 +14,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_topthree_profile"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_5sdp"
             android:src="@drawable/icon_man"/>
@@ -43,18 +43,17 @@
 
         </RelativeLayout>
 
-
-
         <TextView
             android:id="@+id/tv_top_threeusername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_18sdp"
             android:text="Name"
             android:layout_below="@+id/img_topthree_profile"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_14sdp"
             android:textStyle="bold" />
 
         <TextView
@@ -65,9 +64,9 @@
             android:layout_below="@+id/tv_top_threeusername"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:textStyle="bold" />
 
     </RelativeLayout>

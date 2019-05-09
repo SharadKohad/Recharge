@@ -48,7 +48,6 @@ public class SignUpActivity extends AppCompatActivity
         setContentView(R.layout.activity_sign_up);
         init();
         token = getIntent().getExtras().getString("token");
-
         if (token.equals("1"))
         {
             fname = getIntent().getExtras().getString("first_name");
@@ -61,8 +60,7 @@ public class SignUpActivity extends AppCompatActivity
         }
     }
 
-    public void init()
-    {
+    public void init() {
         TIET_MemberName = (TextInputEditText) findViewById(R.id.et_member_name);
         TIET_name =(TextInputEditText)findViewById(R.id.et_user_name);
         TIET_email_id = (TextInputEditText)findViewById(R.id.et_email_id);
@@ -108,8 +106,7 @@ public class SignUpActivity extends AppCompatActivity
         });
     }
 
-    public void signUp()
-    {
+    public void signUp() {
         String memberName = TIET_MemberName.getText().toString();
         if (memberName.equals(""))
         {

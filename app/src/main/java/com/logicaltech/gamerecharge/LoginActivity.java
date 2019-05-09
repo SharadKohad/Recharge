@@ -2,11 +2,15 @@ package com.logicaltech.gamerecharge;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -28,6 +33,8 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +44,7 @@ import util.Constant;
 import util.MySingalton;
 import util.SessionManeger;
 
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -78,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
+        printHashKey();
     }
 
     private void init()
@@ -99,21 +108,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 signIn();
             }
         });
-
-
-
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
 
-
-        img_gmail.setOnClickListener(new View.OnClickListener() {
+        img_gmail.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 signInGmail();
             }
         });
-
 
         img_facebook.setOnClickListener(new View.OnClickListener()
         {
@@ -158,6 +163,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
 
         callbackManager = CallbackManager.Factory.create();
+        //loginButton.setReadPermissions("email", "public_profile", "user_friends");
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -167,14 +173,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Log.d("API123", loggedIn + " ??");
                 getUserProfile(AccessToken.getCurrentAccessToken());
             }
-
             @Override
             public void onCancel()
             {
                 // App code
                 Toast.makeText(getApplicationContext(),"On Cancel",Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onError(FacebookException exception)
             {
@@ -183,7 +187,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
@@ -300,13 +303,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         dialog.setContentView(R.layout.forgot_password);
         dialog.setCancelable(true);
         final TextInputEditText textInputEditTextEmail;
-
         lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         textInputEditTextEmail = (TextInputEditText) dialog.findViewById(R.id.tiet_password_forgot);
-
         ((AppCompatButton) dialog.findViewById(R.id.btn_forgot_password)).setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -376,9 +377,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         };
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
     }
+
+
     private void getUserProfile(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(currentAccessToken, new GraphRequest.GraphJSONObjectCallback()
-                {
+        {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response)
                     {
@@ -404,9 +407,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         parameters.putString("fields", "first_name,last_name,email,id");
         request.setParameters(parameters);
         request.executeAsync();
-
     }
-    public void signInVollySocialLogin(final String email) {
+
+    public void signInVollySocialLogin(final String email)
+    {
         progressBar.setVisibility(View.VISIBLE);
         btn_signin.setAlpha(0f);
         String url = Constant.URL+"getLoginDtlByEmailID";
@@ -426,6 +430,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         String username = jsonObject.getString("username");
                         String email = jsonObject.getString("Email");
                         String mobileNo = jsonObject.getString("Mobile_No");
+                        if (mobileNo.equals("null"))
+                        {
+                            mobileNo = "";
+                        }
                         String userName = jsonObject.getString("Memb_Name");
                         String memberId = jsonObject.getString("membercode");
                         sessionManeger.createSession(username,userName,email,mobileNo,memberId);
@@ -435,13 +443,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }
                     else
                     {
-                        Toast.makeText(LoginActivity.this,""+msg,Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-                        intent.putExtra("token","1");
-                        intent.putExtra("first_name",first_name);
-                        intent.putExtra("last_name",last_name);
-                        intent.putExtra("email",email);
-                        startActivity(intent);
+                        registration1("",email,first_name,first_name,"TEST@123","","");
                     }
                 }
                 catch (JSONException e)
@@ -478,17 +480,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
     private void signInGmail() {
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(intent,RED_CODE);
     }
-
     private void handleResult(GoogleSignInResult result) {
         if (result.isSuccess())
         {
@@ -503,4 +502,84 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         }
     }
+    private void printHashKey() {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo("com.logicaltech.gamerecharge",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                System.out.println("KeyHash: "+Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void registration1(final String Mobileno, final String EmailId,final String membername,final String username, final String sponserid,final String password, final String ip_address) {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"addRegistration";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("msg");
+                    String email = jsonObject.getString("EMail");
+                    if (status.equals("1"))
+                    {
+                        signInVollySocialLogin(email);
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Mobile_No", Mobileno);
+                params.put("Email",EmailId);
+                params.put("Memb_Name", EmailId);
+                params.put("username",EmailId);
+                params.put("sp_user", sponserid);
+                params.put("mpwd", password);
+                params.put("client_ip", ip_address);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
+    }
+
 }

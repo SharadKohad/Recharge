@@ -94,7 +94,8 @@ public class ContestListActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                finish();
+                Intent intent = new Intent(ContestListActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
         contestList(gtype);

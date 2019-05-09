@@ -44,8 +44,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_large" />

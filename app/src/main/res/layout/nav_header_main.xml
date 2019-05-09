@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
@@ -16,12 +17,13 @@
 
     <TextView
         android:id="@+id/tv_profile_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
-        android:gravity="center"
-        android:textColor="@color/green_900"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -29,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle"
-        android:textColor="@color/green_900"
+        android:textColor="@color/white"
         android:layout_gravity="center"/>
 
 </LinearLayout>

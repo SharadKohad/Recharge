@@ -63,8 +63,7 @@ public class TopScoreActivity extends AppCompatActivity
         topScorePerticulerContst(getIntent().getExtras().getString("srno"));
     }
 
-    public void topScorePerticulerContst(final String srno)
-    {
+    public void topScorePerticulerContst(final String srno) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -130,4 +129,5 @@ public class TopScoreActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
 }

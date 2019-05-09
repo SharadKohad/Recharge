@@ -138,9 +138,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        LL_Total_Balance.setOnClickListener(new View.OnClickListener() {
+        LL_Total_Balance.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 intent = new Intent(MainActivity.this,WalletHistoryActivity.class);
                 startActivity(intent);
             }
@@ -263,8 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
@@ -454,8 +455,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public void gameList()
-    {
+    public void gameList() {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         final String url = Constant.URL+"getGameType";
@@ -520,7 +520,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
-
 
    /* public void amountDistribution(final String Srno) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
