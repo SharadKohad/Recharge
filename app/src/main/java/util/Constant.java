@@ -7,6 +7,12 @@ public class Constant
 {
     public static String FISHSCORE = "";
     public static int TOTAL_BALANCE = 0;
+    public static int BOUNCE_CASH = 0;
+    public static int TOTAL_COIN = 0;
+    public static int TOTAL_DEPOSIT_CASH = 0;
+
+
+
     public static String DIRECT_INCOME = "";
     public static String TOTAL_REF = "";
     public static int HIGH_SCORE=0;

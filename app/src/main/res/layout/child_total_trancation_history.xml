@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_shadow"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:padding="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:id="@+id/ll_contest_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_medium">
+
+
+        <TextView
+            android:id="@+id/tv_date_time"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="wrap_content"
+            android:maxLength="7"
+            android:gravity="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            android:textSize="@dimen/_15sdp"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:id="@+id/tv_discription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/tv_date_time"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toLeftOf="@+id/text_view_entry_fee"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/text_view_entry_fee"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_green"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="100"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

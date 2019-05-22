@@ -148,7 +148,15 @@
                 android:text="PRICE"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imageViewcontest"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/moneybag"/>
 
             <TextView
                 android:id="@+id/tv_win_amount"
@@ -235,7 +243,15 @@
                 android:gravity="center"
                 android:text="ENTRY"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imageViewcontest1"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/moneybag"/>
 
             <TextView
                 android:id="@+id/text_view_entry_fee"

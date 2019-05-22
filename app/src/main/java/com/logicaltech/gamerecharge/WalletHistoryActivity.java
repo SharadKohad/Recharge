@@ -66,10 +66,10 @@ public class WalletHistoryActivity extends AppCompatActivity
         });
 
         walletHistory(memberCode);
+
     }
 
-    public void walletHistory(final String memberCode)
-    {
+    public void walletHistory(final String memberCode) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here

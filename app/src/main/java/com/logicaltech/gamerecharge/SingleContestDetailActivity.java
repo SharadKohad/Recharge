@@ -50,7 +50,7 @@ import util.SessionManeger;
 
 public class SingleContestDetailActivity extends AppCompatActivity
 {
-    String srno,userId,playerstatus="0",message,gametype;
+    String srno,userId,playerstatus="0",message,gametype,game_amt_type,ded_mainbal_amt,ded_boncash_amt;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     ArrayList<PriceModel> arrayList1 =new ArrayList<>();
     CardView CV_Price_Dis;
@@ -100,7 +100,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
                // joinContest(userId,srno);
                 if (playerstatus.equals("1"))
                 {
-                    showCustomDialog();
+                    if (game_amt_type.equals("POINTS"))
+                    {
+                        showTokenDialogBox();
+                    }
+                    else
+                    {
+                        showCustomDialog();
+                    }
                 }
                 else if(playerstatus.equals("2"))
                 {
@@ -155,6 +162,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
                     {
                         Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
                         intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("8"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
                         startActivity(intent);
@@ -225,12 +240,15 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         JSONObject jsonObject2 = response.getJSONObject(i);
                         String total_Memb = jsonObject2.getString("total_Memb");
                         String winning_amt = jsonObject2.getString("winning_amt");
+                        game_amt_type = jsonObject2.getString("game_amt_type");
                         join_contest_amt = jsonObject2.getInt("entry_amt");
                         String flag = jsonObject2.getString("flag");
                         String ttime = jsonObject2.getString("ttime");
                         String time_left = jsonObject2.getString("time_left");
                         String game_name = jsonObject2.getString("game_name");
                         String total_joining = jsonObject2.getString("total_joining");
+                        ded_mainbal_amt = jsonObject2.getString("ded_mainbal_amt");
+                        ded_boncash_amt = jsonObject2.getString("ded_boncash_amt");
                         TV_Game_Name.setText(""+game_name);
                         TV_Price.setText("\u20B9 "+winning_amt);
                         TV_Dis_Price.setText("\u20B9 "+winning_amt);
@@ -403,9 +421,10 @@ public class SingleContestDetailActivity extends AppCompatActivity
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_contest_conform);
         dialog.setCancelable(true);
-        final  TextView TV_Total_Amount,TV_Cotest_Amount,TV_Remaing_Amount;
+        final  TextView TV_Total_Amount,TV_Cotest_Amount,TV_Bounce_Cash,TV_Main_Wallet;
         final  ImageView img_close;
         final Button btn;
+        final RelativeLayout RL_info;
         String tokenmy="0";
 
         lp = new WindowManager.LayoutParams();
@@ -414,13 +433,26 @@ public class SingleContestDetailActivity extends AppCompatActivity
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         TV_Total_Amount = (TextView) dialog.findViewById(R.id.tv_total_amount);
         TV_Cotest_Amount = (TextView) dialog.findViewById(R.id.tv_contest_amount);
-        TV_Remaing_Amount = (TextView) dialog.findViewById(R.id.tv_remaining_left_amount);
+        TV_Bounce_Cash = (TextView) dialog.findViewById(R.id.tv_use_bounce_cash);
+        TV_Main_Wallet = (TextView) dialog.findViewById(R.id.tv_deposit_and_cash);
+        RL_info = (RelativeLayout) dialog.findViewById(R.id.rl_bounce_cash);
         img_close = (ImageView) dialog.findViewById(R.id.img_tournament_close);
         btn = (Button) dialog.findViewById(R.id.btn_join_contest);
+
+
         TV_Total_Amount.setText(""+Constant.TOTAL_BALANCE);
         TV_Cotest_Amount.setText(""+join_contest_amt);
-        int RemaingAmt = Constant.TOTAL_BALANCE - join_contest_amt;
-        TV_Remaing_Amount.setText(""+RemaingAmt);
+        TV_Bounce_Cash.setText(""+ded_boncash_amt);
+        TV_Main_Wallet.setText(""+ded_mainbal_amt);
+
+        RL_info.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                showBounceCash();
+            }
+        });
         if (Constant.TOTAL_BALANCE<join_contest_amt)
         {
             Toast.makeText(SingleContestDetailActivity.this,"insufficient balance ",Toast.LENGTH_SHORT).show();
@@ -436,13 +468,12 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 dialog.dismiss();
             }
         });
-
         final String finalTokenmy = tokenmy;
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
-
                 if (finalTokenmy.equals("1"))
                 {
                     Intent intent = new Intent(SingleContestDetailActivity.this,AccountActivity.class);
@@ -450,9 +481,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 }
                 else
                 {
-                   // Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
-                    //intent.putExtra("srno",srno);
-                   // startActivity(intent);
                     joinContest(userId,srno);
                 }
             }
@@ -528,6 +556,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
                                 intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("8"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
@@ -702,6 +738,89 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
+    }
+    private void showTokenDialogBox() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_token_contest_conform);
+        dialog.setCancelable(true);
+        final  TextView TV_Total_Token,TV_Cotest_Token,TV_Remaing_Amount;
+        final  ImageView img_close;
+        final Button btn;
+        String tokenmy="0";
+
+        lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        TV_Total_Token = (TextView) dialog.findViewById(R.id.tv_total_amount);
+        TV_Cotest_Token = (TextView) dialog.findViewById(R.id.tv_contest_amount);
+        TV_Remaing_Amount = (TextView) dialog.findViewById(R.id.tv_remaining_left_amount);
+        img_close = (ImageView) dialog.findViewById(R.id.img_tournament_close);
+        btn = (Button) dialog.findViewById(R.id.btn_join_contest);
+
+        TV_Total_Token.setText(""+Constant.TOTAL_COIN);
+        TV_Cotest_Token.setText(""+join_contest_amt);
+
+        int RemaingAmt = Constant.TOTAL_COIN - join_contest_amt;
+
+        TV_Remaing_Amount.setText(""+RemaingAmt);
+        if (Constant.TOTAL_COIN<join_contest_amt)
+        {
+            Toast.makeText(SingleContestDetailActivity.this,"insufficient Coin ",Toast.LENGTH_SHORT).show();
+            btn.setText("ADD FUND");
+            tokenmy = "1";
+        }
+
+        img_close.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                dialog.dismiss();
+            }
+        });
+        final String finalTokenmy = tokenmy;
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (finalTokenmy.equals("1"))
+                {
+                    Intent intent = new Intent(SingleContestDetailActivity.this,AccountActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    joinContest(userId,srno);
+                }
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
+    private void showBounceCash() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_bounce_cash);
+        dialog.setCancelable(true);
+
+        lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        ((Button) dialog.findViewById(R.id.btn_close)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 
 }

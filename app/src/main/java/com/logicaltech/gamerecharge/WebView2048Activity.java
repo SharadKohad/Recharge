@@ -32,7 +32,7 @@ public class WebView2048Activity extends AppCompatActivity
             public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
                 String numberOnly= url.replaceAll("[^0-9]", "");
-                Intent intent = new Intent(WebView2048Activity.this,GameOverActivity.class);
+                Intent intent = new Intent(WebView2048Activity.this,HighScoreActivity.class);
                 intent.putExtra("score",Integer.parseInt(numberOnly));
                 intent.putExtra("gtype",gtype);
                 intent.putExtra("srno",srno);

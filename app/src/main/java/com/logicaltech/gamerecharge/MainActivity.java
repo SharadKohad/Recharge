@@ -1,6 +1,7 @@
 package com.logicaltech.gamerecharge;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -38,9 +43,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import adpter.GameAdapter;
 import model.GameModel;
@@ -55,10 +64,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_Refernce;/*,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Book;*/
     Intent intent;
     SessionManeger sessionManeger;
-    TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce;
+    TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce,TextViewTotalIncome,TextView_Total_Coin;
     RecyclerView recyclerView_Game_type;
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<GameModel> arrayList =new ArrayList<>();
+    String membercode,userName;
+    RelativeLayout RL_Game_Info;
+    Dialog dialog;
+    WindowManager.LayoutParams lp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -72,13 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
         LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
         LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
-    //    LL_Book = (LinearLayout) findViewById(R.id.linear_layout_three_game);
+        TextViewTotalIncome = (TextView) findViewById(R.id.tv_total_income);
         LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
         LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
-      //  LL_FishGame_Home = (LinearLayout) findViewById(R.id.linear_layout_jump_fish_home);
-     //   LL_2048_Game = (LinearLayout) findViewById(R.id.linear_layout_2048);
-    //    LL_Fist_Arrow = (LinearLayout) findViewById(R.id.linear_layout_jump_game_four);
-     //   LL_Catch_Dot = (LinearLayout) findViewById(R.id.linear_layout_six);
+        TextView_Total_Coin = (TextView) findViewById(R.id.tv_total_coin);
+        RL_Game_Info = (RelativeLayout) findViewById(R.id.rl_game_info);
+
         LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
         TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
@@ -102,16 +114,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextViewUserEmail = (TextView)  hView.findViewById(R.id.tv_email_id);
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
-        String userName = hashMap.get(SessionManeger.KEY_NAME);
+        userName = hashMap.get(SessionManeger.KEY_NAME);
         String userEmail = hashMap.get(SessionManeger.KEY_EMAIL);
-        String membercode = hashMap.get(SessionManeger.MEMBER_ID);
+        membercode = hashMap.get(SessionManeger.MEMBER_ID);
 
         TextViewUserName.setText(userName);
         TextViewUserEmail.setText(userEmail);
 
         AddImageUrlFormLocalRes();
         dashBoardData(membercode);
-        contestList("1");
+        //contestList("1");
         gameList();
 
         for(String name : HashMapForLocalRes.keySet())
@@ -127,6 +139,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
         sliderLayout.setDuration(5000);
         //  sliderLayout.addOnPageChangeListener(MainActivity.this);
+
+        RL_Game_Info.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                showBounceCash();
+            }
+        });
+
+        TextViewTotalBalance.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,WalletHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextViewTotalIncome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                intent = new Intent(MainActivity.this,AccountActivity.class);
+                startActivity(intent);
+            }
+        });
 
         LL_Mobile_Recharge.setOnClickListener(new View.OnClickListener()
         {
@@ -163,23 +204,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(MainActivity.this,FlightBookActivity.class);
+                intent = new Intent(MainActivity.this, HighScoreActivity.class);
                 startActivity(intent);
             }
         });
 
-      /*  LL_Catch_Dot.setOnClickListener(new View.OnClickListener()
+        TextView_Total_Coin.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(MainActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","3");
+                Intent intent = new Intent(MainActivity.this,ContextParticipetionActivity.class);
+                intent.putExtra("token","1");
                 startActivity(intent);
             }
         });
 
-        LL_Fist_Arrow.setOnClickListener(new View.OnClickListener()
+     /*   LL_Fist_Arrow.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -279,10 +320,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_game_zone)
         {
             intent = new Intent(MainActivity.this,GameZoneActivity.class);
@@ -296,15 +337,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if (id == R.id.nav_participetion_list)
         {
             intent = new Intent(MainActivity.this,ContextParticipetionActivity.class);
+            intent.putExtra("token","0");
             startActivity(intent);
         }
         else if (id == R.id.nav_share)
         {
             intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "http://www.arenaitech.com/");
+            intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elit Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
             startActivity(Intent.createChooser(intent, "Share"));
+            /*intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
+            startActivity(intent);*/
         }
         else if (id == R.id.nav_logout)
         {
@@ -347,15 +391,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     int total_Balance = jsonObject.getInt("Total_Balance");
                     String Total_Direct_Income = jsonObject.getString("Total_Direct_Income");
                     String Total_Direct_Referral = jsonObject.getString("Total_Direct_Referral");
-                    Constant.TOTAL_BALANCE = total_Balance;
+                    String spinnerdate = jsonObject.getString("last_spin_Dt");
+                    int Bonus_Cash = jsonObject.getInt("Bonus_Cash");
+                    int Bonus_Point = jsonObject.getInt("Bonus_Point");
+                    if (spinnerdate.equals(""))
+                    {
+                        spinnerdate = "14/05/2019";
+                    }
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    Date currentDate = new Date();
+                    Date endDate = null;
+                    endDate=    sdf.parse(spinnerdate);
+                    long duration  = currentDate.getTime() - endDate.getTime();
+                    long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+                    System.out.println("hr: "+diffInHours);
+                    if (diffInHours<24)
+                    {
+
+                    }
+                    else
+                    {
+                        intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
+                        startActivity(intent);
+                    }
+                    Constant.TOTAL_BALANCE = total_Balance+Bonus_Cash;
+                    Constant.TOTAL_DEPOSIT_CASH = total_Balance;
                     Constant.DIRECT_INCOME = Total_Direct_Income;
                     Constant.TOTAL_REF = Total_Direct_Referral;
-                    TextViewTotalBalance.setText(""+total_Balance);
+                    Constant.BOUNCE_CASH = Bonus_Cash;
+                    Constant.TOTAL_COIN = Bonus_Point;
+                    TextView_Total_Coin.setText(""+Bonus_Point);
+                    TextViewTotalBalance.setText(""+(total_Balance+Bonus_Cash));
                     TextViewDirectIncome.setText(Total_Direct_Income);
                     TextViewRefernce.setText(Total_Direct_Referral);
-                    Toast.makeText(MainActivity.this,"DashBoard Successfull",Toast.LENGTH_SHORT).show();
                 }
                 catch (JSONException e)
+                {
+                    e.printStackTrace();
+                } catch (ParseException e)
                 {
                     e.printStackTrace();
                 }
@@ -391,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(MyStringRequest);
     }
 
-    public void contestList(final String gametype) {
+    /*public void contestList(final String gametype) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getGameSettingByType?Type="+gametype+"&ContestID=&Status=";
@@ -453,7 +526,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
-    }
+    }*/
 
     public void gameList() {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -576,5 +649,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(jsonObjRequest);
     }
 */
+    private void showBounceCash() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_tournament_info);
+        dialog.setCancelable(true);
+        lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        ((Button) dialog.findViewById(R.id.btn_close)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
 
 }

@@ -39,16 +39,19 @@ public class GameZoneActivity extends AppCompatActivity
 
         imageView_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
 
-        imageView_Back_Arrow.setOnClickListener(new View.OnClickListener() {
+        imageView_Back_Arrow.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 finish();
             }
         });
 
     }
 
-    public void buttonClicked(View view) {
+    public void buttonClicked(View view)
+    {
         if (view.getId() == R.id.linear_layout_jump_fish)
         {
             intent = new Intent(GameZoneActivity.this,ContestListActivity.class);

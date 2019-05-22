@@ -42,11 +42,51 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_total_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_contest_list">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL BALANCE "
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/white"/>
+
+
+        <ImageView
+            android:id="@+id/imageview_his"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:src="@drawable/coin"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_60sdp"
+            android:padding="@dimen/_2sdp"/>
+
+        <TextView
+            android:id="@+id/tv_total_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100 "
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_contest_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_contest_list">
+        android:layout_below="@+id/rl_total_point">
 
     </android.support.v7.widget.RecyclerView>
 

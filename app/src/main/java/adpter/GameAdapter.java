@@ -46,6 +46,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.RecyclerViewHo
             public void onClick(View view)
             {
                 Intent intent = new Intent(mContext, ContestListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("gtype",account_model.srno);
                 mContext.startActivity(intent);
             }

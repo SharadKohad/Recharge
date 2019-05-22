@@ -20,6 +20,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/point_image">
+
+                <TextView
+                android:id="@+id/tv_total_coin"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_total_income"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:padding="@dimen/_10sdp"/>
+
+            </RelativeLayout>
+
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/banner_slider1"
                 android:layout_width="match_parent"
@@ -34,6 +63,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_game_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -47,13 +77,24 @@
                 android:text="Select a Game"
                 android:textColor="@color/white" />
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_info_outline_black"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Info"
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_2sdp" />
+
+
 
             </RelativeLayout>
 
@@ -68,6 +109,7 @@
                 </android.support.v7.widget.RecyclerView>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -681,8 +723,6 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="@dimen/_10sdp"/>
 
-
-
                         </LinearLayout>
 
                         <TextView
@@ -707,6 +747,7 @@
                 app:cardUseCompatPadding="true"
                 android:layout_marginLeft="@dimen/spacing_middle"
                 android:layout_marginRight="@dimen/spacing_middle"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_10sdp">
 
                 <LinearLayout
@@ -760,7 +801,6 @@
                         android:layout_gravity="center">
 
                         <TextView
-                            android:id="@+id/tv_total_income"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="00 Rs"
@@ -788,6 +828,7 @@
                 app:cardUseCompatPadding="true"
                 android:layout_marginLeft="@dimen/spacing_middle"
                 android:layout_marginRight="@dimen/spacing_middle"
+                android:visibility="gone"
                 android:layout_below="@+id/banner_slider1">
 
                 <LinearLayout
@@ -868,6 +909,7 @@
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true"
                 android:layout_marginLeft="@dimen/spacing_middle"
+                android:visibility="gone"
                 android:layout_marginRight="@dimen/spacing_middle"
                 android:layout_below="@+id/banner_slider1">
 

@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".AccountActivity">
+    tools:context=".AccountActivity"
+    android:background="@drawable/gredient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_170sdp"
-        android:background="@drawable/gredient">
+        android:layout_height="@dimen/_150sdp">
 
         <ImageView
             android:id="@+id/img_back_arrow_profile"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_arrow_back_black_"
             android:padding="@dimen/_12sdp"/>
 
         <ImageView
@@ -27,7 +30,7 @@
             android:layout_height="80dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:src="@drawable/icon_profile" />
 
 
@@ -38,7 +41,7 @@
             android:layout_below="@+id/image_view_profile"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/btn_rounded_green_300"
+            android:background="@drawable/btn_round_blue"
             android:text="Logout"
             android:textColor="@color/white"
             android:textSize="@dimen/_10sdp" />
@@ -51,6 +54,386 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardUseCompatPadding="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TOTAL CASH BALANCE"
+                    android:textColor="@color/grey_80"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    android:paddingTop="@dimen/_5sdp"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_total_amount_transaction_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:src="@drawable/moneybag"
+                        android:padding="@dimen/_8sdp"/>
+
+                    <TextView
+                        android:id="@+id/tv_total_Cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_8sdp"/>
+
+                    <TextView
+                        android:id="@+id/textview_all_trancastion_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View Transaction History"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_contest_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/grey_10"
+                    android:padding="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/ll_main_balance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/award"
+                                android:padding="@dimen/_3sdp"/>
+
+                            <TextView
+                                android:id="@+id/tv_srno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="WINNINGS CASH"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:layout_gravity="center"/>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/ic_info_outline_black"
+                                android:padding="@dimen/_3sdp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:src="@drawable/moneybag"
+                                android:padding="@dimen/_8sdp"/>
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_5sdp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="6dp"
+                            app:cardElevation="2dp"
+                            android:layout_marginLeft="@dimen/spacing_middle"
+                            android:layout_marginRight="@dimen/spacing_middle"
+                            app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:id="@+id/text_view_entry_fee"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:gravity="center"
+                            android:text="WITHDRAW"
+                            android:textColor="@color/white"
+                            android:background="@color/green"/>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/grey_40"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/grey_10"
+                    android:padding="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/ll_deposit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icon_bank"
+                                android:padding="@dimen/_3sdp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="DIPOSIT CASH"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:layout_gravity="center"/>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/ic_info_outline_black"
+                                android:padding="@dimen/_3sdp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:src="@drawable/moneybag"
+                                android:padding="@dimen/_8sdp"/>
+
+
+                            <TextView
+                                android:id="@+id/textview_deposit_cash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_5sdp"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_add_money_paytm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="6dp"
+                            app:cardElevation="2dp"
+                            android:layout_marginLeft="@dimen/spacing_middle"
+                            android:layout_marginRight="@dimen/spacing_middle"
+                            app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:gravity="center"
+                            android:text="ADD MONEY"
+                            android:background="@color/colorPrimary"
+                            android:textColor="@color/white" />
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/grey_40"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/grey_10"
+                    android:padding="@dimen/_5sdp">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/ll_bounce_cash"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icon_gift"
+                                android:padding="@dimen/_3sdp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BONUS CASH"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:layout_gravity="center"/>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/ic_info_outline_black"
+                                android:padding="@dimen/_3sdp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:src="@drawable/moneybag"
+                                android:padding="@dimen/_8sdp"/>
+
+
+                            <TextView
+                                android:id="@+id/tv_bounce_cash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_5sdp"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_earn_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="6dp"
+                            app:cardElevation="2dp"
+                            android:layout_marginLeft="@dimen/spacing_middle"
+                            android:layout_marginRight="@dimen/spacing_middle"
+                            app:cardUseCompatPadding="true">
+
+                        <TextView
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:gravity="center"
+                            android:text="EARN MORE"
+                            android:textColor="@color/white"
+                            android:background="@color/light_blue_400"/>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:id="@+id/linear_layout_view_profile"
@@ -108,14 +491,16 @@
         </LinearLayout>
 
 
-          <!-- <LinearLayout
-                android:id="@+id/linear_layout_Update_kyc"
+           <RelativeLayout
+                android:id="@+id/linear_layout_point_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
                 android:background="@drawable/box_shadow">
 
                 <ImageView
@@ -123,129 +508,30 @@
                     android:layout_height="@dimen/_20sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ic_account"/>
+                    android:src="@drawable/coin"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="Update KYC"
-                    android:gravity="center|left"
-                    android:paddingLeft="@dimen/_10sdp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Trancation History"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/_50sdp" />
 
-            </LinearLayout>-->
+               <TextView
+                   android:id="@+id/textview_coin"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="100"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_15sdp"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/_20sdp"/>
 
+            </RelativeLayout>
 
-        <!--     <LinearLayout
-                android:id="@+id/linear_layout_my_network"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/box_shadow">
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ic_direct_income"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="Direct Network"
-                    android:gravity="center|left"
-                    android:paddingLeft="@dimen/_10sdp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linear_layout_downlineTeam"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/box_shadow">
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ic_downline_team"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="Downline Team"
-                    android:gravity="center|left"
-                    android:paddingLeft="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linear_layout_recharge_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/box_shadow">
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ic_recharge_history"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="Recharge History"
-                    android:gravity="center|left"
-                    android:paddingLeft="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linear_layout_withdrawal_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:background="@drawable/box_shadow">
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/icon_withdraw_history"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="Withdrawal History"
-                    android:gravity="center|left"
-                    android:paddingLeft="@dimen/_10sdp" />
-
-            </LinearLayout>-->
-
+    </LinearLayout>
 
     </LinearLayout>
 
 
-
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

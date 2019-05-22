@@ -90,7 +90,8 @@ public class ContestListActivity extends AppCompatActivity
         LL_Show_Tournaments = (LinearLayout)findViewById(R.id.ll_ballel);
         CV_Contest = (CardView) findViewById(R.id.cv_cotest_top_four_contest);
         gtype = getIntent().getExtras().getString("gtype");
-        Img_Back.setOnClickListener(new View.OnClickListener() {
+        Img_Back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -126,7 +127,8 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
 
-    public void contestList(final String gametype) {
+    public void contestList(final String gametype)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -155,6 +157,7 @@ public class ContestListActivity extends AppCompatActivity
                         String game_name = jsonObject2.getString("game_name");
                         String total_joining = jsonObject2.getString("total_joining");
                         String payout_status = jsonObject2.getString("payout_status");
+                        String game_amt_type = jsonObject2.getString("game_amt_type");
                         TV_gametitle.setText(""+game_name);
                         TV_game_Name.setText(""+game_name);
                         ContestModel model = new ContestModel();
@@ -164,6 +167,8 @@ public class ContestListActivity extends AppCompatActivity
                         model.setWiningprice(winning_amt);
                         model.setTotal_joining(total_joining);
                         model.setTime_left(time_left);
+
+                        model.setGame_amt_type(game_amt_type);
                         model.setEnteryfee(entry_amt);
                         model.setFlag(flag);
                         model.setDate(ttime);
@@ -233,6 +238,12 @@ public class ContestListActivity extends AppCompatActivity
             holder.TV_Win_Amount.setText(account_model.getWiningprice());
             holder.TV_Entry_fee.setText(account_model.getEnteryfee()+"0");
             final String flag = account_model.getFlag();
+
+            if (account_model.getGame_amt_type().equals("POINTS"))
+            {
+                holder.ImageViewBab.setImageResource(R.drawable.coin);
+                holder.ImageViewcoin.setImageResource(R.drawable.coin);
+            }
 
             if (flag.equals("InActive"))
             {
@@ -306,6 +317,13 @@ public class ContestListActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
+                    else if(gtype.equals("8"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
                     else
                     {
                         Toast.makeText(getApplicationContext(),"Select Active Contest",Toast.LENGTH_SHORT).show();
@@ -342,6 +360,7 @@ public class ContestListActivity extends AppCompatActivity
             TextView TV_Win_Amount,TV_Entry_fee,TV_total_spot,TV_Hr,TV_Min,TV_Sec,TV_top_score,TV_Member_Left;
             RelativeLayout RL_partisipet,LinearLayout_Cotest;
             ProgressBar progressBar;
+            ImageView ImageViewcoin,ImageViewBab;
             public RecyclerViewHolder(View itemView)
             {
                 super(itemView);
@@ -356,6 +375,8 @@ public class ContestListActivity extends AppCompatActivity
                 TV_top_score = (TextView) itemView.findViewById(R.id.tv_top_score);
                 progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar_show_persentage);
                 RL_partisipet = (RelativeLayout) itemView.findViewById(R.id.rl_time_value);
+                ImageViewcoin = (ImageView) itemView.findViewById(R.id.imageViewcontest);
+                ImageViewBab = (ImageView) itemView.findViewById(R.id.imageViewcontest1);
             }
         }
     }

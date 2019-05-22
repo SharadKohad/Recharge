@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,13 +50,14 @@ public class GameOverActivity extends AppCompatActivity
     private TextView tvscore,TV_High_Score;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
-    String userId,srno,sessionScoreFish="0",gtype;
+    String userId,srno,sessionScoreFish="0",gtype,userName;
     int topScore=0;
     RecyclerView RecyclerView_Top_Three_Contest;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     RelativeLayout RL_Top_Score;
     Intent intent;
-
+    LinearLayout LL_whatup_status,LL_whatups,LL_share;
+    ImageView IV_Close,IV_ScoreBoard;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,7 +67,8 @@ public class GameOverActivity extends AppCompatActivity
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
      //   HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
         userId = hashMap.get(SessionManeger.MEMBER_ID);
-      //  sessionScoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
+        userName = hashMap.get(SessionManeger.KEY_NAME);
+        //  sessionScoreFish = hashMap1.get(SessionManeger.FLY_FISH_SCORE);
         //topScore =  Integer.parseInt(sessionScoreFish);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_gameover);
         StartGameAgain = (Button) findViewById(R.id.play_again_btn);
@@ -72,6 +76,11 @@ public class GameOverActivity extends AppCompatActivity
         TV_High_Score = (TextView) findViewById(R.id.highscore);
         RL_Top_Score = (RelativeLayout) findViewById(R.id.rl_top_score_game_over);
         Btn_Home = (Button) findViewById(R.id.btn_home_btn);
+        LL_whatup_status = (LinearLayout) findViewById(R.id.ll_wahtup_status);
+        LL_whatups = (LinearLayout) findViewById(R.id.ll_wahtups);
+        LL_share = (LinearLayout) findViewById(R.id.ll_share);
+        IV_Close = (ImageView) findViewById(R.id.img_home);
+        IV_ScoreBoard = (ImageView) findViewById(R.id.img_scoreladder);
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
         gtype = getIntent().getExtras().getString("gtype");
@@ -135,6 +144,14 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("srno",srno);
                     startActivity(intent);
                 }
+                else if(gtype.equals("8"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -148,6 +165,68 @@ public class GameOverActivity extends AppCompatActivity
                 Intent intent = new Intent(GameOverActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        IV_Close.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(GameOverActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        IV_ScoreBoard.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(GameOverActivity.this,TopScoreActivity.class);
+                intent.putExtra("price","100");
+                intent.putExtra("srno",srno);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LL_whatup_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.setPackage("com.whatsapp");           // so that only Whatsapp reacts and not the chooser
+                i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                i.putExtra(Intent.EXTRA_TEXT, "Here get 100 Tokens to play with me to GOC. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
+                startActivity(i);
+            }
+        });
+
+        LL_whatups.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.setPackage("com.whatsapp");           // so that only Whatsapp reacts and not the chooser
+                i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                i.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens and 50 Rs bounce cash to play with me to Elit Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
+                startActivity(i);
+            }
+        });
+        LL_share.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+            intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens and 50 Rs bounce cash to play with me to Elit Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
+            startActivity(Intent.createChooser(intent, "Share"));
             }
         });
     }
@@ -314,7 +393,6 @@ public class GameOverActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
-
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

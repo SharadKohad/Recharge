@@ -31,6 +31,7 @@ import java.util.Map;
 
 import util.Constant;
 import util.MySingalton;
+import util.SessionManeger;
 
 public class SignUpActivity extends AppCompatActivity
 {
@@ -40,27 +41,30 @@ public class SignUpActivity extends AppCompatActivity
     ProgressBar progressBar;
     ImageView Img_SignUp_Close;
     String fname,lname,email,token="0";
+    SessionManeger sessionManeger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        sessionManeger = new SessionManeger(getApplicationContext());
         init();
         token = getIntent().getExtras().getString("token");
+
         if (token.equals("1"))
         {
             fname = getIntent().getExtras().getString("first_name");
             lname = getIntent().getExtras().getString("last_name");
             email = getIntent().getExtras().getString("email");
-
             TIET_MemberName.setText(fname+" "+lname);
             TIET_email_id.setText(""+email);
             TIET_name.setText(""+fname);
         }
     }
 
-    public void init() {
+    public void init()
+    {
         TIET_MemberName = (TextInputEditText) findViewById(R.id.et_member_name);
         TIET_name =(TextInputEditText)findViewById(R.id.et_user_name);
         TIET_email_id = (TextInputEditText)findViewById(R.id.et_email_id);
@@ -78,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity
             {
                 if (isChecked)
                 {
-                    TIET_sponsorId.setText("TEST@123");
+                    TIET_sponsorId.setText("TEST123");
                 }
                 else
                 {
@@ -170,7 +174,7 @@ public class SignUpActivity extends AppCompatActivity
         }
     }
 
-    public void registration1(final String Mobileno, final String EmailId,final String membername,final String username, final String sponserid,final String password, final String ip_address) {
+    public void registration1(final String Mobileno, final String EmailId,final String membername,final String username, final String sponserid,    final String password, final String ip_address) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addRegistration";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
@@ -185,9 +189,16 @@ public class SignUpActivity extends AppCompatActivity
                     String message = jsonObject.getString("msg");
                     if (status.equals("1"))
                     {
-                        Toast.makeText(SignUpActivity.this," "+message,Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+                       // String username = jsonObject.getString("username");
+                        String email = jsonObject.getString("EMail");
+                        /*String mobileNo = jsonObject.getString("Mobile_No");
+                        String userName = jsonObject.getString("Memb_Name");
+                        String memberId = jsonObject.getString("membercode");
+                        sessionManeger.createSession(username,userName,email,mobileNo,memberId);
+                        Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
                         startActivity(intent);
+                        finish();*/
+                        signInVollySocialLogin(email);
                     }
                     else
                     {
@@ -231,5 +242,75 @@ public class SignUpActivity extends AppCompatActivity
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
+    }
+
+    public void signInVollySocialLogin(final String email) {
+        progressBar.setVisibility(View.VISIBLE);
+        String url = Constant.URL+"getLoginDtlByEmailID";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    progressBar.setVisibility(View.GONE);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String msg = jsonObject.getString("msg");
+                    if (status.equals("1"))
+                    {
+                        String username = jsonObject.getString("username");
+                        String email = jsonObject.getString("Email");
+                        String mobileNo = jsonObject.getString("Mobile_No");
+                        if (mobileNo.equals("null"))
+                        {
+                            mobileNo = "";
+                        }
+                        String userName = jsonObject.getString("Memb_Name");
+                        String memberId = jsonObject.getString("membercode");
+                        sessionManeger.createSession(username,userName,email,mobileNo,memberId);
+                        Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                catch (JSONException e)
+                {
+                    progressBar.setVisibility(View.GONE);
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                progressBar.setVisibility(View.GONE);
+                VolleyLog.d("volley", "Error: " + error.getMessage());
+                error.printStackTrace();
+            }
+        })
+        {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Email", email);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 }

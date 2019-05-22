@@ -12,6 +12,15 @@ public class ContestModel
     String total_joining;
     String srno;
     String payout_status;
+    String game_amt_type;
+
+    public String getGame_amt_type() {
+        return game_amt_type;
+    }
+
+    public void setGame_amt_type(String game_amt_type) {
+        this.game_amt_type = game_amt_type;
+    }
 
     public String getPayout_status() {
         return payout_status;

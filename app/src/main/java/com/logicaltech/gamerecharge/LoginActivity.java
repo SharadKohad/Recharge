@@ -378,7 +378,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
     }
 
-
     private void getUserProfile(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(currentAccessToken, new GraphRequest.GraphJSONObjectCallback()
         {
@@ -409,8 +408,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         request.executeAsync();
     }
 
-    public void signInVollySocialLogin(final String email)
-    {
+    public void signInVollySocialLogin(final String email) {
         progressBar.setVisibility(View.VISIBLE);
         btn_signin.setAlpha(0f);
         String url = Constant.URL+"getLoginDtlByEmailID";
@@ -443,7 +441,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }
                     else
                     {
-                        registration1("",email,first_name,first_name,"TEST@123","","");
+                        registration1("",email,first_name,first_name,"TEST123","","");
                     }
                 }
                 catch (JSONException e)

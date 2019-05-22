@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.logicaltech.gamerecharge.GameOverActivity;
+import com.logicaltech.gamerecharge.HighScoreActivity;
 import com.logicaltech.gamerecharge.JumpFishActivity;
 import com.logicaltech.gamerecharge.R;
 
@@ -106,11 +107,8 @@ public class FlyingFishView extends View
             greenx = canvasWidth+21;
             greeny = (int) Math.floor(Math.random()* (maxFishY- minFishY))+ minFishY;
         }
-
         canvas.drawCircle(greenx,greeny,30,greenPaint);
-
         redx = redx - redSpeed;
-
         if (hitBallChecker(redx,redy))
         {
             redx = -100;
@@ -118,10 +116,11 @@ public class FlyingFishView extends View
             if (lifeCounterOfFish==0)
             {
                 //Toast.makeText(getContext(),"Game Over:",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), GameOverActivity.class);
+                Intent intent = new Intent(getContext(), HighScoreActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("score",score);
                 intent.putExtra("srno", JumpFishActivity.SRNO);
+                intent.putExtra("gtype","1");
                 getContext().startActivity(intent);
             }
         }

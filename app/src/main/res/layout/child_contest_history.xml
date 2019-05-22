@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:id="@+id/ll_contest_list"
                 android:layout_width="match_parent"
@@ -28,7 +27,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_large">
-
 
                 <LinearLayout
                     android:layout_width="0dp"
