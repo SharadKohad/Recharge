@@ -20,10 +20,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_highscore_icon"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
             android:src="@drawable/ic_launcher"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/_10sdp"/>
 
         <TextView
             android:id="@+id/tv_new_high_score_text"
@@ -36,19 +37,16 @@
             android:layout_below="@+id/civ_highscore_icon"
             android:layout_marginTop="@dimen/_15sdp"/>
 
-
         <TextView
             android:id="@+id/tv_new_high_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="100"
             android:textColor="@color/white"
             android:textSize="@dimen/_25sdp"
             android:layout_below="@+id/tv_new_high_score_text"
             android:layout_marginTop="@dimen/_10sdp"
             android:textStyle="bold"/>
-
 
         <TextView
             android:id="@+id/tv_new_high_last"
@@ -61,7 +59,6 @@
             android:layout_below="@+id/tv_new_high_score"
             android:layout_marginTop="@dimen/_10sdp"
             android:textStyle="bold"/>
-
 
 
     </RelativeLayout>

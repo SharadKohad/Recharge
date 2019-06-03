@@ -47,9 +47,7 @@ public class GameZoneActivity extends AppCompatActivity
                 finish();
             }
         });
-
     }
-
     public void buttonClicked(View view)
     {
         if (view.getId() == R.id.linear_layout_jump_fish)
@@ -61,7 +59,7 @@ public class GameZoneActivity extends AppCompatActivity
         else if (view.getId() == R.id.linear_layout_2048)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://site17.bidbch.com/game/index.html");
+            intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","2");
             startActivity(intent);
@@ -168,5 +166,4 @@ public class GameZoneActivity extends AppCompatActivity
             startActivity(intent);
         }
     }
-
 }

@@ -49,7 +49,7 @@ dependencies
             //------------sdp sizeing----------
             implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
             implementation 'com.mcxiaoke.volley:library:1.0.19'
-           // implementation 'com.android.volley:volley:1.1.0'
+            // implementation 'com.android.volley:volley:1.1.0'
             implementation 'de.hdodenhof:circleimageview:2.1.0'   //-------------Circul Image
             implementation 'commons-io:commons-io:2.4'   // Base 64...
             implementation 'com.facebook.android:facebook-android-sdk:[4,5)'

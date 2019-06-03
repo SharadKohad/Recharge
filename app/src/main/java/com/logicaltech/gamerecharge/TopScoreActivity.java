@@ -1,5 +1,6 @@
 package com.logicaltech.gamerecharge;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -55,6 +56,8 @@ public class TopScoreActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                Intent intent = new Intent(TopScoreActivity.this,MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

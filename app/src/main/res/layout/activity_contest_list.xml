@@ -65,8 +65,8 @@
                         android:drawableTop="@drawable/ic_favorite_white"
                         android:background="@color/white"
                         android:gravity="center"/>
-                </LinearLayout>
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_current_heroes"

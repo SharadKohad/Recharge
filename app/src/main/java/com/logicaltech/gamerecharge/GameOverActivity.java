@@ -152,6 +152,22 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("srno",srno);
                     startActivity(intent);
                 }
+                else if(gtype.equals("9"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("11"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
             }
         });
 

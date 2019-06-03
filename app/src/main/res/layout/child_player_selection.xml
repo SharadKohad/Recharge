@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_selectplayer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:src="@drawable/ic_person"
+        android:padding="@dimen/_10sdp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/textview_player_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Virat Kohli"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_toLeftOf="@+id/textview_point"
+        android:layout_marginRight="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/textview_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_50sdp"/>
+
+   <!-- <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"></RelativeLayout>-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView_select_player"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:src="@drawable/plus"
+        android:padding="@dimen/_10sdp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

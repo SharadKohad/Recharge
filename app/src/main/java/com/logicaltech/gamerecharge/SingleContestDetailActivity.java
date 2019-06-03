@@ -174,6 +174,22 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
+                    else if(gametype.equals("9"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("11"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
                 }
                 else
                 {
@@ -568,10 +584,26 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
                             }
+                            else if(gametype.equals("9"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("11"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
                         }
                     else
                         {
-                            Toast.makeText(SingleContestDetailActivity.this," "+msg,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SingleContestDetailActivity.this,msg+"",Toast.LENGTH_SHORT).show();
                         }
                 }
                 catch (JSONException e)
@@ -767,7 +799,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         TV_Remaing_Amount.setText(""+RemaingAmt);
         if (Constant.TOTAL_COIN<join_contest_amt)
         {
-            Toast.makeText(SingleContestDetailActivity.this,"insufficient Coin ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SingleContestDetailActivity.this,"insufficient Balance,Please add fund through paytm",Toast.LENGTH_SHORT).show();
             btn.setText("ADD FUND");
             tokenmy = "1";
         }
@@ -805,7 +837,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_bounce_cash);
         dialog.setCancelable(true);
-
         lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;

@@ -1,5 +1,8 @@
 package util;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,14 +14,17 @@ public class Constant
     public static int TOTAL_COIN = 0;
     public static int TOTAL_DEPOSIT_CASH = 0;
 
-
+    public static JSONArray jsonObjectmatch ;
+    public static JSONArray jsonArrayPlayerList ;
+    public static JSONObject jsonObjectmatchSummery;
 
     public static String DIRECT_INCOME = "";
     public static String TOTAL_REF = "";
     public static int HIGH_SCORE=0;
-   // public static String SRNO="";
+    public static String APIKEY="TmQf9rBDhAcsi2IRaCnzSwKJGeH2";
 
     public static final String URL = " http://site17.bidbch.com/api/";
+
     public static boolean isValidEmail(String email)
     {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";

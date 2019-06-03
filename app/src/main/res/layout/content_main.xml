@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_grey_500"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:background="@color/blue_grey_500"
     tools:showIn="@layout/app_bar_main">
 
     <android.support.v4.widget.NestedScrollView
@@ -26,26 +25,26 @@
                 android:background="@drawable/point_image">
 
                 <TextView
-                android:id="@+id/tv_total_coin"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="wrap_content"
-                android:text="00"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginLeft="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"/>
+                    android:id="@+id/tv_total_coin"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_total_income"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
                     android:text="00"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentRight="true"
-                    android:padding="@dimen/_10sdp"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -53,48 +52,79 @@
                 android:id="@+id/banner_slider1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_90sdp"
-                app:auto_cycle="true"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                app:auto_cycle="true"
                 app:pager_animation="ZoomIn">
 
             </com.daimajia.slider.library.SliderLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/spacing_middle"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_super_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:background="@drawable/superteam_background"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/icon_recharge" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
 
             <RelativeLayout
                 android:id="@+id/rl_game_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:orientation="horizontal"
-                android:paddingRight="@dimen/_20sdp"
                 android:paddingLeft="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select a Game"
-                android:textColor="@color/white" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/ic_info_outline_black"
-                    android:padding="@dimen/_3sdp"
-                    android:layout_marginRight="@dimen/_25sdp"
-                    android:layout_alignParentRight="true"/>
+                android:paddingRight="@dimen/_20sdp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Info"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Select a Game"
+                    android:textColor="@color/white" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_2sdp" />
+                    android:layout_marginRight="@dimen/_25sdp"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_info_outline_black" />
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="Info"
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 
@@ -105,297 +135,26 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_gametype"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </android.support.v7.widget.RecyclerView>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentLeft="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_jump_fish_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:background="@drawable/game1" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="FLYING FISH"
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_centerHorizontal="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_2048"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:background="@drawable/game_two" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2048 "
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentRight="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_six"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/game6" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="CATCH DOT"
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
             </RelativeLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/spacing_middle"
                 app:cardCornerRadius="6dp"
                 app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:layout_marginTop="@dimen/_10sdp">
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:id="@+id/linear_layout_refer_and_earn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_80sdp"
-                    android:orientation="horizontal"
                     android:background="@drawable/sharad2"
+                    android:orientation="horizontal"
                     android:padding="@dimen/spacing_large">
 
                     <RelativeLayout
@@ -409,7 +168,6 @@
                             android:layout_centerInParent="true"
                             app:srcCompat="@drawable/icon_recharge" />
 
-
                     </RelativeLayout>
 
                     <View
@@ -419,963 +177,33 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_50sdp"
                             android:text="REFER AND EARN"
                             android:textColor="@color/orange_900"
-                            android:paddingLeft="@dimen/_50sdp"
-                            android:textSize="@dimen/_12sdp"
-                            android:gravity="center"/>
+                            android:textSize="@dimen/_12sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_50sdp"
                             android:text="100 Rs"
                             android:textColor="@color/orange_900"
-                            android:paddingLeft="@dimen/_50sdp"
-                            android:textSize="@dimen/_15sdp"
-                            android:gravity="center"/>
+                            android:textSize="@dimen/_15sdp" />
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/tv_total_refernce"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2000 Rs"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="INVITE"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
-
             </android.support.v7.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentLeft="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_jump_game_four"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:background="@drawable/game4" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="FAST ARROW"
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_centerHorizontal="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_game_five"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:background="@drawable/game5" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="PING PONG "
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    app:cardElevation="2dp"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_alignParentRight="true"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout_three_game"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_5sdp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/blue_50">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/game3" />
-
-                            </RelativeLayout>
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_30sdp"
-                                android:layout_height="@dimen/_30sdp"
-                                android:src="@drawable/icon_price_win"
-                                android:padding="@dimen/_5sdp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="@dimen/_65sdp"/>
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="BOOKS TOWER"
-                            android:textColor="@color/black"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/icons_rupee"
-                                android:padding="@dimen/_1sdp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1234568"
-                                android:textColor="@color/brown_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_10sdp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Won by 102354 player"
-                            android:textSize="@dimen/_8sdp"
-                            android:gravity="center"
-                            android:layout_marginBottom="@dimen/_10sdp"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_10sdp">
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_total_balance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/icon_recharge" />
-
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="@dimen/spacing_middle"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total Balance"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/green_900"
-                            android:paddingLeft="@dimen/_20sdp"
-                            android:textSize="@dimen/_15sdp"
-                            android:gravity="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00 Rs"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Balance"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:visibility="gone"
-                android:layout_below="@+id/banner_slider1">
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_total_direct_income"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/icon_direct_income" />
-
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="@dimen/spacing_middle"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total_Direct_Income"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/green_900"
-                            android:paddingLeft="@dimen/_20sdp"
-                            android:textSize="@dimen/_15sdp"
-                            android:gravity="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/tv_directt_income"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00 Rs"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Balance"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:visibility="gone"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:layout_below="@+id/banner_slider1">
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_total_ref"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/icon_refer" />
-
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="@dimen/spacing_middle"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total_Direct_Referral"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/green_900"
-                            android:paddingLeft="@dimen/_20sdp"
-                            android:textSize="@dimen/_15sdp"
-                            android:gravity="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/tv_total_ref"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00 Rs"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Balance"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/spacing_middle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_marginTop="1dp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/fish1"/>
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jump Fish"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/green_900"
-                            android:textSize="@dimen/_15sdp"/>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Play And Earn At same time"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Score"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                android:visibility="gone"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:layout_marginTop="@dimen/spacing_middle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_marginTop="1dp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/game_two"/>
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2048"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/green_900"
-                            android:textSize="@dimen/_15sdp"/>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="fresh your mind and earn"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/green_500" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Score"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_40" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                android:layout_marginLeft="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:visibility="gone"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_middle">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_mxlarge" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_electricity"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/light_green_500"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/ic_lightbulb"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="ELECTRICITY"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_mobile_recharge"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:clickable="true"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/purple_400"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/ic_phone_android"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="MOBILE"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_flight_book"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/blue_400"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/ic_flight_takeoff"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="FLIGHT"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_mxlarge" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_hotel"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/indigo_300"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/ic_card_giftcard"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="@string/gifrandoffer"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_refernce"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/green_500"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/icon_refernce"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="Invite Friends"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_game"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.FloatingActionButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@android:color/white"
-                                app:backgroundTint="@color/orange_300"
-                                app:elevation="0dp"
-                                app:fabSize="mini"
-                                app:rippleColor="@android:color/white"
-                                android:src="@drawable/ic_games" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_medium"
-                                android:text="Game Zone"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_mxlarge" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </LinearLayout>

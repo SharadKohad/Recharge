@@ -16,7 +16,6 @@ public class SpashActivity extends AppCompatActivity
     LinearLayout li1,li2;
     Animation uptodown,downtoup;
     SessionManeger sessionManeger;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

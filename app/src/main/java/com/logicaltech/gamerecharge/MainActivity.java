@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
     SliderLayout sliderLayout;
     HashMap<String, Integer> HashMapForLocalRes;
-    LinearLayout LL_Mobile_Recharge,LL_Flight_Book,LL_refernce_social_media,LL_Game,LL_Total_Balance,LL_Refernce;/*,LL_FishGame_Home,LL_2048_Game,LL_Fist_Arrow,LL_Table_Tenic,LL_Catch_Dot,LL_Book;*/
+    LinearLayout LL_Refernce,LL_Super_team;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce,TextViewTotalIncome,TextView_Total_Coin;
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RelativeLayout RL_Game_Info;
     Dialog dialog;
     WindowManager.LayoutParams lp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -82,20 +81,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         sessionManeger = new SessionManeger(getApplicationContext());
         sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
-        LL_Mobile_Recharge = (LinearLayout) findViewById(R.id.linear_layout_mobile_recharge);
-        LL_Flight_Book = (LinearLayout) findViewById(R.id.linear_layout_flight_book);
-        LL_Total_Balance = (LinearLayout) findViewById(R.id.linear_layout_total_balance);
+
         TextViewTotalIncome = (TextView) findViewById(R.id.tv_total_income);
-        LL_refernce_social_media = (LinearLayout) findViewById(R.id.linear_layout_refernce);
-        LL_Game = (LinearLayout) findViewById(R.id.linear_layout_game);
         TextView_Total_Coin = (TextView) findViewById(R.id.tv_total_coin);
         RL_Game_Info = (RelativeLayout) findViewById(R.id.rl_game_info);
 
         LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
+        LL_Super_team = (LinearLayout)findViewById(R.id.linear_layout_super_team);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
-        TextViewDirectIncome = (TextView) findViewById(R.id.tv_directt_income);
-        TextViewRefernce = (TextView) findViewById(R.id.tv_total_ref);
-     //   LL_Table_Tenic = (LinearLayout) findViewById(R.id.linear_layout_game_five);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         recyclerView_Game_type = (RecyclerView) findViewById(R.id.rv_gametype);
         mGridLayoutManagerBrand = new GridLayoutManager(MainActivity.this, 3);
@@ -169,42 +163,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        LL_Mobile_Recharge.setOnClickListener(new View.OnClickListener()
+        LL_Super_team.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(MainActivity.this,MobileRechargeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        LL_Total_Balance.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,WalletHistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        LL_Game.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,GameZoneActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        LL_Flight_Book.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this, HighScoreActivity.class);
+                intent = new Intent(MainActivity.this,UpcomeingMatchesActivity.class);
+              //  intent = new Intent(MainActivity.this,MatchResultActivity.class);
                 startActivity(intent);
             }
         });
@@ -220,79 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-     /*   LL_Fist_Arrow.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","4");
-                startActivity(intent);
-            }
-        });
-        LL_Book.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://buy-instant-html5games.com/books-tower");
-                intent.putExtra("srno","3");
-                startActivity(intent);
-            }
-        });
-
-        LL_Table_Tenic.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(MainActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","5");
-                startActivity(intent);
-            }
-        });*/
-
-
         LL_Refernce.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "http://www.arenaitech.com/");
-                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
-                startActivity(Intent.createChooser(intent, "Share"));
-            }
-        });
-
-/*
-        LL_FishGame_Home.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //  intent = new Intent(GameZoneActivity.this,JumpFishActivity.class);
-                intent = new Intent(MainActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","1");
-                startActivity(intent);
-            }
-        });
-
-        LL_2048_Game.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //  intent = new Intent(GameZoneActivity.this,JumpFishActivity.class);
-                intent = new Intent(MainActivity.this,ContestListActivity.class);
-                intent.putExtra("gtype","2");
-                startActivity(intent);
-            }
-        });*/
-
-        LL_refernce_social_media.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -320,8 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
-    {
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_game_zone)
@@ -422,8 +314,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Constant.TOTAL_COIN = Bonus_Point;
                     TextView_Total_Coin.setText(""+Bonus_Point);
                     TextViewTotalBalance.setText(""+(total_Balance+Bonus_Cash));
-                    TextViewDirectIncome.setText(Total_Direct_Income);
-                    TextViewRefernce.setText(Total_Direct_Referral);
                 }
                 catch (JSONException e)
                 {
@@ -528,7 +418,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(MyStringRequest);
     }*/
 
-    public void gameList() {
+    public void gameList()
+    {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         final String url = Constant.URL+"getGameType";

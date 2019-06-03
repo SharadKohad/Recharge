@@ -43,7 +43,8 @@ public class WebView2048Activity extends AppCompatActivity
         });
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         new AlertDialog.Builder(this).setTitle("Really Exit?").setMessage("Are you sure you want to exit game?")
                 .setNegativeButton(android.R.string.no, null)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()

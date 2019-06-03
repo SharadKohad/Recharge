@@ -70,16 +70,12 @@ public class ContestListActivity extends AppCompatActivity
         userId = hashMap.get(SessionManeger.MEMBER_ID);
         Img_Back = (ImageView) findViewById(R.id.img_back_arrow_change_password);
         RecyclerView_Contest_Type = (RecyclerView) findViewById(R.id.rv_contest);
-
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_heroes);
         RecyclerView_Contest_Type1 = (RecyclerView) findViewById(R.id.rv_top_four_contest);
         mGridLayoutManagerBrand1 = new GridLayoutManager(ContestListActivity.this, 1);
-
         RecyclerView_Contest_Type1.setLayoutManager(mGridLayoutManagerBrand1);
         mGridLayoutManagerBrand = new GridLayoutManager(ContestListActivity.this, 1);
-
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
-
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
         TV_game_Name = (TextView) findViewById(R.id.tv_game_name);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
@@ -90,6 +86,7 @@ public class ContestListActivity extends AppCompatActivity
         LL_Show_Tournaments = (LinearLayout)findViewById(R.id.ll_ballel);
         CV_Contest = (CardView) findViewById(R.id.cv_cotest_top_four_contest);
         gtype = getIntent().getExtras().getString("gtype");
+
         Img_Back.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -99,6 +96,7 @@ public class ContestListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
         contestList(gtype);
 
         LL_Current_Tournaments.setOnClickListener(new View.OnClickListener()
@@ -122,13 +120,11 @@ public class ContestListActivity extends AppCompatActivity
                 RL_Background_colour.setBackgroundColor(getResources().getColor(R.color.red_600));
             }
         });
-
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
 
-    public void contestList(final String gametype)
-    {
+    public void contestList(final String gametype) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -258,10 +254,11 @@ public class ContestListActivity extends AppCompatActivity
             else
             {
                 int total_member = Integer.parseInt(account_model.getTotal_Memb());
+                int join_member = Integer.parseInt(account_model.getTotal_joining());
                 int total_member_by_per = 100/total_member;
                 int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
                 holder.progressBar.setProgress(remain_member);
-                holder.TV_Member_Left.setText(account_model.getTotal_joining());
+                holder.TV_Member_Left.setText(""+(total_member-join_member));
                 holder.TV_total_spot.setText(account_model.getTotal_Memb());
             }
 
@@ -318,6 +315,20 @@ public class ContestListActivity extends AppCompatActivity
                         startActivity(intent);
                     }
                     else if(gtype.equals("8"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("9"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("11"))
                     {
                         Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
                         intent.putExtra("gametype",gtype);
@@ -531,4 +542,5 @@ public class ContestListActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
+
 }
