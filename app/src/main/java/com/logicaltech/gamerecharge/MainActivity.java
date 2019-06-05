@@ -60,7 +60,7 @@ import util.SessionManeger;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     SliderLayout sliderLayout;
-    HashMap<String, Integer> HashMapForLocalRes;
+    HashMap<String, String> HashMapForURL ;
     LinearLayout LL_Refernce,LL_Super_team;
     Intent intent;
     SessionManeger sessionManeger;
@@ -115,24 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextViewUserName.setText(userName);
         TextViewUserEmail.setText(userEmail);
 
-        AddImageUrlFormLocalRes();
+        getBanner();
         dashBoardData(membercode);
         //contestList("1");
         gameList();
-
-        for(String name : HashMapForLocalRes.keySet())
-        {
-            TextSliderView textSliderView = new TextSliderView(MainActivity.this);
-            textSliderView.description(name).image(HashMapForLocalRes.get(name)).setScaleType(BaseSliderView.ScaleType.Fit);
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle().putString("extra",name);
-            sliderLayout.addSlider(textSliderView);
-        }
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Default);
-        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(5000);
-        //  sliderLayout.addOnPageChangeListener(MainActivity.this);
 
         RL_Game_Info.setOnClickListener(new View.OnClickListener()
         {
@@ -169,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view)
             {
                 intent = new Intent(MainActivity.this,UpcomeingMatchesActivity.class);
-              //  intent = new Intent(MainActivity.this,MatchResultActivity.class);
+                intent.putExtra("gtype","10");
                 startActivity(intent);
             }
         });
@@ -259,14 +245,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void AddImageUrlFormLocalRes() {
-        HashMapForLocalRes = new HashMap<String, Integer>();
-        HashMapForLocalRes.put("Friengs Refernce", R.drawable.sharad2);
-        HashMapForLocalRes.put("Game", R.drawable.slider2);
-        HashMapForLocalRes.put("Point Earn", R.drawable.slider3);
-        HashMapForLocalRes.put("paytm Cashback", R.drawable.slide4);
     }
 
     public void dashBoardData(final String memberId) {
@@ -418,8 +396,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(MyStringRequest);
     }*/
 
-    public void gameList()
-    {
+    public void gameList() {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         final String url = Constant.URL+"getGameType";
@@ -447,6 +424,75 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     GameAdapter gameAdapter = new GameAdapter(arrayList,getApplicationContext());
                     recyclerView_Game_type.setAdapter(gameAdapter);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
+    }
+
+    public void getBanner() {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        final String url = Constant.URL+"getBannerImg";
+        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
+        {
+            @Override
+            public void onResponse(JSONArray response)
+            {
+                try
+                {
+                    HashMapForURL = new HashMap<String, String>();
+                    for (int i = 0; i < response.length(); i++)
+                    {
+                        JSONObject jsonObject2 = response.getJSONObject(i);
+                        String BID = jsonObject2.getString("BID");
+                        String banner_img = jsonObject2.getString("banner_img");
+                        String flag = jsonObject2.getString("flag");
+                        HashMapForURL.put(BID, banner_img);
+                    }
+                    for(String name : HashMapForURL.keySet())
+                    {
+                        TextSliderView textSliderView = new TextSliderView(MainActivity.this);
+                        textSliderView.description(name).image(HashMapForURL.get(name)).setScaleType(BaseSliderView.ScaleType.Fit);
+                        textSliderView.bundle(new Bundle());
+                        textSliderView.getBundle().putString("extra",name);
+                        sliderLayout.addSlider(textSliderView);
+                    }
+                    sliderLayout.setPresetTransformer(SliderLayout.Transformer.Default);
+                    sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                    sliderLayout.setCustomAnimation(new DescriptionAnimation());
+                    sliderLayout.setDuration(5000);
                 }
                 catch (JSONException e)
                 {

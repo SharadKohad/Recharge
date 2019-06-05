@@ -50,6 +50,7 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
     ImageView IV_BackArrow;
     Dialog dialog;
     WindowManager.LayoutParams lp;
+    String gtype;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,6 +61,7 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
     }
 
     public void init() {
+        gtype = getIntent().getExtras().getString("gtype");
         recyclerView_Matches = (RecyclerView) findViewById(R.id.rv_upcomeing_matches);
         LL_Live_Matches = (LinearLayout) findViewById(R.id.ll_live_match);
         LL_Upcoming_matches = (LinearLayout) findViewById(R.id.ll_matches);
@@ -107,7 +109,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
 
     }
 
-    public void getMatchesList() {
+    public void getMatchesList()
+    {
         progressBar.setVisibility(View.VISIBLE);
      //   String strurl = "http://cricapi.com/api/matches/?apikey="+ Constant.APIKEY;
         String strurl = "http://site17.bidbch.com/api/getUpcomingMatches";
@@ -296,7 +299,6 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                     model.setMatchStarted(matchStarted);
                     arrayList_matches.add(model);
                 }
-
             }
             MatchesAdapter subCategoryAdapter = new MatchesAdapter(arrayList_matches, getApplicationContext());
             recyclerView_Matches.setAdapter(subCategoryAdapter);
@@ -305,8 +307,7 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
         }
     }
 
-    public void geteMatchesResult()
-    {
+    public void geteMatchesResult() {
         try
         {
             arrayList_matches.clear();

@@ -190,6 +190,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
+                    else if(gametype.equals("12"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/FlyingTriangle/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
                 }
                 else
                 {
@@ -237,7 +245,8 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         });
     }
-    public void singleContestDetail(final String gametype,final String srno,final String status) {
+    public void singleContestDetail(final String gametype,final String srno,final String status)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -596,6 +605,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
                             {
                                 Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
                                 intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("12"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/FlyingTriangle/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);

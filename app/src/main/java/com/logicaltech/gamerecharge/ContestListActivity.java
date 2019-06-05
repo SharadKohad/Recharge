@@ -124,7 +124,8 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
 
-    public void contestList(final String gametype) {
+    public void contestList(final String gametype)
+    {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -329,6 +330,13 @@ public class ContestListActivity extends AppCompatActivity
                         startActivity(intent);
                     }
                     else if(gtype.equals("11"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("12"))
                     {
                         Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
                         intent.putExtra("gametype",gtype);

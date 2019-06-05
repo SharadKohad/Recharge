@@ -58,22 +58,25 @@ public class SelectPlayerActivity extends AppCompatActivity
     private List<PlayerModel> team1List, team2List,finallist;
     private int selectedTeam = 0;
     ProgressBar progressBar;
-    String match_unique_id,membercode,pid="";
+    String match_unique_id,membercode,srno;
     SessionManeger sessionManeger;
     ImageView IV_Back_Arrow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_player);
-        match_unique_id = getIntent().getExtras().getString("match_unique_id");
+        match_unique_id = getIntent().getExtras().getString("mid");
+        srno = getIntent().getExtras().getString("srno");
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         membercode = hashMap.get(SessionManeger.MEMBER_ID);
         init();
     }
-    private void init() {
+    private void init()
+    {
         context = this;
         txtTeam1 = findViewById(R.id.tv_team1);
         txtTeam2 = findViewById(R.id.tv_team2);
@@ -125,12 +128,19 @@ public class SelectPlayerActivity extends AppCompatActivity
             public void onClick(View v)
             {
                // String new_id = pid.substring(0,pid.length()-1);
-                selectPlayer(membercode,getSelectedPlayerId(),match_unique_id);
+           //     selectPlayer(membercode,getSelectedPlayerId(),match_unique_id);
+
+                Intent intent = new Intent(SelectPlayerActivity.this,CreateTeamActivity.class);
+                intent.putExtra("playerlist",getSelectedPlayerList());
+                intent.putExtra("mid",match_unique_id);
+                intent.putExtra("srno",srno);
+                startActivity(intent);
             }
         });
     }
 
-    private void setRecyclerView() {
+    private void setRecyclerView()
+    {
         mAdapter = new TeamAdapter(context, new ArrayList<PlayerModel>(), new TeamAdapter.TeamAdapterInterface()
         {
             @Override
@@ -192,8 +202,7 @@ public class SelectPlayerActivity extends AppCompatActivity
         return count;
     }
 
-    private String getSelectedPlayerId()
-    {
+    private String getSelectedPlayerId() {
         String pid = "";
         for (PlayerModel playerModel : team1List)
         {
@@ -209,7 +218,6 @@ public class SelectPlayerActivity extends AppCompatActivity
                 pid = pid+playerModel.getPid()+"~";
             }
         }
-
         if (pid.substring(pid.length()-1).equalsIgnoreCase("~"))
         {
             pid = pid.substring(0,pid.length()-1);
@@ -218,13 +226,37 @@ public class SelectPlayerActivity extends AppCompatActivity
         return pid;
     }
 
+    private ArrayList<PlayerModel> getSelectedPlayerList() {
+        ArrayList<PlayerModel> templist = new ArrayList<>();
+        for (PlayerModel playerModel : team1List)
+        {
+            if (playerModel.isIs_selected())
+            {
+                templist.add(playerModel);
+            }
+        }
+        for (PlayerModel playerModel : team2List)
+        {
+            if (playerModel.isIs_selected())
+            {
+                templist.add(playerModel);
+            }
+        }
+       /* if (pid.substring(pid.length()-1).equalsIgnoreCase("~"))
+        {
+            pid = pid.substring(0,pid.length()-1);
+        }*/
+
+        return templist;
+    }
+
     public void getMatchTeamListAPI() {
         final String URL = "http://cricapi.com/api/fantasySquad";
         JSONObject params = new JSONObject();
         try
         {
             params.put("unique_id", match_unique_id);
-            params.put("apikey", "TmQf9rBDhAcsi2IRaCnzSwKJGeH2");
+            params.put("apikey", Constant.APIKEY);
             // APIKEY="TmQf9rBDhAcsi2IRaCnzSwKJGeH2";
         }
         catch (JSONException e)
@@ -282,8 +314,7 @@ public class SelectPlayerActivity extends AppCompatActivity
         });
         requestQueue.add(mJsonObjectRequest);
         mJsonObjectRequest.setShouldCache(false);
-        mJsonObjectRequest.setRetryPolicy(new
-                DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mJsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     public void selectPlayer(final String membercode, final String PID,final String Unique_ID) {
@@ -346,5 +377,4 @@ public class SelectPlayerActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
-
 }

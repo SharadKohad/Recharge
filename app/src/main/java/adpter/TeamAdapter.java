@@ -25,17 +25,16 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.Holder>
     private Context context;
     private List<PlayerModel> list;
     private TeamAdapterInterface listener;
-    public TeamAdapter(Context context, List<PlayerModel> list, TeamAdapterInterface listener) {
+    public TeamAdapter(Context context, List<PlayerModel> list, TeamAdapterInterface listener)
+    {
         this.context = context;
         this.list = list;
         this.listener = listener;
     }
-
     public void updateAdapter(List<PlayerModel> list) {
         this.list = list;
         notifyDataSetChanged();
     }
-
     public interface TeamAdapterInterface
     {
         void getPosition(int position);
@@ -49,7 +48,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.Holder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TeamAdapter.Holder holder, final int position) {
+    public void onBindViewHolder(@NonNull TeamAdapter.Holder holder, final int position)
+    {
         final PlayerModel playerModel = list.get(position);
         holder.txtPlayerName.setText(playerModel.getName());
         if (playerModel.isIs_selected())

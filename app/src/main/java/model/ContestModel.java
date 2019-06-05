@@ -13,6 +13,15 @@ public class ContestModel
     String srno;
     String payout_status;
     String game_amt_type;
+    String match_unique_id;
+
+    public String getMatch_unique_id() {
+        return match_unique_id;
+    }
+
+    public void setMatch_unique_id(String match_unique_id) {
+        this.match_unique_id = match_unique_id;
+    }
 
     public String getGame_amt_type() {
         return game_amt_type;

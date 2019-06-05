@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/groungbackground"
+    tools:context=".ViewTeamActivity">
+
+    <ProgressBar
+        android:id="@+id/progrebar_view_team_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_contest_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp">
+
+        <ImageView
+            android:id="@+id/img_back_viewTeamPlayer"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/img_back_viewTeamPlayer"
+            android:text="View Team Player"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_team_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_contest_list"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:padding="@dimen/_10sdp">
+
+
+        <TextView
+            android:id="@+id/tv_team1"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/btn_round_green"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"/>
+
+
+        <TextView
+            android:id="@+id/tv_team2"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:gravity="center"
+            android:background="@drawable/btn_round_green"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
+            />
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_p1"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/btn_round_blue"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"/>
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_team_selection"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp">
+
+        <TextView
+            android:id="@+id/tv_p2"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/btn_round_blue"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"/>
+
+        <TextView
+            android:id="@+id/tv_p3"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/btn_round_blue"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"/>
+
+        <TextView
+            android:id="@+id/tv_p4"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/btn_round_blue"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"/>
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_team_selection"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/tv_p5"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tv_p6"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tv_p7"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_team_selection"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/tv_p8"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tv_p9"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tv_p10"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/tv_p11"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/btn_round_blue"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--<android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_view_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_team_selection"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_30sdp">
+
+    </android.support.v7.widget.RecyclerView>-->
+
+
+</RelativeLayout>

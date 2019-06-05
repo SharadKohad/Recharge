@@ -55,9 +55,7 @@ public class HighScoreActivity extends AppCompatActivity
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
         gtype = getIntent().getExtras().getString("gtype");
-
         getHighScoreByContest(userId,srno);
-
     }
 
     public void getHighScoreByContest(final String MemberCode, final String Srno)
@@ -81,17 +79,18 @@ public class HighScoreActivity extends AppCompatActivity
                     }
                     else
                     {
-                        TV_HighScore_Text.setText("YOUR HI-SCORE");
+                        TV_HighScore_Text.setText("NEW HI-SCORE");
                         topScore =  Integer.parseInt(highScore);
                         if (topScore<=scorevalue)
                         {
                             TV_HighScore.setText(""+scorevalue);
-                            TV_Last_High_Score.setText("Last Score "+topScore);
+                         //   TV_Last_High_Score.setText("Latest Score "+topScore);
+                            TV_Last_High_Score.setVisibility(View.GONE);
                         }
                         else
                         {
                             TV_HighScore.setText(""+topScore);
-                            TV_Last_High_Score.setText("Last Score "+scorevalue);
+                            TV_Last_High_Score.setText("Latest Score "+scorevalue);
                         }
                     }
                     handler.postDelayed(new Runnable()

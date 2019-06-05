@@ -11,7 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.logicaltech.gamerecharge.ContestListActivity;
+import com.logicaltech.gamerecharge.MainActivity;
 import com.logicaltech.gamerecharge.R;
+import com.logicaltech.gamerecharge.UpcomeingMatchesActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -45,10 +47,20 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.RecyclerViewHo
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(mContext, ContestListActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("gtype",account_model.srno);
-                mContext.startActivity(intent);
+                if (account_model.getSrno().equals("10"))
+                {
+                    Intent intent = new Intent(mContext, UpcomeingMatchesActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("gtype",account_model.srno);
+                    mContext.startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(mContext, ContestListActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("gtype",account_model.srno);
+                    mContext.startActivity(intent);
+                }
             }
         });
     }

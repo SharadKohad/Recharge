@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.logicaltech.gamerecharge.ContestListActivity;
 import com.logicaltech.gamerecharge.R;
 import com.logicaltech.gamerecharge.SelectPlayerActivity;
+import com.logicaltech.gamerecharge.UpcomeingCricketContestActivity;
 
 import java.util.ArrayList;
 import model.Matches_Model;
@@ -45,10 +46,13 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.Recycler
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(mContext, SelectPlayerActivity.class);
+
+                Intent intent = new Intent(mContext, UpcomeingCricketContestActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("match_unique_id",account_model.getUnique_id());
+                intent.putExtra("m_id",account_model.getUnique_id());
+                intent.putExtra("gtype","10");
                 mContext.startActivity(intent);
+
             }
         });
     }

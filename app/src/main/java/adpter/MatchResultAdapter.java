@@ -1,12 +1,17 @@
 package adpter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,15 +39,22 @@ import java.util.Map;
 
 import model.Matches_Model;
 import util.Constant;
+import util.SessionManeger;
 
 public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.RecyclerViewHolder>
 {
     public ArrayList<Matches_Model> orderList;
     public Context mContext;
     public int score,totalscore;
-    public MatchResultAdapter(ArrayList<Matches_Model> orderList , Context context) {
+    SessionManeger sessionManeger;
+    String membercode;
+    public MatchResultAdapter(ArrayList<Matches_Model> orderList , Context context)
+    {
         this.orderList = orderList;
         mContext = context;
+        sessionManeger = new SessionManeger(mContext);
+        HashMap<String, String> hashMap = sessionManeger.getUserDetails();
+        membercode = hashMap.get(SessionManeger.MEMBER_ID);
     }
     
     @Override
@@ -51,7 +63,8 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
         return new MatchResultAdapter.RecyclerViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerViewHolder holder, final int position)
+    {
         final Matches_Model account_model = orderList.get(position);
         holder.TV_Team1.setText(account_model.getTeam1());
         holder.TV_Team2.setText(account_model.getTeam2());
@@ -74,7 +87,8 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
             @Override
             public void onClick(View view)
             {
-                cricketHighScore("2568708","1144483");
+                cricketHighScore(membercode,account_model.getUnique_id());
+               // showBounceCash();
             }
         });
     }
@@ -110,14 +124,24 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
             {
                 try
                 {
-                    for (int i = 0; i < response.length(); i++)
+                    String respo = response.toString();
+                    if (respo.equals("[]"))
                     {
-                        JSONObject jsonObject1 = response.getJSONObject(i);
-                        score = jsonObject1.getInt("total_score");
-                        totalscore = totalscore+score;
+                        Toast.makeText(mContext,"Sorry You can not join contest on this Match:",Toast.LENGTH_SHORT).show();
                     }
-                   // System.out.println("High Score: "+totalscore);
-                    Toast.makeText(mContext,"High Score Submited:"+totalscore,Toast.LENGTH_SHORT);
+                    else
+                    {
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            score = jsonObject1.getInt("total_score");
+                            totalscore = totalscore+score;
+                        }
+                        // System.out.println("High Score: "+totalscore);
+                        Toast.makeText(mContext,"High Score Submited:"+totalscore,Toast.LENGTH_SHORT).show();
+                        totalscore = 0;
+                    }
+
                 }
                 catch (JSONException e)
                 {
@@ -157,5 +181,31 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
+   /* private void showBounceCash()
+    {
+        final Dialog dialog;
+        WindowManager.LayoutParams lp;
+        dialog = new Dialog(mContext);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_tournament_info);
+        dialog.setCancelable(true);
+        lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+        ((Button) dialog.findViewById(R.id.btn_close)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }*/
 
 }

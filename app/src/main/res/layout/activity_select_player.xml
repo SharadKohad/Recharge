@@ -111,7 +111,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_team_selection"
-        android:layout_marginTop="@dimen/_10sdp">
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_30sdp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -138,7 +139,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:gravity="center"
-                android:text="Create Team"
+                android:text="Select Team"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/white" />
 

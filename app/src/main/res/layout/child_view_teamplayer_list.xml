@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_round_blue"
+        android:padding="@dimen/_5sdp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:src="@drawable/viewplayer"
+        android:padding="@dimen/_10sdp"
+        android:layout_alignParentLeft="true" />
+
+
+    <TextView
+        android:id="@+id/textview_player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Virat Kohli"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/_35sdp"
+        android:layout_toLeftOf="@+id/textview_point"
+        android:layout_marginRight="@dimen/_5sdp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
