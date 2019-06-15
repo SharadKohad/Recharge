@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -72,27 +71,13 @@ public class CricketContestAdpter extends RecyclerView.Adapter<CricketContestAdp
             holder.ImageViewBab.setImageResource(R.drawable.coin);
             holder.ImageViewcoin.setImageResource(R.drawable.coin);
         }
-
-      /*  if (flag.equals("InActive"))
-        {
-            holder.RL_partisipet.setVisibility(View.GONE);
-            holder.progressBar.setVisibility(View.GONE);
-            String payout_status = account_model.getPayout_status();
-            if (payout_status.equals("UnPaid"))
-            {
-                //amountDistribution(account_model.getSrno());
-            }
-        }
-        else
-        {*/
-            int total_member = Integer.parseInt(account_model.getTotal_Memb());
-            int join_member = Integer.parseInt(account_model.getTotal_joining());
-            int total_member_by_per = 100/total_member;
-            int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
-            holder.progressBar.setProgress(remain_member);
-            holder.TV_Member_Left.setText(""+(total_member-join_member));
-            holder.TV_total_spot.setText(account_model.getTotal_Memb());
-      //  }
+         int total_member = Integer.parseInt(account_model.getTotal_Memb());
+        int join_member = Integer.parseInt(account_model.getTotal_joining());
+        int total_member_by_per = 100/total_member;
+        int remain_member = Integer.parseInt(account_model.getTotal_joining())*total_member_by_per;
+        holder.progressBar.setProgress(remain_member);
+        holder.TV_Member_Left.setText(""+(total_member-join_member));
+        holder.TV_total_spot.setText(account_model.getTotal_Memb());
 
         int sec  = Integer.parseInt(account_model.getTime_left());
         reverseTimer(sec,holder.TV_Hr,holder.TV_Min,holder.TV_Sec);
@@ -105,8 +90,8 @@ public class CricketContestAdpter extends RecyclerView.Adapter<CricketContestAdp
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("mid",account_model.getMatch_unique_id());
                 mContext.startActivity(intent);*/
-                mid = account_model.getMatch_unique_id();
-                joinContestStatus(membercode,account_model.getSrno());
+        mid = account_model.getMatch_unique_id();
+        joinContestStatus(membercode,account_model.getSrno());
             }
         });
 
@@ -116,6 +101,7 @@ public class CricketContestAdpter extends RecyclerView.Adapter<CricketContestAdp
                 Intent intent = new Intent(mContext, ViewTeamActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("mid",account_model.getMatch_unique_id());
+                intent.putExtra("srno",account_model.getSrno());
                 mContext.startActivity(intent);
             }
         });
@@ -125,8 +111,7 @@ public class CricketContestAdpter extends RecyclerView.Adapter<CricketContestAdp
     {
         return orderList.size();
     }
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder
-    {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView TV_Win_Amount,TV_Entry_fee,TV_total_spot,TV_Hr,TV_Min,TV_Sec,TV_top_score,TV_Member_Left;
         RelativeLayout RL_partisipet,LinearLayout_Cotest;
         ProgressBar progressBar;
@@ -230,5 +215,4 @@ public class CricketContestAdpter extends RecyclerView.Adapter<CricketContestAdp
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
-
 }

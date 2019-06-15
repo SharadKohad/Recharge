@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 public class WebView2048Activity extends AppCompatActivity
 {
     WebView mywebview;
-    String current_url,srno,gtype;
+    String current_url,srno,gtype,cob="0";
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,31 +22,54 @@ public class WebView2048Activity extends AppCompatActivity
         current_url = getIntent().getStringExtra("url");
         srno = getIntent().getStringExtra("srno");
         gtype = getIntent().getStringExtra("gtype");
+        cob = getIntent().getStringExtra("cob");
+
         mywebview  = new WebView(this);
         mywebview.getSettings().setJavaScriptEnabled(true); // enable javascript
         mywebview .loadUrl(current_url);
         setContentView(mywebview);
 
-        if (gtype.equals("9"))
+        if (gtype.equals("9")||gtype.equals("15"))
         {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-
-        mywebview.setWebViewClient(new WebViewClient()
+        if (cob.equals("0"))
         {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            mywebview.setWebViewClient(new WebViewClient()
             {
-                String numberOnly= url.replaceAll("[^0-9]", "");
-                Intent intent = new Intent(WebView2048Activity.this,HighScoreActivity.class);
-                intent.putExtra("score",Integer.parseInt(numberOnly));
-                intent.putExtra("gtype",gtype);
-                intent.putExtra("srno",srno);
-                startActivity(intent);
-                finish();
-                return super.shouldOverrideUrlLoading(view,url);
-            }
-        });
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url)
+                {
+                    String numberOnly= url.replaceAll("[^0-9]", "");
+                    Intent intent = new Intent(WebView2048Activity.this,HighScoreActivity.class);
+                    intent.putExtra("score",Integer.parseInt(numberOnly));
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                    finish();
+                    return super.shouldOverrideUrlLoading(view,url);
+                }
+            });
+        }
+        else
+        {
+            mywebview.setWebViewClient(new WebViewClient()
+            {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url)
+                {
+                    String numberOnly= url.replaceAll("[^0-9]", "");
+                    Intent intent = new Intent(WebView2048Activity.this,Battle_ResultActivity.class);
+                    intent.putExtra("score",Integer.parseInt(numberOnly));
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                    finish();
+                    return super.shouldOverrideUrlLoading(view,url);
+                }
+            });
+        }
+
     }
     @Override
     public void onBackPressed()

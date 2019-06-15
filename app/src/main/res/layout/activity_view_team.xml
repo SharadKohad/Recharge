@@ -86,7 +86,19 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+               android:id="@+id/tm_tv_p1"
+               android:layout_width="@dimen/_60sdp"
+               android:layout_height="@dimen/_28sdp"
+               android:background="@drawable/btn_round_red"
+               android:layout_centerHorizontal="true"
+                android:textSize="@dimen/_8sdp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:padding="@dimen/_8sdp"/>
 
         <TextView
             android:id="@+id/tv_p1"
@@ -97,8 +109,10 @@
             android:layout_centerHorizontal="true"
             android:maxLength="15"
             android:textColor="@color/white"
+            android:layout_below="@+id/tm_tv_p1"
             android:textSize="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"/>
+
 
         </RelativeLayout>
 
@@ -112,6 +126,20 @@
         android:layout_marginRight="@dimen/_20sdp">
 
         <TextView
+            android:id="@+id/tm_tv_p2"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/btn_round_red"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:textSize="@dimen/_8sdp"
+            android:padding="@dimen/_8sdp"/>
+
+        <TextView
             android:id="@+id/tv_p2"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
@@ -120,8 +148,22 @@
             android:layout_centerHorizontal="true"
             android:maxLength="15"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tm_tv_p2"
             android:textColor="@color/white"
             android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"/>
+
+
+        <TextView
+            android:id="@+id/tm_tv_p3"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/btn_round_red"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
             android:padding="@dimen/_8sdp"/>
 
         <TextView
@@ -133,8 +175,24 @@
             android:layout_centerHorizontal="true"
             android:maxLength="15"
             android:textColor="@color/white"
+            android:layout_below="@+id/tm_tv_p3"
             android:textSize="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"/>
+
+        <TextView
+            android:id="@+id/tm_tv_p4"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/btn_round_red"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:maxLength="15"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textSize="@dimen/_8sdp"
+            android:padding="@dimen/_8sdp"/>
+
 
         <TextView
             android:id="@+id/tv_p4"
@@ -146,6 +204,7 @@
             android:maxLength="15"
             android:textColor="@color/white"
             android:layout_alignParentRight="true"
+            android:layout_below="@+id/tm_tv_p4"
             android:textSize="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"/>
 
@@ -162,6 +221,20 @@
             android:layout_marginRight="@dimen/_20sdp">
 
             <TextView
+                android:id="@+id/tm_tv_p5"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:textSize="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
                 android:id="@+id/tv_p5"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_30sdp"
@@ -172,7 +245,21 @@
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp"
+                android:layout_below="@+id/tm_tv_p5"
                 android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tm_tv_p6"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"/>
+
 
             <TextView
                 android:id="@+id/tv_p6"
@@ -184,6 +271,21 @@
                 android:maxLength="15"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp"
+                android:layout_below="@+id/tm_tv_p6"
+                android:padding="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/tm_tv_p7"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:textSize="@dimen/_8sdp"
                 android:padding="@dimen/_8sdp"/>
 
             <TextView
@@ -196,6 +298,7 @@
                 android:maxLength="15"
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true"
+                android:layout_below="@+id/tm_tv_p7"
                 android:textSize="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"/>
 
@@ -212,6 +315,21 @@
             android:layout_marginRight="@dimen/_20sdp">
 
             <TextView
+                android:id="@+id/tm_tv_p8"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:textSize="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"/>
+
+
+            <TextView
                 android:id="@+id/tv_p8"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_30sdp"
@@ -221,8 +339,24 @@
                 android:maxLength="15"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/white"
+                android:layout_below="@+id/tm_tv_p8"
                 android:textSize="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"/>
+
+
+
+            <TextView
+                android:id="@+id/tm_tv_p9"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"/>
+
 
             <TextView
                 android:id="@+id/tv_p9"
@@ -234,7 +368,24 @@
                 android:maxLength="15"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp"
+                android:layout_below="@+id/tm_tv_p9"
                 android:padding="@dimen/_8sdp"/>
+
+
+            <TextView
+                android:id="@+id/tm_tv_p10"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:textSize="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"/>
+
 
             <TextView
                 android:id="@+id/tv_p10"
@@ -246,6 +397,7 @@
                 android:maxLength="15"
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true"
+                android:layout_below="@+id/tm_tv_p10"
                 android:textSize="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"/>
 
@@ -259,6 +411,18 @@
             android:layout_marginTop="@dimen/_20sdp">
 
             <TextView
+                android:id="@+id/tm_tv_p11"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@drawable/btn_round_red"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/_8sdp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:padding="@dimen/_8sdp"/>
+
+
+            <TextView
                 android:id="@+id/tv_p11"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_30sdp"
@@ -268,6 +432,7 @@
                 android:maxLength="15"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp"
+                android:layout_below="@+id/tm_tv_p11"
                 android:padding="@dimen/_8sdp"/>
 
         </RelativeLayout>

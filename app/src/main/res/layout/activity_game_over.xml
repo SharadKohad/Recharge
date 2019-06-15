@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/blue_grey_500"
     tools:context=".GameOverActivity">
 
     <ImageView
@@ -70,8 +70,7 @@
                 android:id="@+id/rl_top_score_game_over"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_170sdp"
-                android:visibility="visible"
-                android:background="@drawable/top_backgroung">
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,7 +79,7 @@
                     android:gravity="top"
                     android:padding="@dimen/_2sdp"
                     android:text="CURRENT HEROS"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_900"
                     android:textSize="@dimen/_10sdp" />
 
 
@@ -132,7 +131,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
-            android:text="YOUR SCORE:"
+            android:text="LATEST SCORE:"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:layout_marginLeft="@dimen/_20sdp"
@@ -142,7 +141,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
-            android:text="High SCORE:"
+            android:text="HIGH SCORE:"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:layout_marginRight="@dimen/_20sdp"
@@ -297,7 +296,7 @@
                 <ImageView
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:background="@drawable/share"
+                    android:background="@drawable/share_social_media"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_gravity="center"/>
 

@@ -42,7 +42,6 @@ public class HighScoreActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_book);
-
         sessionManeger = new SessionManeger(getApplicationContext());
         handler=new Handler();
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
@@ -51,15 +50,13 @@ public class HighScoreActivity extends AppCompatActivity
         TV_HighScore_Text = (TextView) findViewById(R.id.tv_new_high_score_text);
         TV_HighScore = (TextView) findViewById(R.id.tv_new_high_score);
         TV_Last_High_Score = (TextView) findViewById(R.id.tv_new_high_last);
-
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
         gtype = getIntent().getExtras().getString("gtype");
         getHighScoreByContest(userId,srno);
     }
 
-    public void getHighScoreByContest(final String MemberCode, final String Srno)
-    {
+    public void getHighScoreByContest(final String MemberCode, final String Srno) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"getPlayerHighscoreByContest?membercode="+MemberCode+"&ContestID="+Srno;
@@ -98,7 +95,6 @@ public class HighScoreActivity extends AppCompatActivity
                         @Override
                         public void run()
                         {
-
                             //Toast.makeText(getContext(),"Game Over:",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(HighScoreActivity.this, GameOverActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);

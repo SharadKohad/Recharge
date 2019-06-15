@@ -124,8 +124,7 @@ public class PlayerInfoActivity extends AppCompatActivity
         });
     }
 
-    public void getPlayerDetail(final String pid)
-    {
+    public void getPlayerDetail(final String pid) {
         progressBar.setVisibility(View.VISIBLE);
         final String URL = "http://cricapi.com/api/playerStats?pid="+pid;
         HashMap<String, String> params = new HashMap<String, String>();

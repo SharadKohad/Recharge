@@ -176,6 +176,30 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("srno",srno);
                     startActivity(intent);
                 }
+                else if(gtype.equals("13"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/CrazyChicks/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("14"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/BrightBall/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
+                else if(gtype.equals("15"))
+                {
+                    Intent intent = new Intent(GameOverActivity.this,WebView2048Activity.class);
+                    intent.putExtra("url","http://site0.bidbch.com/games/penaltykick/index.html");
+                    intent.putExtra("gtype",gtype);
+                    intent.putExtra("srno",srno);
+                    startActivity(intent);
+                }
             }
         });
 

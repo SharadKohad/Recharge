@@ -251,7 +251,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         String mobileNo = jsonObject.getString("Mobile_No");
                         String userName = jsonObject.getString("Memb_Name");
                         String memberId = jsonObject.getString("membercode");
-                        sessionManeger.createSession(username,userName,email,mobileNo,memberId);
+                        String userFile = jsonObject.getString("userFile");
+                        sessionManeger.createSession(username,userName,email,mobileNo,memberId,userFile);
                         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -434,7 +435,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         }
                         String userName = jsonObject.getString("Memb_Name");
                         String memberId = jsonObject.getString("membercode");
-                        sessionManeger.createSession(username,userName,email,mobileNo,memberId);
+                        String userFile = jsonObject.getString("userFile");
+                        sessionManeger.createSession(username,userName,email,mobileNo,memberId,userFile);
                         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();

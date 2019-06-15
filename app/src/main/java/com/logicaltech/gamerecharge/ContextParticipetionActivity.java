@@ -71,7 +71,7 @@ public class ContextParticipetionActivity extends AppCompatActivity
 
         if (token.equals("0"))
         {
-            Img_his.setImageResource(R.drawable.moneybag);
+            Img_his.setImageResource(R.drawable.icons_rupee);
             TV_Point.setText(""+Constant.TOTAL_BALANCE);
             contestHistory(memberCode);
         }
@@ -83,7 +83,7 @@ public class ContextParticipetionActivity extends AppCompatActivity
         }
         else if(token.equals("2"))
         {
-            Img_his.setImageResource(R.drawable.moneybag);
+            Img_his.setImageResource(R.drawable.icons_rupee);
             TV_Point.setText(""+Constant.TOTAL_BALANCE);
             TV_Title.setText("Cash Transaction History");
          //   totalAmountHistory(memberCode);

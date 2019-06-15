@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShareAppActivity"
+    android:background="@color/blue_grey_500">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_share_app"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp">
+
+        <ImageView
+            android:id="@+id/img_back_arrow_share_app"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:text="REFER AND EARN"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/point_image">
+
+        <TextView
+            android:id="@+id/tv_total_coin"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="00"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_total_income"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="00"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/spacing_middle"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_refer_and_earn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/sharad2"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_large">
+
+            <RelativeLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/icon_recharge" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/spacing_middle"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_50sdp"
+                    android:text="REFER AND EARN"
+                    android:textColor="@color/orange_900"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_50sdp"
+                    android:text="100 Rs"
+                    android:textColor="@color/orange_900"
+                    android:textSize="@dimen/_15sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/referns"
+        android:textSize="@dimen/_10sdp"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_cotest_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_remaing_time_contest_detail"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/spacing_middle"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_cotest_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SHARE YOUR CODE"
+                android:textColor="@color/red_600"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+
+            <RelativeLayout
+                android:id="@+id/ll_price1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/txt_refercode"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="50.00sdfggffgf"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/border_layout"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp" />
+
+                <ImageView
+                    android:id="@+id/img_copytext"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/icon_copy"
+                    android:layout_toRightOf="@+id/txt_refercode"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_share_whatsapp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/ll_price1"
+                android:background="@drawable/btn_circul_green"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/icon_whatsapp"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="SHARE WITH WHATSAPP"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rr_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:paddingRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/ll_whatupp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_layout">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:text="OTHER APPS"
+                        android:textColor="@color/blue_grey_500"
+                        android:drawableLeft="@drawable/ic_menu_share"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:paddingLeft="@dimen/_10sdp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_invite_contact"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_layout"
+                    android:layout_marginLeft="@dimen/_5sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableLeft="@drawable/ic_favorite_red_24dp"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:text="INVITE CONTACTS"
+                        android:textColor="@color/blue_grey_500" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_remaing_time_contest_detail"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/spacing_middle"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HOW IT WORKS"
+                android:textColor="@color/red_600"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:paddingRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:id="@+id/ll_current_tourkknament"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/share"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Share your code with Friends"
+                        android:textColor="@color/blue_grey_500"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:paddingLeft="@dimen/_10sdp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_current_tourdfkknament"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/ticket"
+                        android:layout_toRightOf="@+id/txt_refercode"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Log into Elite play to your code"
+                        android:textColor="@color/blue_grey_500"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:paddingLeft="@dimen/_10sdp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_cufdrrent_tourkknament"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/icon_gift"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Get rewards when friends complete tasks"
+                        android:textColor="@color/blue_grey_500"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:paddingLeft="@dimen/_10sdp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

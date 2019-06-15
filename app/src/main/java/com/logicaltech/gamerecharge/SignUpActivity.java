@@ -63,8 +63,7 @@ public class SignUpActivity extends AppCompatActivity
         }
     }
 
-    public void init()
-    {
+    public void init() {
         TIET_MemberName = (TextInputEditText) findViewById(R.id.et_member_name);
         TIET_name =(TextInputEditText)findViewById(R.id.et_user_name);
         TIET_email_id = (TextInputEditText)findViewById(R.id.et_email_id);
@@ -174,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity
         }
     }
 
-    public void registration1(final String Mobileno, final String EmailId,final String membername,final String username, final String sponserid,    final String password, final String ip_address) {
+    public void registration1(final String Mobileno, final String EmailId,final String membername,final String username, final String sponserid,final String password, final String ip_address) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addRegistration";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
@@ -269,7 +268,7 @@ public class SignUpActivity extends AppCompatActivity
                         }
                         String userName = jsonObject.getString("Memb_Name");
                         String memberId = jsonObject.getString("membercode");
-                        sessionManeger.createSession(username,userName,email,mobileNo,memberId);
+                        sessionManeger.createSession(username,userName,email,mobileNo,memberId,jsonObject.getString("userFile"));
                         Intent intent=new Intent(SignUpActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();

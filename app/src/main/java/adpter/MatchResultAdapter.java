@@ -26,8 +26,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.logicaltech.gamerecharge.MatchResultActivity;
+import com.logicaltech.gamerecharge.PlayerPointActivity;
 import com.logicaltech.gamerecharge.R;
 import com.logicaltech.gamerecharge.SelectPlayerActivity;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import model.Matches_Model;
 import util.Constant;
 import util.SessionManeger;
@@ -45,31 +48,27 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
 {
     public ArrayList<Matches_Model> orderList;
     public Context mContext;
-    public int score,totalscore;
-    SessionManeger sessionManeger;
-    String membercode;
     public MatchResultAdapter(ArrayList<Matches_Model> orderList , Context context)
     {
         this.orderList = orderList;
         mContext = context;
-        sessionManeger = new SessionManeger(mContext);
-        HashMap<String, String> hashMap = sessionManeger.getUserDetails();
-        membercode = hashMap.get(SessionManeger.MEMBER_ID);
     }
-    
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_matches_result_list, parent, false);
         return new MatchResultAdapter.RecyclerViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(final RecyclerViewHolder holder, final int position)
-    {
+    public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
         final Matches_Model account_model = orderList.get(position);
-        holder.TV_Team1.setText(account_model.getTeam1());
-        holder.TV_Team2.setText(account_model.getTeam2());
+        holder.TV_Team1.setText(account_model.getTeam1().toUpperCase());
+        holder.TV_Team2.setText(account_model.getTeam2().toUpperCase());
         holder.TV_Matches.setText(""+account_model.getTeam1()+" Vs "+account_model.getTeam2());
         holder.TV_Match_Result.setText(account_model.getWinnerTeam()+" Win");
+
+        Picasso.with(mContext).load(account_model.getTeamflag1()).into(holder.IV_Team1);
+        Picasso.with(mContext).load(account_model.getTeamflag2()).into(holder.IV_Team2);
+
         holder.TV_View_Score.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -87,8 +86,12 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
             @Override
             public void onClick(View view)
             {
-                cricketHighScore(membercode,account_model.getUnique_id());
+              //  cricketHighScore(membercode,account_model.getUnique_id());
                // showBounceCash();
+                Intent intent = new Intent(mContext, PlayerPointActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("mid",account_model.getUnique_id());
+                mContext.startActivity(intent);
             }
         });
     }
@@ -101,6 +104,8 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView TV_Team1,TV_Team2,TV_Matches,TV_Match_Result,TV_View_Score,TV_Submit_Score;
         LinearLayout LL_Select_Player;
+        CircleImageView IV_Team1,IV_Team2;
+
         public RecyclerViewHolder(View itemView)
         {
             super(itemView);
@@ -111,75 +116,9 @@ public class MatchResultAdapter extends RecyclerView.Adapter<MatchResultAdapter.
             TV_Submit_Score = (TextView)itemView.findViewById(R.id.textview_submitscore);
             TV_Match_Result = (TextView)itemView.findViewById(R.id.textview_match_wining_team);
             LL_Select_Player = (LinearLayout) itemView.findViewById(R.id.ll_select_player);
+            IV_Team1 = (CircleImageView) itemView.findViewById(R.id.iv_team1);
+            IV_Team2 = (CircleImageView) itemView.findViewById(R.id.iv_team2);
         }
-    }
-
-    public void cricketHighScore(final String membercode,final String unique_id) {
-        RequestQueue MyRequestQueue = Volley.newRequestQueue(mContext);
-        String url = Constant.URL+"getCricketPlayerPointsByUID?membercode="+membercode+"&Unique_ID="+unique_id;
-        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
-        {
-            @Override
-            public void onResponse(JSONArray response)
-            {
-                try
-                {
-                    String respo = response.toString();
-                    if (respo.equals("[]"))
-                    {
-                        Toast.makeText(mContext,"Sorry You can not join contest on this Match:",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        for (int i = 0; i < response.length(); i++)
-                        {
-                            JSONObject jsonObject1 = response.getJSONObject(i);
-                            score = jsonObject1.getInt("total_score");
-                            totalscore = totalscore+score;
-                        }
-                        // System.out.println("High Score: "+totalscore);
-                        Toast.makeText(mContext,"High Score Submited:"+totalscore,Toast.LENGTH_SHORT).show();
-                        totalscore = 0;
-                    }
-
-                }
-                catch (JSONException e)
-                {
-                  //  progressBar.setVisibility(View.INVISIBLE);
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener()
-        { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-              //  progressBar.setVisibility(View.INVISIBLE);
-                //This code is executed if there is an error.
-                String message= "";
-                if (error instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                }
-                else if (error instanceof TimeoutError)
-                {
-                    message = "Connection TimeOut! Please check your internet connection.";
-                }
-                System.out.println("error........"+error);
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError
-            {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Accept","application/json");
-                headers.put("Content-Type","application/json");
-                return headers;
-            }
-        };
-        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MyRequestQueue.add(MyStringRequest);
     }
 
    /* private void showBounceCash()

@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -21,7 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewTeamActivity"></activity>
+        <activity android:name=".Battle_ResultActivity"></activity>
+        <activity android:name=".SingleBattleDetailActivity" />
+        <activity android:name=".ShareAppActivity" />
+        <activity android:name=".PlayerPointActivity" />
+        <activity android:name=".ViewTeamActivity" />
         <activity android:name=".CreateTeamActivity" />
         <activity android:name=".UpcomeingCricketContestActivity" />
         <activity android:name=".MatchResultActivity" />

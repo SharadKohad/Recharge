@@ -50,11 +50,10 @@
             android:text="Name"
             android:layout_below="@+id/img_topthree_profile"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tv_top_threescore"
@@ -63,7 +62,7 @@
             android:text="Name"
             android:layout_below="@+id/tv_top_threeusername"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_5sdp"

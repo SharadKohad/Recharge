@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +24,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -60,7 +66,7 @@ public class ProfileDetailActivity extends AppCompatActivity
     private String membercode,userMobile,userName,userEmail,userMemberName;
     ImageView IV_Back_Arrow;
     CircleImageView Cimg;
-    private String imgPath = null,base64Sting;
+    private String imgPath = null,base64Sting = null;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 7;
     private InputStream inputStreamImg;
@@ -99,6 +105,15 @@ public class ProfileDetailActivity extends AppCompatActivity
         ET_MobileNo.setText(userMobile);
         ET_MemberName.setText(userMemberName);
 
+        String photo = hashMap.get(SessionManeger.KEY_PHOTO);
+        if (photo.equals(""))
+        {
+
+        }
+        else
+        {
+            Picasso.with(getApplicationContext()).load(photo).into(Cimg);
+        }
         Cimg.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -113,7 +128,7 @@ public class ProfileDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                putEditProfile(membercode,ET_Name.getText().toString(),ET_Email.getText().toString(),ET_MobileNo.getText().toString(),base64Sting,"7276612632","7276612632","7276612632");
+                putEditProfile(membercode,ET_Name.getText().toString(),ET_Email.getText().toString(),ET_MobileNo.getText().toString(),"","7276612632","7276612632","7276612632");
             }
         });
 
@@ -137,8 +152,9 @@ public class ProfileDetailActivity extends AppCompatActivity
         });
     }
 
-    public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay) {
-        String url = Constant.URL+"editProfile";
+   /* public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay)
+    {
+        String url = "http://site17.bidbch.com/api/editProfile";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
         {
             @Override
@@ -195,15 +211,80 @@ public class ProfileDetailActivity extends AppCompatActivity
             }
         };
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
-    }
+    }*/
 
+    public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay) {
+        //progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"editProfile";
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString("msg");
+                    if (status.equals("1"))
+                    {
+                        Toast.makeText(ProfileDetailActivity.this,"Profile Update",Toast.LENGTH_SHORT).show();
+                        //  sessionManeger.createSession(userId,userName,userEmail,userMobile,userMemberName);
+                    }
+                    else
+                    {
+                        Toast.makeText(ProfileDetailActivity.this," "+message,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    //           progressBar.setVisibility(View.INVISIBLE);
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        //      progressBar.setVisibility(View.INVISIBLE);
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        Toast.makeText(getApplicationContext(),""+error.getMessage(),Toast.LENGTH_LONG).show();
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType()
+            {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("membercode", memberId);
+                params.put("Memb_Name", Member_name);
+                params.put("EmailID", emailId);
+                params.put("Mobile_No",mobileNo);
+                params.put("userFile",userfile);
+                params.put("Paytm_no",payTmno);
+                params.put("Phonepe_no", phonePay);
+                params.put("Googlepe_no", googlePay);
+                return params;
+            }
+        };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(jsonObjRequest);
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    private boolean checkAndRequestPermissions()
-    {
+    private boolean checkAndRequestPermissions() {
         int camera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (camera != PackageManager.PERMISSION_GRANTED)
@@ -314,7 +395,7 @@ public class ProfileDetailActivity extends AppCompatActivity
                 imgPath = getRealPathFromURI(selectedImage);
                 destination = new File(imgPath.toString());
                 Cimg.setImageBitmap(bitmap);
-                getBase64();
+                getBase64(imgPath);
             }
             catch (Exception e)
             {
@@ -331,42 +412,19 @@ public class ProfileDetailActivity extends AppCompatActivity
         return cursor.getString(column_index);
     }
 
-    private String getBase64() {
-        File file = new File(imgPath);  //file Path
-        byte[] b = new byte[(int) file.length()];
-        try
-        {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(b);
-            for (int j = 0; j < b.length; j++)
-            {
-                System.out.print((char) b[j]);
-            }
-        }
-        catch (FileNotFoundException e)
-        {
-            System.out.println("File Not Found.");
+    public String getBase64(String filePath){
+        Bitmap bmp = null;
+        ByteArrayOutputStream bos = null;
+        byte[] bt = null;
+     //   String encodeString = null;
+        try{
+            bmp = BitmapFactory.decodeFile(filePath);
+            bos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bt = bos.toByteArray();
+            base64Sting = Base64.encodeToString(bt, Base64.DEFAULT);
+        }catch (Exception e){
             e.printStackTrace();
-        }
-        catch (IOException e1)
-        {
-            System.out.println("Error Reading The File.");
-            e1.printStackTrace();
-        }
-        byte[] byteFileArray = new byte[0];
-        try
-        {
-            byteFileArray = FileUtils.readFileToByteArray(file);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        base64Sting = "";
-        if (byteFileArray.length > 0)
-        {
-            base64Sting = android.util.Base64.encodeToString(byteFileArray, android.util.Base64.NO_WRAP);
-            Log.i("File Base64 string", "IMAGE PARSE ==>" + base64Sting);
         }
         System.out.print(" My URL"+base64Sting);
         return base64Sting;

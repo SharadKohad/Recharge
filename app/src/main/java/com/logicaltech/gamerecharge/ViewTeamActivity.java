@@ -47,12 +47,13 @@ public class ViewTeamActivity extends AppCompatActivity
     private Context context;
     ImageView IV_Back_Arrow;
     SessionManeger sessionManeger;
-    String membercode,mid;
+    String membercode,mid,srno;
     private TextView txtTeam1, txtTeam2;
     TextView TVp1,TVp2,TVp3,TVp4,TVp5,TVp6,TVp7,TVp8,TVp9,TVp10,TVp11;
-    private ArrayList<String> arrayLists = new ArrayList();
+    TextView TTVp1,TTVp2,TTVp3,TTVp4,TTVp5,TTVp6,TTVp7,TTVp8,TTVp9,TTVp10,TTVp11;
+    private ArrayList<String> arrTeam1;
+    private ArrayList<String> arrCountry;
     ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,13 +63,14 @@ public class ViewTeamActivity extends AppCompatActivity
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         membercode = hashMap.get(SessionManeger.MEMBER_ID);
         mid = getIntent().getExtras().getString("mid");
-
+        srno = getIntent().getStringExtra("srno");
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         context = this;
+        arrTeam1 = new ArrayList();
+        arrCountry = new ArrayList<>();
         IV_Back_Arrow = findViewById(R.id.img_back_viewTeamPlayer);
         progressBar = findViewById(R.id.progrebar_view_team_player);
         txtTeam1 = findViewById(R.id.tv_team1);
@@ -85,8 +87,19 @@ public class ViewTeamActivity extends AppCompatActivity
         TVp10 = findViewById(R.id.tv_p10);
         TVp11 = findViewById(R.id.tv_p11);
 
+        TTVp1 = findViewById(R.id.tm_tv_p1);
+        TTVp2 = findViewById(R.id.tm_tv_p2);
+        TTVp3 = findViewById(R.id.tm_tv_p3);
+        TTVp4 = findViewById(R.id.tm_tv_p4);
+        TTVp5 = findViewById(R.id.tm_tv_p5);
+        TTVp6 = findViewById(R.id.tm_tv_p6);
+        TTVp7 = findViewById(R.id.tm_tv_p7);
+        TTVp8 = findViewById(R.id.tm_tv_p8);
+        TTVp9 = findViewById(R.id.tm_tv_p9);
+        TTVp10 = findViewById(R.id.tm_tv_p10);
+        TTVp11 = findViewById(R.id.tm_tv_p11);
         setListeners();
-        getViewTeamPlayertAPI(membercode,mid);
+        getViewTeamPlayertAPI(membercode,mid,srno);
     }
 
     private void setListeners(){
@@ -98,9 +111,9 @@ public class ViewTeamActivity extends AppCompatActivity
         });
     }
 
-    public void getViewTeamPlayertAPI(final String membercode,final String mid) {
+    public void getViewTeamPlayertAPI(final String membercode,final String mid,final String contestid) {
         progressBar.setVisibility(View.VISIBLE);
-        String strurl = Constant.URL+"getFantasySquad?membercode="+membercode+"&unique_id="+mid;
+        String strurl = Constant.URL+"getFantasySquad?membercode="+membercode+"&unique_id="+mid+"&ContestID="+contestid;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, strurl, new Response.Listener<JSONObject>()
         {
             @Override
@@ -126,7 +139,9 @@ public class ViewTeamActivity extends AppCompatActivity
                             {
                                 JSONObject jsonObject2 = playersArray.getJSONObject(j);
                                 String pname = jsonObject2.getString("name");
-                                arrayLists.add(pname);
+                                String teamname = jsonObject2.getString("teamname");
+                                arrTeam1.add(pname);
+                                arrCountry.add(teamname);
                             }
                         }
                         else
@@ -136,58 +151,70 @@ public class ViewTeamActivity extends AppCompatActivity
                             {
                                 JSONObject jsonObject2 = playersArray.getJSONObject(j);
                                 String pname = jsonObject2.getString("name");
-                                arrayLists.add(pname);
+                                String teamname = jsonObject2.getString("teamname");
+                                arrTeam1.add(pname);
+                                arrCountry.add(teamname);
                             }
                         }
                     }
-                    for (int i=0;i<arrayLists.size();i++)
+                    for (int i=0;i<arrTeam1.size();i++)
                     {
                         if (i==0)
                         {
-                            TVp1.setText(""+arrayLists.get(i));
+                            TVp1.setText(""+arrTeam1.get(i));
+                            TTVp1.setText(""+arrCountry.get(i));
                         }
                         else if(i==1)
                         {
-                            TVp2.setText(""+arrayLists.get(i));
+                            TVp2.setText(""+arrTeam1.get(i));
+                            TTVp2.setText(""+arrCountry.get(i));
                         }
                         else if(i==2)
                         {
-                            TVp3.setText(""+arrayLists.get(i));
+                            TVp3.setText(""+arrTeam1.get(i));
+                            TTVp3.setText(""+arrCountry.get(i));
                         }
                         else if(i==3)
                         {
-                            TVp4.setText(""+arrayLists.get(i));
+                            TVp4.setText(""+arrTeam1.get(i));
+                            TTVp4.setText(""+arrCountry.get(i));
+                        }
+                        else if(i==4)
+                        {
+                            TVp5.setText(""+arrTeam1.get(i));
+                            TTVp5.setText(""+arrCountry.get(i));
                         }
                         else if(i==5)
                         {
-                            TVp5.setText(""+arrayLists.get(i));
+                            TVp6.setText(""+arrTeam1.get(i));
+                            TTVp6.setText(""+arrCountry.get(i));
                         }
                         else if(i==6)
                         {
-                            TVp6.setText(""+arrayLists.get(i));
+                            TVp7.setText(""+arrTeam1.get(i));
+                            TTVp7.setText(""+arrCountry.get(i));
                         }
                         else if(i==7)
                         {
-                            TVp7.setText(""+arrayLists.get(i));
+                            TVp8.setText(""+arrTeam1.get(i));
+                            TTVp8.setText(""+arrCountry.get(i));
                         }
                         else if(i==8)
                         {
-                            TVp8.setText(""+arrayLists.get(i));
+                            TVp9.setText(""+arrTeam1.get(i));
+                            TTVp9.setText(""+arrCountry.get(i));
                         }
                         else if(i==9)
                         {
-                            TVp9.setText(""+arrayLists.get(i));
+                            TVp10.setText(""+arrTeam1.get(i));
+                            TTVp10.setText(""+arrCountry.get(i));
                         }
                         else if(i==10)
                         {
-                            TVp10.setText(""+arrayLists.get(i));
-                        }
-                        else if(i==11)
-                        {
-                            TVp11.setText(""+arrayLists.get(i));
+                            TVp11.setText(""+arrTeam1.get(i));
+                            TTVp11.setText(""+arrCountry.get(i));
                         }
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -215,4 +242,5 @@ public class ViewTeamActivity extends AppCompatActivity
         };
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjectRequest);
     }
+
 }

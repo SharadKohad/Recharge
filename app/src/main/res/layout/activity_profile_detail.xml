@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".ProfileDetailActivity">
 
     <RelativeLayout
         android:id="@+id/relative_layout_profileDetail"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
-        android:background="@color/colorPrimary">
+        android:layout_height="@dimen/_100sdp">
 
         <ImageView
             android:id="@+id/img_back_arrow_profile_detail"
@@ -25,7 +25,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_profile_edit"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

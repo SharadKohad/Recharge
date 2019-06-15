@@ -64,7 +64,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.Holder>
             holder.RL_Background.setBackgroundColor(Color.parseColor("#ffffff"));
             Picasso.with(context).load(R.drawable.plus).into(holder.CIM_player);
         }
-
         holder.CIM_player.setOnClickListener(new View.OnClickListener()
         {
             @Override

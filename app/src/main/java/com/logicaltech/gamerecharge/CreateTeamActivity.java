@@ -53,7 +53,7 @@ public class CreateTeamActivity extends AppCompatActivity
     String membercode,mid,game_amt_type,ded_mainbal_amt,ded_boncash_amt,srno;
     ArrayList<PlayerModel> playerModels ;
     TempViewPlayerAdapter mAdapter;
-    LinearLayout TV_Create_Team;
+    RelativeLayout TV_Create_Team;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
     TextView TV_Remaing_Time,TV_Game_Name,TV_Price,TV_Total_Player,TV_Cotest_Join;
@@ -72,8 +72,7 @@ public class CreateTeamActivity extends AppCompatActivity
 
         init();
     }
-    private void init()
-    {
+    private void init() {
         context = this;
         IV_Back_Arrow = findViewById(R.id.img_back_create_team);
         TV_Create_Team = findViewById(R.id.textview_create_team);
@@ -84,7 +83,6 @@ public class CreateTeamActivity extends AppCompatActivity
         TV_Total_Player  = findViewById(R.id.tv_total_player);
         TV_Cotest_Join = findViewById(R.id.tv_contest_amount);
 
-
         //fetch intent data
         mid = getIntent().getStringExtra("mid");
         playerModels = getIntent().getParcelableArrayListExtra("playerlist");
@@ -94,8 +92,7 @@ public class CreateTeamActivity extends AppCompatActivity
         singleContestDetail("10",srno,"1");
     }
 
-    private void setListeners()
-    {
+    private void setListeners() {
         IV_Back_Arrow.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -236,8 +233,7 @@ public class CreateTeamActivity extends AppCompatActivity
         }.start();
     }
 
-    private void showTokenDialogBox()
-    {
+    private void showTokenDialogBox() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_token_contest_conform);
@@ -290,7 +286,7 @@ public class CreateTeamActivity extends AppCompatActivity
                 }
                 else
                 {
-                    createTeam(membercode,getSelectedPlayerId(),mid);
+                    createTeam(membercode,getSelectedPlayerId(),mid,srno);
                 }
             }
         });
@@ -298,7 +294,7 @@ public class CreateTeamActivity extends AppCompatActivity
         dialog.getWindow().setAttributes(lp);
     }
 
-    public void createTeam(final String membercode, final String PID,final String Unique_ID) {
+    public void createTeam(final String membercode, final String PID,final String Unique_ID,final String contestid) {
         progressBar.setVisibility(View.VISIBLE);
         TV_Create_Team.setVisibility(View.GONE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -352,6 +348,7 @@ public class CreateTeamActivity extends AppCompatActivity
                 params.put("membercode", membercode);
                 params.put("PID",PID);
                 params.put("Unique_ID", Unique_ID);
+                params.put("contestid",contestid);
                 return params;
             }
         };
@@ -359,8 +356,8 @@ public class CreateTeamActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
-    public void joinContest(final String MemberCode, final String Srno)
-    {
+
+    public void joinContest(final String MemberCode, final String Srno) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addContest";
@@ -374,7 +371,7 @@ public class CreateTeamActivity extends AppCompatActivity
                     JSONObject jsonObject = new JSONObject(response);
                     String  pstatus = jsonObject.getString("status");
                     String  msg = jsonObject.getString("msg");
-                    if (pstatus.equals("1")||pstatus.equals("2"))
+                    if (pstatus.equals("1") ||pstatus.equals("2") )
                     {
                         Intent intent = new Intent(CreateTeamActivity.this,MainActivity.class);
                         startActivity(intent);
@@ -514,4 +511,5 @@ public class CreateTeamActivity extends AppCompatActivity
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
 }

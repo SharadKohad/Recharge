@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_10"
+    tools:context=".PlayerPointActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_contest_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/img_back_playerpoint"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/img_back_playerpoint"
+            android:layout_centerVertical="true"
+            android:text="Player Point"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"/>
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progreebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_playerpoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_contest_list"
+        android:layout_marginTop="@dimen/_1sdp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/textview_submitscore"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="@color/black" />
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

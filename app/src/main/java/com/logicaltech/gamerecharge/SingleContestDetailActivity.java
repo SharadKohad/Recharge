@@ -14,11 +14,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -31,15 +31,12 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import adpter.PriceAdapter;
 import adpter.TopthreeScoreAdapter;
 import model.PriceModel;
@@ -56,14 +53,16 @@ public class SingleContestDetailActivity extends AppCompatActivity
     CardView CV_Price_Dis;
     RecyclerView RecyclerView_Top_Three_Contest,RV_Price_Distribution;
     ProgressBar progressBar;
-    TextView TV_Price,TV_Total_Player,TV_Cotest_Join,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List,TV_Dis_Player,TV_Dis_Price;
+    TextView TV_Price,TV_Total_Player,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List,TV_Dis_Player,TV_Dis_Price,TV_Bonus_Cash;
     int join_contest_amt;
     ImageView img_back_arrow;
-    RelativeLayout RL_play_game,RL_Video_Game,RL_Game_List;
+    RelativeLayout RL_Video_Game,RL_Game_List;
     Dialog dialog;
     SessionManeger sessionManeger;
     GridLayoutManager mGridLayoutManagerBrand;
+    LinearLayout LL_Bonus_Cash;
     WindowManager.LayoutParams lp;
+    Button Btn_playGame;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -82,6 +81,52 @@ public class SingleContestDetailActivity extends AppCompatActivity
         singleContestDetail(gametype,srno,"1");
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
+    }
+
+    public void init() {
+        TV_Price = (TextView) findViewById(R.id.tv_wining_price);
+        TV_Total_Player  = (TextView) findViewById(R.id.tv_total_player);
+       // TV_Cotest_Join = (TextView) findViewById(R.id.tv_contest_amount);
+        TV_Game_Name = (TextView) findViewById(R.id.tv_cotest_name);
+        TV_Remaing_Time = (TextView) findViewById(R.id.tv_remaing_time_contest_detail);
+        TV_Dis_Player = (TextView) findViewById(R.id.tv_total_player_price_distribution);
+        img_back_arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
+        Btn_playGame = (Button) findViewById(R.id.rl_play_game);
+        CV_Price_Dis = (CardView) findViewById(R.id.cv_cotest_price_distribution);
+        progressBar = (ProgressBar) findViewById(R.id.progrebar_single_contest);
+        RL_Video_Game = (RelativeLayout) findViewById(R.id.rl_all_how_to_play);
+        RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
+        RV_Price_Distribution = (RecyclerView) findViewById(R.id.rv_price_disctribution);
+        TV_Dis_Price = (TextView) findViewById(R.id.tv_total_player_price_total);
+        mGridLayoutManagerBrand = new GridLayoutManager(SingleContestDetailActivity.this, 1);
+        RV_Price_Distribution.setLayoutManager(mGridLayoutManagerBrand);
+        RL_Game_List = (RelativeLayout) findViewById(R.id.rl_all_game);
+        TV_Bonus_Cash = (TextView) findViewById(R.id.txt_bounse_cash);
+        LL_Bonus_Cash = (LinearLayout) findViewById(R.id.ll_bounce_cash1);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
+
+        clickable();
+
+    }
+
+    public void clickable() {
+        RL_Video_Game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleContestDetailActivity.this,GameVideoActivity.class);
+                intent.putExtra("gametype",gametype);
+                startActivity(intent);
+            }
+        });
+
+        RL_Game_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleContestDetailActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         img_back_arrow.setOnClickListener(new View.OnClickListener()
         {
@@ -92,12 +137,12 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         });
 
-        RL_play_game.setOnClickListener(new View.OnClickListener()
+        Btn_playGame.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-               // joinContest(userId,srno);
+                // joinContest(userId,srno);
                 if (playerstatus.equals("1"))
                 {
                     if (game_amt_type.equals("POINTS"))
@@ -115,6 +160,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                     {
                         Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
                         intent.putExtra("gtype",gametype);
+                        intent.putExtra("cob","0");
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
@@ -124,6 +170,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("3"))
@@ -131,6 +178,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
                         intent.putExtra("url","http://site0.bidbch.com/games/catchdots/index.html");
                         intent.putExtra("gtype",gametype);
+                        intent.putExtra("cob","0");
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
@@ -140,6 +188,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/fastarrow/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("5"))
@@ -148,6 +197,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("6"))
@@ -156,6 +206,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("7"))
@@ -164,6 +215,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("8"))
@@ -172,6 +224,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("9"))
@@ -180,6 +233,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("11"))
@@ -188,6 +242,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                     else if(gametype.equals("12"))
@@ -196,6 +251,34 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         intent.putExtra("url","http://site0.bidbch.com/games/FlyingTriangle/index.html");
                         intent.putExtra("gtype",gametype);
                         intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("13"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/CrazyChicks/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                        intent.putExtra("cob","0");
+                    }
+                    else if(gametype.equals("14"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/BrightBall/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
+                        startActivity(intent);
+                    }
+                    else if(gametype.equals("15"))
+                    {
+                        Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                        intent.putExtra("url","http://site0.bidbch.com/games/penaltykick/index.html");
+                        intent.putExtra("gtype",gametype);
+                        intent.putExtra("srno",srno);
+                        intent.putExtra("cob","0");
                         startActivity(intent);
                     }
                 }
@@ -203,45 +286,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 {
                     Toast.makeText(SingleContestDetailActivity.this," "+message,Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-    }
-
-    public void init() {
-        TV_Price = (TextView) findViewById(R.id.tv_wining_price);
-        TV_Total_Player  = (TextView) findViewById(R.id.tv_total_player);
-        TV_Cotest_Join = (TextView) findViewById(R.id.tv_contest_amount);
-        TV_Game_Name = (TextView) findViewById(R.id.tv_cotest_name);
-        TV_Remaing_Time = (TextView) findViewById(R.id.tv_remaing_time_contest_detail);
-        TV_Dis_Player = (TextView) findViewById(R.id.tv_total_player_price_distribution);
-        img_back_arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
-        RL_play_game = (RelativeLayout) findViewById(R.id.rl_play_game);
-        CV_Price_Dis = (CardView) findViewById(R.id.cv_cotest_price_distribution);
-        progressBar = (ProgressBar) findViewById(R.id.progrebar_single_contest);
-        RL_Video_Game = (RelativeLayout) findViewById(R.id.rl_all_how_to_play);
-        RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
-        RV_Price_Distribution = (RecyclerView) findViewById(R.id.rv_price_disctribution);
-        TV_Dis_Price = (TextView) findViewById(R.id.tv_total_player_price_total);
-        mGridLayoutManagerBrand = new GridLayoutManager(SingleContestDetailActivity.this, 1);
-        RV_Price_Distribution.setLayoutManager(mGridLayoutManagerBrand);
-        RL_Game_List = (RelativeLayout) findViewById(R.id.rl_all_game);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
-
-        RL_Video_Game.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SingleContestDetailActivity.this,GameVideoActivity.class);
-                intent.putExtra("gametype",gametype);
-                startActivity(intent);
-            }
-        });
-
-        RL_Game_List.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SingleContestDetailActivity.this,GameZoneActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -275,17 +319,25 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         ded_mainbal_amt = jsonObject2.getString("ded_mainbal_amt");
                         ded_boncash_amt = jsonObject2.getString("ded_boncash_amt");
                         TV_Game_Name.setText(""+game_name);
-                        TV_Price.setText("\u20B9 "+winning_amt);
+                        TV_Price.setText( winning_amt);
                         TV_Dis_Price.setText("\u20B9 "+winning_amt);
                         TV_Total_Player.setText(total_joining+"/"+total_Memb);
                         TV_Dis_Player.setText(""+total_joining+"/"+total_Memb);
+                        if (game_amt_type.equals("RUPEES"))
+                        {
+                            TV_Bonus_Cash.setText("\u20B9 "+ded_boncash_amt+" Use in bounes cash");
+                        }
+                        else
+                        {
+                            LL_Bonus_Cash.setVisibility(View.GONE);
+                        }
                     //    join_contest_amt = Integer.parseInt(entry_amt);
                         int sec  = Integer.parseInt(time_left);
                         reverseTimer(sec,TV_Remaing_Time);
                         if (flag.equals("InActive"))
                         {
-                            TV_Cotest_Join.setText("CONTEST CLOSE");
-                            RL_play_game.setClickable(false);
+                            Btn_playGame.setText("CONTEST CLOSE");
+                            Btn_playGame.setClickable(false);
                         }
                         else
                         {
@@ -331,6 +383,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
     public void topScorePerticulerContst(final String srno) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -423,6 +476,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
     public void reverseTimer(int Seconds,final TextView tv) {
         new CountDownTimer(Seconds* 1000+1000, 1000)
         {
@@ -433,7 +487,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                 int tempMint = (seconds - (hours * 60 * 60));
                 int minutes = tempMint / 60;
                 seconds = tempMint - (minutes * 60);
-                tv.setText(String.format("%02d", hours) + "hr " + String.format("%02d", minutes) + "m " + String.format("%02d", seconds)+"s");
+                tv.setText(String.format("%02d", hours) + "H " + String.format("%02d", minutes) + "M " + String.format("%02d", seconds)+"S");
             }
             public void onFinish()
             {
@@ -441,6 +495,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         }.start();
     }
+
     private void showCustomDialog() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -464,7 +519,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
         img_close = (ImageView) dialog.findViewById(R.id.img_tournament_close);
         btn = (Button) dialog.findViewById(R.id.btn_join_contest);
 
-
         TV_Total_Amount.setText(""+Constant.TOTAL_BALANCE);
         TV_Cotest_Amount.setText(""+join_contest_amt);
         TV_Bounce_Cash.setText(""+ded_boncash_amt);
@@ -483,6 +537,15 @@ public class SingleContestDetailActivity extends AppCompatActivity
             Toast.makeText(SingleContestDetailActivity.this,"insufficient balance ",Toast.LENGTH_SHORT).show();
             btn.setText("ADD FUND");
             tokenmy = "1";
+        }
+        else
+        {
+            if (Constant.TOTAL_DEPOSIT_CASH<Float.parseFloat(ded_mainbal_amt))
+            {
+                Toast.makeText(SingleContestDetailActivity.this,"insufficient Main balance ",Toast.LENGTH_SHORT).show();
+                btn.setText("ADD FUND");
+                tokenmy = "1";
+            }
         }
 
         img_close.setOnClickListener(new View.OnClickListener()
@@ -513,6 +576,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
     public void joinContest(final String MemberCode, final String Srno) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -535,6 +599,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 Intent intent = new Intent(SingleContestDetailActivity.this,JumpFishActivity.class);
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if (gametype.equals("2"))
@@ -617,6 +682,30 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("srno",srno);
                                 startActivity(intent);
                             }
+                            else if(gametype.equals("13"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/CrazyChicks/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("14"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/BrightBall/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
+                            else if(gametype.equals("15"))
+                            {
+                                Intent intent = new Intent(SingleContestDetailActivity.this,WebView2048Activity.class);
+                                intent.putExtra("url","http://site0.bidbch.com/games/penaltykick/index.html");
+                                intent.putExtra("gtype",gametype);
+                                intent.putExtra("srno",srno);
+                                startActivity(intent);
+                            }
                         }
                     else
                         {
@@ -658,6 +747,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
+
     public void topScorePriceDistribution(final String srno) {
     //    progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -734,6 +824,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
+
     public void joinContestStatus(final String MemberCode, final String Srno) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -750,11 +841,11 @@ public class SingleContestDetailActivity extends AppCompatActivity
                     message = jsonObject.getString("msg");
                     if (playerstatus.equals("1"))
                     {
-                        TV_Cotest_Join.setText("PAY AND PLAY");
+                        Btn_playGame.setText("PAY AND PLAY");
                     }
                     else
                     {
-                        TV_Cotest_Join.setText("PLAY NOW");
+                        Btn_playGame.setText("PLAY NOW");
                     }
                 }
                 catch (JSONException e)
@@ -788,6 +879,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
+
     private void showTokenDialogBox() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -849,6 +941,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
     private void showBounceCash() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before

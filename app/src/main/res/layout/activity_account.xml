@@ -91,7 +91,7 @@
                     <ImageView
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/moneybag"
+                        android:src="@drawable/icons_rupee"
                         android:padding="@dimen/_8sdp"/>
 
                     <TextView
@@ -170,7 +170,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_35sdp"
                                 android:layout_height="@dimen/_35sdp"
-                                android:src="@drawable/moneybag"
+                                android:src="@drawable/icons_rupee"
                                 android:padding="@dimen/_8sdp"/>
 
 
@@ -274,7 +274,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_35sdp"
                                 android:layout_height="@dimen/_35sdp"
-                                android:src="@drawable/moneybag"
+                                android:src="@drawable/icons_rupee"
                                 android:padding="@dimen/_8sdp"/>
 
 
@@ -381,7 +381,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_35sdp"
                                 android:layout_height="@dimen/_35sdp"
-                                android:src="@drawable/moneybag"
+                                android:src="@drawable/icons_rupee"
                                 android:padding="@dimen/_8sdp"/>
 
 
@@ -500,8 +500,9 @@
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:padding="@dimen/_10sdp"
-                android:background="@drawable/box_shadow">
+                android:background="@drawable/box_shadow"
+               android:paddingTop="@dimen/_10sdp"
+               android:paddingBottom="@dimen/_10sdp">
 
                 <ImageView
                     android:layout_width="@dimen/_20sdp"
@@ -515,7 +516,7 @@
                     android:layout_height="wrap_content"
                     android:text="View Trancation History"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="@dimen/_50sdp" />
+                    android:paddingLeft="@dimen/_40sdp" />
 
                <TextView
                    android:id="@+id/textview_coin"
@@ -532,6 +533,5 @@
     </LinearLayout>
 
     </LinearLayout>
-
 
 </android.support.v4.widget.NestedScrollView>

@@ -38,8 +38,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import adpter.BattleAdpter;
 import adpter.TopFour_Contest_List;
 import adpter.TopThree_Contest_ListAdapter;
+import model.BattleModel;
 import model.ContestModel;
 import model.TopScoreModel;
 import util.Constant;
@@ -47,14 +49,16 @@ import util.SessionManeger;
 
 public class ContestListActivity extends AppCompatActivity
 {
-    ImageView Img_Back;
+    ImageView Img_Back,Img_Tournament;
     ArrayList<ContestModel> arrayList =new ArrayList<>();
     ArrayList<TopScoreModel> arrayList1 =new ArrayList<>();
-    RecyclerView RecyclerView_Contest_Type,RecyclerView_Top_Three_Contest,RecyclerView_Contest_Type1;
-    GridLayoutManager mGridLayoutManagerBrand,mGridLayoutManagerBrand1;
-    LinearLayout LL_Current_Tournaments,LL_Current_Heroes,LL_Show_Tournaments,LL_show_heroes;
+    ArrayList<BattleModel> arrBattle =new ArrayList<>();
+
+    RecyclerView RecyclerView_Contest_Type,RecyclerView_Top_Three_Contest,RecyclerView_Contest_Type1,RecyclerView_Battle;
+    GridLayoutManager mGridLayoutManagerBrand,mGridLayoutManagerBrand1,mGridLayoutManagerBattle;
+    LinearLayout LL_Current_Tournaments,LL_Current_Heroes,LL_Show_Tournaments,LL_show_heroes,LL_Battle;
     String gtype,userId,srno,winning_amt;
-    TextView TV_gametitle,TV_game_Name;
+    TextView TV_gametitle,TV_game_Name,TV_Tournament;
     SessionManeger sessionManeger;
     ProgressBar progressBar;
     RelativeLayout RL_Background_colour;
@@ -76,8 +80,13 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Contest_Type1.setLayoutManager(mGridLayoutManagerBrand1);
         mGridLayoutManagerBrand = new GridLayoutManager(ContestListActivity.this, 1);
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
+
+
+
+
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
         TV_game_Name = (TextView) findViewById(R.id.tv_game_name);
+        TV_Tournament = (TextView) findViewById(R.id.txtview_tournament);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_contest);
         LL_Current_Tournaments = (LinearLayout) findViewById(R.id.ll_current_tournament);
         LL_Current_Heroes = (LinearLayout) findViewById(R.id.ll_current_heroes);
@@ -85,6 +94,14 @@ public class ContestListActivity extends AppCompatActivity
         RL_Background_colour = (RelativeLayout) findViewById(R.id.rl_contest_list_background);
         LL_Show_Tournaments = (LinearLayout)findViewById(R.id.ll_ballel);
         CV_Contest = (CardView) findViewById(R.id.cv_cotest_top_four_contest);
+        RecyclerView_Battle = (RecyclerView) findViewById(R.id.rv_contest_ballte);
+        LL_Battle = (LinearLayout) findViewById(R.id.ll_battle);
+        Img_Tournament = (ImageView) findViewById(R.id.img_comming_soon_tournament);
+
+
+        mGridLayoutManagerBattle = new GridLayoutManager(ContestListActivity.this, 1);
+        RecyclerView_Battle.setLayoutManager(mGridLayoutManagerBattle);
+
         gtype = getIntent().getExtras().getString("gtype");
 
         Img_Back.setOnClickListener(new View.OnClickListener()
@@ -98,6 +115,7 @@ public class ContestListActivity extends AppCompatActivity
         });
 
         contestList(gtype);
+
 
         LL_Current_Tournaments.setOnClickListener(new View.OnClickListener()
         {
@@ -117,15 +135,15 @@ public class ContestListActivity extends AppCompatActivity
             {
                 LL_Show_Tournaments.setVisibility(View.GONE);
                 LL_show_heroes.setVisibility(View.VISIBLE);
-                RL_Background_colour.setBackgroundColor(getResources().getColor(R.color.red_600));
+                RL_Background_colour.setBackgroundColor(getResources().getColor(R.color.blue_grey_500));
             }
         });
+
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
     }
 
-    public void contestList(final String gametype)
-    {
+    public void contestList(final String gametype) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -139,41 +157,51 @@ public class ContestListActivity extends AppCompatActivity
                 {
                     progressBar.setVisibility(View.INVISIBLE);
                     arrayList.clear();
-                    for (int i = 0; i < response.length(); i++)
+                    battleList(gtype);
+                    String res = response.toString();
+                    if (res.equals("[]"))
                     {
-                        JSONObject jsonObject2 = response.getJSONObject(i);
-                        srno = jsonObject2.getString("srno");
-                        topScorePerticulerContst(srno);
-                        String total_Memb = jsonObject2.getString("total_Memb");
-                        String total_time = jsonObject2.getString("max_time");
-                        winning_amt = jsonObject2.getString("winning_amt");
-                        String entry_amt = jsonObject2.getString("entry_amt");
-                        String flag = jsonObject2.getString("flag");
-                        String ttime = jsonObject2.getString("ttime");
-                        String time_left = jsonObject2.getString("time_left");
-                        String game_name = jsonObject2.getString("game_name");
-                        String total_joining = jsonObject2.getString("total_joining");
-                        String payout_status = jsonObject2.getString("payout_status");
-                        String game_amt_type = jsonObject2.getString("game_amt_type");
-                        TV_gametitle.setText(""+game_name);
-                        TV_game_Name.setText(""+game_name);
-                        ContestModel model = new ContestModel();
-                        model.setSrno(srno);
-                        model.setTotal_Memb(total_Memb);
-                        model.setTotal_time(total_time);
-                        model.setWiningprice(winning_amt);
-                        model.setTotal_joining(total_joining);
-                        model.setTime_left(time_left);
-
-                        model.setGame_amt_type(game_amt_type);
-                        model.setEnteryfee(entry_amt);
-                        model.setFlag(flag);
-                        model.setDate(ttime);
-                        model.setPayout_status(payout_status);
-                        arrayList.add(model);
+                        TV_Tournament.setText("Tournament Comming Soon");
+                        Img_Tournament.setVisibility(View.VISIBLE);
+                        RecyclerView_Contest_Type.setVisibility(View.GONE);
                     }
-                    CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
-                    RecyclerView_Contest_Type.setAdapter(operator_adapter);
+                    else
+                    {
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject2 = response.getJSONObject(i);
+                            srno = jsonObject2.getString("srno");
+                            topScorePerticulerContst(srno);
+                            String total_Memb = jsonObject2.getString("total_Memb");
+                            String total_time = jsonObject2.getString("max_time");
+                            winning_amt = jsonObject2.getString("winning_amt");
+                            String entry_amt = jsonObject2.getString("entry_amt");
+                            String flag = jsonObject2.getString("flag");
+                            String ttime = jsonObject2.getString("ttime");
+                            String time_left = jsonObject2.getString("time_left");
+                            String game_name = jsonObject2.getString("game_name");
+                            String total_joining = jsonObject2.getString("total_joining");
+                            String payout_status = jsonObject2.getString("payout_status");
+                            String game_amt_type = jsonObject2.getString("game_amt_type");
+                            TV_gametitle.setText(""+game_name);
+                            TV_game_Name.setText(""+game_name);
+                            ContestModel model = new ContestModel();
+                            model.setSrno(srno);
+                            model.setTotal_Memb(total_Memb);
+                            model.setTotal_time(total_time);
+                            model.setWiningprice(winning_amt);
+                            model.setTotal_joining(total_joining);
+                            model.setTime_left(time_left);
+                            model.setGame_amt_type(game_amt_type);
+                            model.setEnteryfee(entry_amt);
+                            model.setFlag(flag);
+                            model.setDate(ttime);
+                            model.setPayout_status(payout_status);
+                            arrayList.add(model);
+                        }
+                        CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
+                        RecyclerView_Contest_Type.setAdapter(operator_adapter);
+                    }
                 }
                 catch (JSONException e)
                 {
@@ -343,6 +371,27 @@ public class ContestListActivity extends AppCompatActivity
                         intent.putExtra("srno",srno);
                         startActivity(intent);
                     }
+                    else if(gtype.equals("13"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("14"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
+                    else if(gtype.equals("15"))
+                    {
+                        Intent intent = new Intent(ContestListActivity.this,SingleContestDetailActivity.class);
+                        intent.putExtra("gametype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                    }
                     else
                     {
                         Toast.makeText(getApplicationContext(),"Select Active Contest",Toast.LENGTH_SHORT).show();
@@ -357,7 +406,7 @@ public class ContestListActivity extends AppCompatActivity
                 {
                     if (account_model.getTotal_joining().equals("0"))
                     {
-                        Toast.makeText(getApplicationContext(),"No one can join this contest",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Please join the contest first",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -374,8 +423,7 @@ public class ContestListActivity extends AppCompatActivity
         {
             return orderList.size();
         }
-        public class RecyclerViewHolder extends RecyclerView.ViewHolder
-        {
+        public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             TextView TV_Win_Amount,TV_Entry_fee,TV_total_spot,TV_Hr,TV_Min,TV_Sec,TV_top_score,TV_Member_Left;
             RelativeLayout RL_partisipet,LinearLayout_Cotest;
             ProgressBar progressBar;
@@ -549,6 +597,109 @@ public class ContestListActivity extends AppCompatActivity
         {
             e.printStackTrace();
         }
+    }
+
+    public void battleList(final String gametype) {
+        progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
+        String url = Constant.URL+"getBattleSettingByType?Type="+gametype+"&&BattleID&Status";
+        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
+        {
+            @Override
+            public void onResponse(JSONArray response)
+            {
+                try
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    arrayList.clear();
+
+                    String res = response.toString();
+                    if (res.equals("[]"))
+                    {
+                        LL_Battle.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        LL_Battle.setVisibility(View.VISIBLE);
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject2 = response.getJSONObject(i);
+                            if (jsonObject2.getString("flag").equals("Active"))
+                            {
+                                srno = jsonObject2.getString("srno");
+                                topScorePerticulerContst(srno);
+                                String total_Memb = jsonObject2.getString("total_Memb");
+                                String total_time = jsonObject2.getString("max_time");
+                                winning_amt = jsonObject2.getString("winning_amt");
+                                String entry_amt = jsonObject2.getString("entry_amt");
+                                String flag = jsonObject2.getString("flag");
+                                String ttime = jsonObject2.getString("ttime");
+                                String time_left = jsonObject2.getString("time_left");
+                                String game_name = jsonObject2.getString("game_name");
+                                String total_joining = jsonObject2.getString("total_joining");
+                                String payout_status = jsonObject2.getString("payout_status");
+                                String game_amt_type = jsonObject2.getString("game_amt_type");
+                                TV_gametitle.setText(""+game_name);
+                                TV_game_Name.setText(""+game_name);
+                                BattleModel model = new BattleModel();
+                                model.setSrno(srno);
+                                model.setTotal_Memb(total_Memb);
+                                model.setTotal_time(total_time);
+                                model.setWiningprice(winning_amt);
+                                model.setTotal_joining(total_joining);
+                                model.setTime_left(time_left);
+                                model.setGamename(game_name);
+                                model.setGame_type(jsonObject2.getString("game_type"));
+                                model.setGame_amt_type(game_amt_type);
+                                model.setEnteryfee(entry_amt);
+                                model.setFlag(flag);
+                                model.setDate(ttime);
+                                model.setPayout_status(payout_status);
+                                arrBattle.add(model);
+                            }
+                        }
+                        BattleAdpter operator_adapter = new BattleAdpter(arrBattle,getApplicationContext());
+                        RecyclerView_Battle.setAdapter(operator_adapter);
+                    }
+                }
+                catch (JSONException e)
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                progressBar.setVisibility(View.INVISIBLE);
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
     }
 
 }

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +54,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import adpter.GameAdapter;
+import de.hdodenhof.circleimageview.CircleImageView;
 import model.GameModel;
 import util.Constant;
 import util.SessionManeger;
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce,TextViewTotalIncome,TextView_Total_Coin;
+    CircleImageView ImgPhoto;
     RecyclerView recyclerView_Game_type;
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<GameModel> arrayList =new ArrayList<>();
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TextViewUserName = (TextView)  hView.findViewById(R.id.tv_profile_name);
         TextViewUserEmail = (TextView)  hView.findViewById(R.id.tv_email_id);
+        ImgPhoto = (CircleImageView) hView.findViewById(R.id.imgPhoto);
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         userName = hashMap.get(SessionManeger.KEY_NAME);
@@ -115,6 +120,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextViewUserName.setText(userName);
         TextViewUserEmail.setText(userEmail);
 
+        String photo = hashMap.get(SessionManeger.KEY_PHOTO);
+        if (photo.equals(""))
+        {
+
+        }
+        else
+        {
+            Picasso.with(getApplicationContext()).load(photo).into(ImgPhoto);
+        }
         getBanner();
         dashBoardData(membercode);
         //contestList("1");
@@ -176,11 +190,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view)
             {
-                intent = new Intent(Intent.ACTION_SEND);
+                /*intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, "http://www.arenaitech.com/");
                 intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
-                startActivity(Intent.createChooser(intent, "Share"));
+                startActivity(Intent.createChooser(intent, "Share"));*/
+                intent = new Intent(MainActivity.this,ShareAppActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -222,10 +238,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elit Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
+            intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elite Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
             startActivity(Intent.createChooser(intent, "Share"));
-            /*intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
+            intent = new Intent(MainActivity.this,ShareAppActivity.class);
+            startActivity(intent);
+            /*intent = new Intent(MainActivity.this,Battle_ResultActivity.class);
             startActivity(intent);*/
         }
         else if (id == R.id.nav_logout)
@@ -607,5 +625,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
-
 }

@@ -2,16 +2,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/ll_createteam"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp">
+        android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:src="@drawable/viewplayer"
             android:padding="@dimen/_10sdp" />
 
@@ -19,11 +20,17 @@
             android:id="@+id/textview_temp_player_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Virat Kohli"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp"/>
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/grey_10"
+        android:layout_below="@+id/ll_createteam"/>
 
 </RelativeLayout>

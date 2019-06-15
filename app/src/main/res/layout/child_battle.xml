@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_cotest_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/spacing_middle"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_battle_fild"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:background="@color/grey_10">
+
+            <TextView
+                android:id="@+id/tv_cotest_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cotest Name"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_tournament_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12H 15M 20S"
+                android:textColor="@color/red_600"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_price1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_cotest_name"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WIN"
+                    android:textColor="@color/grey_900"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+          <!--      <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/icons_rupee"
+                    android:layout_marginLeft="@dimen/_5sdp"/>-->
+
+                <TextView
+                    android:id="@+id/tv_wining_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:textColor="@color/grey_900"
+                    android:gravity="center"
+                    android:text="50.00"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLAYER"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/grey_900"
+                    android:textStyle="bold"
+                    android:drawableBottom="@drawable/ic_supervisor_account"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/_30sdp" />
+
+
+            <TextView
+                android:id="@+id/total_join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/grey_900"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_toLeftOf="@+id/btn_jointou"
+                android:layout_marginTop="@dimen/_22sdp" />
+
+
+                <Button
+                    android:id="@+id/btn_jointou"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_corner_green"
+                    android:text="50"
+                    android:textColor="@color/white"
+                    android:layout_below="@+id/tv_tournament_time"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+            </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

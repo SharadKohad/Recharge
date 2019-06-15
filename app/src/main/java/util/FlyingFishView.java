@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.logicaltech.gamerecharge.Battle_ResultActivity;
 import com.logicaltech.gamerecharge.GameOverActivity;
 import com.logicaltech.gamerecharge.HighScoreActivity;
 import com.logicaltech.gamerecharge.JumpFishActivity;
@@ -116,12 +117,25 @@ public class FlyingFishView extends View
             if (lifeCounterOfFish==0)
             {
                 //Toast.makeText(getContext(),"Game Over:",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), HighScoreActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra("score",score);
-                intent.putExtra("srno", JumpFishActivity.SRNO);
-                intent.putExtra("gtype","1");
-                getContext().startActivity(intent);
+
+                if (JumpFishActivity.COB.equals("1"))
+                {
+                    Intent intent = new Intent(getContext(), Battle_ResultActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("score",score);
+                    intent.putExtra("srno", JumpFishActivity.SRNO);
+                    intent.putExtra("gtype","1");
+                    getContext().startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getContext(), HighScoreActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("score",score);
+                    intent.putExtra("srno", JumpFishActivity.SRNO);
+                    intent.putExtra("gtype","1");
+                    getContext().startActivity(intent);
+                }
             }
         }
         if (redx<0)
@@ -153,8 +167,7 @@ public class FlyingFishView extends View
         canvas.drawBitmap(life[0],780,10,null);*/
     }
 
-    public boolean hitBallChecker(int x,int y)
-    {
+    public boolean hitBallChecker(int x,int y) {
         if (fishx<x && x<(fishx + fish[0].getWidth()) && fishy < y && y<(fishy+fish[0].getHeight()))
         {
             return true;
@@ -163,8 +176,7 @@ public class FlyingFishView extends View
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
+    public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction()==MotionEvent.ACTION_DOWN)
         {
             touch = true;

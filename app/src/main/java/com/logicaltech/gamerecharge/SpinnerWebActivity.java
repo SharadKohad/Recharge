@@ -138,7 +138,7 @@ public class SpinnerWebActivity extends AppCompatActivity
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_spin_add);
         dialog.setCancelable(true);
-        final TextView TV_Total_coin;
+        final TextView TV_Total_coin,TV_Message;
         final Button btn;
 
         lp = new WindowManager.LayoutParams();
@@ -146,12 +146,14 @@ public class SpinnerWebActivity extends AppCompatActivity
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         TV_Total_coin = (TextView) dialog.findViewById(R.id.tv_recied_coin);
+        TV_Message  = (TextView) dialog.findViewById(R.id.txtmessage);
 
         btn = (Button) dialog.findViewById(R.id.btn_coin_add);
 
         if (coin.equals("0"))
         {
-            TV_Total_coin.setText("Better Luck Next Time");
+            TV_Total_coin.setText("0");
+            TV_Message.setText("BETTER LUCK NEXT TIME");
         }
         else
         {

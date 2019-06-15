@@ -12,6 +12,24 @@ public class Matches_Model
     String toss_winner_team;
     String matchStarted;
     String winnerTeam;
+    String teamflag1;
+    String teamflag2;
+
+    public String getTeamflag1() {
+        return teamflag1;
+    }
+
+    public void setTeamflag1(String teamflag1) {
+        this.teamflag1 = teamflag1;
+    }
+
+    public String getTeamflag2() {
+        return teamflag2;
+    }
+
+    public void setTeamflag2(String teamflag2) {
+        this.teamflag2 = teamflag2;
+    }
 
     public String getWinnerTeam() {
         return winnerTeam;

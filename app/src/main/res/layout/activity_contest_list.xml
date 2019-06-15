@@ -55,16 +55,17 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="vertical"
-                    android:layout_weight="1" >
+                    android:layout_weight="1"
+                    android:background="@color/white">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:text="TOURNAENTS"
                         android:textColor="@color/black"
-                        android:drawableTop="@drawable/ic_favorite_white"
-                        android:background="@color/white"
-                        android:gravity="center"/>
+                        android:drawableTop="@drawable/ic_favorite_red_24dp"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"/>
 
                 </LinearLayout>
 
@@ -72,16 +73,17 @@
                     android:id="@+id/ll_current_heroes"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="@color/blue_grey_500">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:text="HEROES"
                         android:textColor="@color/white"
-                        android:drawableTop="@drawable/ic_favorite_white"
+                        android:drawableTop="@drawable/ic_favorite_red_24dp"
                         android:gravity="center"
-                        android:background="@color/red_600"/>
+                        android:layout_marginTop="@dimen/_2sdp" />
 
                 </LinearLayout>
 
@@ -102,7 +104,14 @@
             android:visibility="visible"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/ll_tournaments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
             <TextView
+                android:id="@+id/txtview_tournament"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select a Tournament"
@@ -114,9 +123,45 @@
                 android:id="@+id/rv_contest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp">
-
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="visible">
             </android.support.v7.widget.RecyclerView>
+
+                <ImageView
+                    android:id="@+id/img_comming_soon_tournament"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:src="@drawable/comingsoon"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:visibility="gone"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_battle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select a Battle"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_contest_ballte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
 
         </LinearLayout>
 

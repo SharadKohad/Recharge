@@ -2,10 +2,12 @@ package com.logicaltech.gamerecharge;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,20 +40,23 @@ import java.util.Map;
 import adpter.LiveMatchAdpter;
 import adpter.MatchResultAdapter;
 import adpter.MatchesAdapter;
+import de.hdodenhof.circleimageview.CircleImageView;
 import model.Matches_Model;
 import util.Constant;
 import util.MySingalton;
 
 public class UpcomeingMatchesActivity extends AppCompatActivity
 {
+    private Context context;
     RecyclerView recyclerView_Matches;
     ArrayList<Matches_Model> arrayList_matches = new ArrayList<>();
-    LinearLayout LL_Upcoming_matches,LL_Live_Matches,LL_Result;
+    TextView LL_Live_Matches,LL_Result;
     ProgressBar progressBar;
     ImageView IV_BackArrow;
     Dialog dialog;
     WindowManager.LayoutParams lp;
     String gtype;
+    AppCompatButton LL_Upcoming_matches;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -61,13 +67,14 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
     }
 
     public void init() {
+        context = this;
         gtype = getIntent().getExtras().getString("gtype");
-        recyclerView_Matches = (RecyclerView) findViewById(R.id.rv_upcomeing_matches);
-        LL_Live_Matches = (LinearLayout) findViewById(R.id.ll_live_match);
-        LL_Upcoming_matches = (LinearLayout) findViewById(R.id.ll_matches);
-        LL_Result = (LinearLayout) findViewById(R.id.ll_match_result);
-        progressBar = (ProgressBar) findViewById(R.id.progrebar_matches);
-        IV_BackArrow = (ImageView) findViewById(R.id.img_back_upcomeing_matches);
+        recyclerView_Matches = findViewById(R.id.rv_upcomeing_matches);
+        LL_Live_Matches = findViewById(R.id.ll_live_match);
+        LL_Upcoming_matches =  findViewById(R.id.ll_matches);
+        LL_Result = findViewById(R.id.ll_match_result);
+        progressBar = findViewById(R.id.progrebar_matches);
+        IV_BackArrow = findViewById(R.id.img_back_upcomeing_matches);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView_Matches.setLayoutManager(horizontalLayoutManagaer);
 
@@ -76,6 +83,9 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                LL_Upcoming_matches.setBackgroundColor(Color.parseColor("#4CAF50"));
+                LL_Live_Matches.setBackgroundColor(Color.WHITE);
+                LL_Result.setBackgroundColor(Color.WHITE);
                 getUpcomeing();
             }
         });
@@ -85,6 +95,9 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                LL_Upcoming_matches.setBackgroundColor(Color.WHITE);
+                LL_Live_Matches.setBackgroundColor(Color.parseColor("#4CAF50"));
+                LL_Result.setBackgroundColor(Color.WHITE);
                 getLiveMatchesList();
             }
         });
@@ -94,6 +107,9 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                LL_Upcoming_matches.setBackgroundColor(Color.WHITE);
+                LL_Live_Matches.setBackgroundColor(Color.WHITE);
+                LL_Result.setBackgroundColor(Color.parseColor("#4CAF50"));
                 geteMatchesResult();
             }
         });
@@ -109,8 +125,7 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
 
     }
 
-    public void getMatchesList()
-    {
+    public void getMatchesList() {
         progressBar.setVisibility(View.VISIBLE);
      //   String strurl = "http://cricapi.com/api/matches/?apikey="+ Constant.APIKEY;
         String strurl = "http://site17.bidbch.com/api/getUpcomingMatches";
@@ -138,17 +153,21 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                                 String dateTimeGMT = jsonObject1.getString("dateTimeGMT");
                                 String team1 = jsonObject1.getString("team-1");
                                 String team2 = jsonObject1.getString("team-2");
+                                String flag_team_1 = jsonObject1.getString("flag_team_1");
+                                String flag_team_2 = jsonObject1.getString("flag_team_2");
+
                                 if (jsonObject1.has("type"))
                                 {
                                     String type = jsonObject1.getString("type");
                                     model.setType(type);
                                 }
-
                                 model.setUnique_id(unique_id);
                                 model.setDate(date);
                                 model.setDateTimeGMT(dateTimeGMT);
                                 model.setTeam1(team1);
                                 model.setTeam2(team2);
+                                model.setTeamflag1(flag_team_1);
+                                model.setTeamflag2(flag_team_2);
                                 model.setSquad(squad);
                                 model.setMatchStarted(matchStarted);
                                 arrayList_matches.add(model);
@@ -206,6 +225,9 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                             String dateTimeGMT = jsonObject1.getString("dateTimeGMT");
                             String team1 = jsonObject1.getString("team-1");
                             String team2 = jsonObject1.getString("team-2");
+                            String flag_team_1 = jsonObject1.getString("flag_team_1");
+                            String flag_team_2 = jsonObject1.getString("flag_team_2");
+
                             if (jsonObject1.has("type"))
                             {
                                 String type = jsonObject1.getString("type");
@@ -222,6 +244,9 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                             model.setTeam1(team1);
                             model.setTeam2(team2);
                             model.setSquad(squad);
+                            model.setTeamflag1(flag_team_1);
+                            model.setTeamflag2(flag_team_2);
+
                             model.setMatchStarted(matchStarted);
                             arrayList_matches.add(model);
                         }
@@ -237,6 +262,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                         String dateTimeGMT = jsonObject1.getString("dateTimeGMT");
                         String team1 = jsonObject1.getString("team-1");
                         String team2 = jsonObject1.getString("team-2");
+                        String flag_team_1 = jsonObject1.getString("flag_team_1");
+                        String flag_team_2 = jsonObject1.getString("flag_team_2");
                         if (jsonObject1.has("type"))
                         {
                             String type = jsonObject1.getString("type");
@@ -253,6 +280,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                         model.setTeam1(team1);
                         model.setTeam2(team2);
                         model.setSquad(squad);
+                        model.setTeamflag1(flag_team_1);
+                        model.setTeamflag2(flag_team_2);
                         model.setMatchStarted(matchStarted);
                         arrayList_matches.add(model);
                     }
@@ -285,6 +314,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                     String dateTimeGMT = jsonObject1.getString("dateTimeGMT");
                     String team1 = jsonObject1.getString("team-1");
                     String team2 = jsonObject1.getString("team-2");
+                    String flag_team_1 = jsonObject1.getString("flag_team_1");
+                    String flag_team_2 = jsonObject1.getString("flag_team_2");
                     if (jsonObject1.has("type"))
                     {
                         String type = jsonObject1.getString("type");
@@ -296,6 +327,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                     model.setTeam1(team1);
                     model.setTeam2(team2);
                     model.setSquad(squad);
+                    model.setTeamflag1(flag_team_1);
+                    model.setTeamflag2(flag_team_2);
                     model.setMatchStarted(matchStarted);
                     arrayList_matches.add(model);
                 }
@@ -334,6 +367,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                             String dateTimeGMT = jsonObject1.getString("dateTimeGMT");
                             String team1 = jsonObject1.getString("team-1");
                             String team2 = jsonObject1.getString("team-2");
+                            String flag_team_1 = jsonObject1.getString("flag_team_1");
+                            String flag_team_2 = jsonObject1.getString("flag_team_2");
                             if (jsonObject1.has("type"))
                             {
                                 String type = jsonObject1.getString("type");
@@ -344,7 +379,6 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                                 String toss_winner_team = jsonObject1.getString("toss_winner_team");
                                 model.setToss_winner_team(toss_winner_team);
                             }
-
                             model.setWinnerTeam(winner_team);
                             model.setUnique_id(unique_id);
                             model.setDate(date);
@@ -352,6 +386,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                             model.setTeam1(team1);
                             model.setTeam2(team2);
                             model.setSquad(squad);
+                            model.setTeamflag1(flag_team_1);
+                            model.setTeamflag2(flag_team_2);
                             model.setMatchStarted(matchStarted);
                             arrayList_matches.add(model);
                         }
@@ -385,10 +421,13 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
         public void onBindViewHolder(final LiveMatchAdpter.RecyclerViewHolder holder, final int position)
         {
             final Matches_Model account_model = orderList.get(position);
-            holder.TV_Team1.setText(account_model.getTeam1());
-            holder.TV_Team2.setText(account_model.getTeam2());
+            holder.TV_Team1.setText(account_model.getTeam1().toUpperCase());
+            holder.TV_Team2.setText(account_model.getTeam2().toUpperCase());
             holder.TV_Matches.setText(""+account_model.getTeam1()+" Vs "+account_model.getTeam2());
             holder.TV_Timing.setText(""+account_model.getDate());
+
+            Picasso.with(mContext).load(account_model.getTeamflag1()).into(holder.IV_Team1);
+            Picasso.with(mContext).load(account_model.getTeamflag2()).into(holder.IV_Team2);
 
             holder.LL_Select_Player.setOnClickListener(new View.OnClickListener()
             {
@@ -408,6 +447,7 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
         public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             TextView TV_Team1,TV_Team2,TV_Matches,TV_Timing;
             LinearLayout LL_Select_Player;
+            CircleImageView IV_Team1,IV_Team2;
             public RecyclerViewHolder(View itemView)
             {
                 super(itemView);
@@ -416,6 +456,8 @@ public class UpcomeingMatchesActivity extends AppCompatActivity
                 TV_Matches = (TextView) itemView.findViewById(R.id.textview_current_matches);
                 TV_Timing = (TextView)itemView.findViewById(R.id.textview_match_time);
                 LL_Select_Player = (LinearLayout) itemView.findViewById(R.id.ll_select_player);
+                IV_Team1 = (CircleImageView) itemView.findViewById(R.id.iv_team1);
+                IV_Team2 = (CircleImageView) itemView.findViewById(R.id.iv_team2);
             }
         }
 

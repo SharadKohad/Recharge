@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Elit Play</string>
+    <string name="app_name">Elite Play</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -14,5 +14,7 @@
 
     <string name="facebook_app_id" translatable="false">2303601526627942</string>
     <string name="fb_login_protocol_scheme">fb2303601526627942</string>
+
+    <string name="referns">You get 25 winnings cash when you friend plays 3 games on Elite Play.Your friend gets Rs.50 Bonus &amp; 50 Tokens for using your referral code to sign up</string>
 
 </resources>

@@ -2,36 +2,52 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_round_blue"
-        android:padding="@dimen/_5sdp">
+        android:id="@+id/ll_createteam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/viewplayer"
+            android:padding="@dimen/_10sdp" />
+
+        <TextView
+            android:id="@+id/textview_temp_player_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:text="Virat Kohli"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_45sdp" />
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:src="@drawable/viewplayer"
-        android:padding="@dimen/_10sdp"
-        android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textview_temp_player_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textview_temp_player_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:text="420"/>
 
-
-    <TextView
-        android:id="@+id/textview_player_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Virat Kohli"
-        android:padding="@dimen/_10sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15sdp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/_35sdp"
-        android:layout_toLeftOf="@+id/textview_point"
-        android:layout_marginRight="@dimen/_5sdp"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/grey_10"
+        android:layout_below="@+id/ll_createteam"/>
 
 </RelativeLayout>

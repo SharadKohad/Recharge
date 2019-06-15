@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/blue_grey_500"
     tools:context=".SingleContestDetailActivity">
 
     <RelativeLayout
         android:id="@+id/rl_contest_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_65sdp"
-        android:background="@color/colorPrimary">
+        android:background="@color/blue_grey_500">
 
         <ImageView
             android:id="@+id/img_back_arrow_contest_detail"
@@ -44,9 +44,9 @@
             <ImageView
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:src="@drawable/icons_circled_menu"
+                android:src="@drawable/ic_view_list"
                 android:padding="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"/>
+                android:layout_marginTop="@dimen/_5sdp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,23 +103,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_contest_list"
-        android:layout_marginTop="2dp">
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="@dimen/_50sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_remaing_time_contest_detail"
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_contest_list"
+                android:layout_below="@+id/tv_remaing_time_contest_detail"
+                android:layout_marginLeft="@dimen/spacing_middle"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/spacing_middle"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTRATION CLOSES IN"
+                    android:textColor="@color/grey_500"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_remaing_time_contest_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_contest_list"
+                android:text="12 H 50 M 20 S"
+                android:textColor="@color/orange_700"
                 android:textSize="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
                 android:textStyle="bold" />
+
+            </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_cotest_detail"
@@ -143,24 +176,42 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cotest Name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/purple_700"
                         android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_price1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/tv_cotest_name"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:src="@drawable/icons_rupee"/>
 
                     <TextView
                         android:id="@+id/tv_wining_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_cotest_name"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:text="50.00"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_wining_price">
+                        android:layout_below="@+id/ll_price1">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -168,6 +219,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:text="TOTAL PRICE"
                             android:textSize="@dimen/_10sdp"
+                            android:textColor="@color/purple_700"
                             android:textStyle="bold" />
 
                         <TextView
@@ -175,8 +227,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:text="TOTAL PLAYER"
+                            android:text="PLAYER JOINED"
                             android:textSize="@dimen/_10sdp"
+                            android:textColor="@color/purple_700"
                             android:textStyle="bold" />
 
 
@@ -199,7 +252,6 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_top_three_score"
                 android:layout_width="match_parent"
@@ -214,8 +266,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_170sdp"
-                    android:background="@drawable/top_backgroung">
+                    android:layout_height="@dimen/_170sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -226,8 +277,7 @@
                         android:text="CURRENT HEROS"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
-
-
+                    
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_top_three_score"
                         android:layout_width="match_parent"
@@ -239,9 +289,7 @@
 
                 </RelativeLayout>
 
-
             </android.support.v7.widget.CardView>
-
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_cotest_price_distribution"
@@ -253,8 +301,8 @@
                 android:layout_marginRight="@dimen/spacing_middle"
                 android:layout_marginBottom="@dimen/_50sdp"
                 app:cardCornerRadius="6dp"
-                android:visibility="gone"
                 app:cardElevation="2dp"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -335,7 +383,7 @@
                         android:id="@+id/rv_price_disctribution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_30sdp">
+                        android:layout_marginTop="@dimen/_10sdp">
 
                     </android.support.v7.widget.RecyclerView>
 
@@ -346,29 +394,57 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-
-
-    <RelativeLayout
-        android:id="@+id/rl_play_game"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_round_green">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        android:layout_alignParentBottom="true">
 
-        <TextView
-            android:id="@+id/tv_contest_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLAY NOW"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp">
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/rl_play_game"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:text="PLAY NOW"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/btn_corner_green"
+                android:textStyle="bold"/>
 
+            <LinearLayout
+                android:id="@+id/ll_bounce_cash1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/rl_play_game">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/icons_rupee"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_50sdp"/>
+
+
+            <TextView
+                android:id="@+id/txt_bounse_cash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10 use in bounes cash"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

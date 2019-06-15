@@ -19,7 +19,7 @@ public class Constant
     public static String DIRECT_INCOME = "";
     public static String TOTAL_REF = "";
     public static int HIGH_SCORE=0;
-    public static String APIKEY="JCr0JOu28XgyHTuHz5BJ6TWWuVV2";//"TmQf9rBDhAcsi2IRaCnzSwKJGeH2";
+    public static String APIKEY="sO54esYqnjhWuDoYlrNhjC67Gt93";//"JCr0JOu28XgyHTuHz5BJ6TWWuVV2";//"TmQf9rBDhAcsi2IRaCnzSwKJGeH2";
     public static final String URL = " http://site17.bidbch.com/api/";
     public static boolean isValidEmail(String email)
     {
@@ -28,4 +28,6 @@ public class Constant
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
+    public static String IMG = "";
 }

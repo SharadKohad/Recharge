@@ -27,6 +27,8 @@ public class SessionManeger
 
     public static final String KEY_PHONE = "phoneno";
 
+    public static final String KEY_PHOTO = "userFile";
+
     public static final String ORDER_ID = "current_orderId";
 
     public static final String FIRST_LAUNCH = "first_launch";
@@ -51,7 +53,7 @@ public class SessionManeger
         // open SQLite when login user.
     }
 
-    public  void createSession(String userId, String name, String email, String phone, String member_id)
+    public  void createSession(String userId, String name, String email, String phone, String member_id,String photo)
     {
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(KEY_ID, userId);
@@ -59,6 +61,7 @@ public class SessionManeger
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PHONE, phone);
         editor.putString(MEMBER_ID,member_id);
+        editor.putString(KEY_PHOTO,photo);
         editor.commit();
         //  getWishListVolley(userId);
     }
@@ -104,6 +107,8 @@ public class SessionManeger
         hashMap.put(KEY_EMAIL,preferences.getString(KEY_EMAIL,null));
         hashMap.put(KEY_PHONE,preferences.getString(KEY_PHONE,null));
         hashMap.put(MEMBER_ID,preferences.getString(MEMBER_ID,null));
+        hashMap.put(KEY_PHOTO,preferences.getString(KEY_PHOTO,null));
+
         return hashMap;
     }
 

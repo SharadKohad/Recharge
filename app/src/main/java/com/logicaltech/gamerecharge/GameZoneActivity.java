@@ -48,6 +48,7 @@ public class GameZoneActivity extends AppCompatActivity
             }
         });
     }
+
     public void buttonClicked(View view)
     {
         if (view.getId() == R.id.linear_layout_jump_fish)
@@ -59,7 +60,7 @@ public class GameZoneActivity extends AppCompatActivity
         else if (view.getId() == R.id.linear_layout_2048)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
+            intent.putExtra("url","http://showcase.codethislab.com/games/penalty_kicks/");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","2");
             startActivity(intent);
@@ -76,7 +77,7 @@ public class GameZoneActivity extends AppCompatActivity
         else if(view.getId() == R.id.linear_layout_jump_game_four)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/249085515/index.html");
+            intent.putExtra("url","http://showcase.codethislab.com/games/duck_shooter/");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","4");
             startActivity(intent);
@@ -84,7 +85,7 @@ public class GameZoneActivity extends AppCompatActivity
         else if(view.getId() == R.id.linear_layout_game_five)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/252080776/index.html");
+            intent.putExtra("url","http://showcase.codethislab.com/games/car_rush/");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","5");
             startActivity(intent);

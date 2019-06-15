@@ -36,7 +36,7 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.RecyclerView
         final PriceModel account_model = orderList.get(position);
         String valueto = account_model.getRankto();
         count++;
-        if (count%2==0)
+        if (count%2==1)
         {
             holder.RL_Top_Score.setBackgroundColor(mContext.getResources().getColor(R.color.green_A200));
         }

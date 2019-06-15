@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_260sdp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Battle Start"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/red_600"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please check your internet connection"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_result"
+        android:layout_marginLeft="@dimen/spacing_middle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/spacing_middle"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_battle"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/ll_current_tourkknament"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_weight="1">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_player1"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/icon_profile"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/img_player1">
+
+
+                        <TextView
+                            android:id="@+id/txt_player1name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sharad Kohad"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:layout_marginRight="@dimen/_10sdp"/>
+
+
+                        <TextView
+                            android:id="@+id/txt_playerpoint1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_current_tourkknament1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_weight="1">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_player2"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/icon_profile"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@+id/img_player2">
+
+                        <TextView
+                            android:id="@+id/txt_player2name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sharad Kohad"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:layout_marginRight="@dimen/_10sdp"/>
+
+
+                        <TextView
+                            android:id="@+id/txt_playerpoint2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="In case battle not start your money will refund to your account"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/grey_800"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"/>
+
+</LinearLayout>

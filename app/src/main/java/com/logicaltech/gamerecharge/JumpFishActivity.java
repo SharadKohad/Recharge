@@ -17,6 +17,9 @@ public class JumpFishActivity extends AppCompatActivity
     private Handler handler= new Handler();
     private final static long Interval = 30;
     public static String SRNO="";
+    public static String GTYPE  ;
+    public static String COB = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,6 +28,10 @@ public class JumpFishActivity extends AppCompatActivity
         setContentView(gameView);
         Timer timer = new Timer();
         SRNO = getIntent().getExtras().getString("srno");
+        GTYPE = getIntent().getExtras().getString("gtype");
+        COB = getIntent().getExtras().getString("cob");
+
+
         timer.schedule(new TimerTask()
         {
             @Override

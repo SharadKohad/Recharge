@@ -24,8 +24,7 @@
             android:id="@+id/ll_contest_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/spacing_large">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,8 +34,9 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
+                    android:id="@+id/iv_team1"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:padding="@dimen/_7sdp"
                     android:src="@drawable/australiaflag"/>
 
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:text="Australia vs Sri Lanka "
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/black"/>
 
                 <TextView
@@ -76,7 +76,7 @@
                     android:layout_gravity="center"
                     android:textColor="@color/red_600"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/_15sdp"/>
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
             </LinearLayout>
 
@@ -87,8 +87,9 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
+                    android:id="@+id/iv_team2"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:padding="@dimen/_7sdp"
                     android:src="@drawable/australiaflag"/>
 
@@ -126,9 +127,10 @@
                     android:id="@+id/textview_submitscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Submit Score"
+                    android:text="View Score"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp"/>
 
             </RelativeLayout>
