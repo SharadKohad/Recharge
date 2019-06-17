@@ -1,6 +1,7 @@
 package com.logicaltech.gamerecharge;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -10,9 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +59,8 @@ public class SingleBattleDetailActivity extends AppCompatActivity
     WindowManager.LayoutParams lp;
     SessionManeger sessionManeger;
     private String p2_Name,p2_Image;
+    private RelativeLayout RL_Game_List;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,8 +71,7 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         init();
     }
 
-    private void init()
-    {
+    private void init() {
         context = this;
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
@@ -80,14 +85,12 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         TV_Price = (TextView) findViewById(R.id.tv_wining_price);
         TV_Total_Player  = (TextView) findViewById(R.id.tv_total_player);
         Btn_play = (Button) findViewById(R.id.rl_play_game);
-
+        RL_Game_List = findViewById(R.id.rl_all_game);
         srno = getIntent().getExtras().getString("srno");
         gametype = getIntent().getExtras().getString("gametype");
-
         battleList(srno);
         singleContestDetail(gametype,srno,"1");
         clicklisner();
-
     }
 
     public void clicklisner()
@@ -110,6 +113,14 @@ public class SingleBattleDetailActivity extends AppCompatActivity
                 {
                    // showCustomDialog();
                 }
+            }
+        });
+
+        RL_Game_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleBattleDetailActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -282,7 +293,7 @@ public class SingleBattleDetailActivity extends AppCompatActivity
                     joinBattle(userId,srno);
                     dialog.dismiss();
 
-             //       showBattleDetail();
+                    //       showBattleDetail();
                 }
             }
         });
@@ -308,8 +319,7 @@ public class SingleBattleDetailActivity extends AppCompatActivity
                     String  msg = jsonObject.getString("msg");
                     if (pstatus.equals("1"))
                     {
-                        showBattleDetail();
-
+                        showProgress(context);
                     }
                     else
                     {
@@ -362,6 +372,8 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         dialogBattle.setCancelable(true);
         final  TextView TV_p1_Name,TV_p2_Name,TV_P1_Point,TV_P2_Point;
         final CircleImageView img_p1,img_p2;
+        final RelativeLayout rlPlayer1,rlPlayer2;
+        final Animation left,right;
 
         lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialogBattle.getWindow().getAttributes());
@@ -377,6 +389,11 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         TV_P1_Point = (TextView) dialogBattle.findViewById(R.id.txt_playerpoint1);
         TV_P2_Point = (TextView) dialogBattle.findViewById(R.id.txt_playerpoint2);
 
+        rlPlayer1 = (RelativeLayout) dialogBattle.findViewById(R.id.rl_player1);
+        rlPlayer2 = (RelativeLayout) dialogBattle.findViewById(R.id.rl_player2);
+
+
+        //showProgress(context);
         TV_p1_Name.setText(""+userName);
         TV_p2_Name.setText(""+p2_Name);
 
@@ -395,6 +412,11 @@ public class SingleBattleDetailActivity extends AppCompatActivity
 
         dialogBattle.show();
         dialogBattle.getWindow().setAttributes(lp);
+
+        left = AnimationUtils.loadAnimation(this,R.anim.left);
+        right = AnimationUtils.loadAnimation(this,R.anim.right);
+        rlPlayer1.setAnimation(left);
+        rlPlayer2.setAnimation(right);
 
         handler=new Handler();
         handler.postDelayed(new Runnable()
@@ -592,5 +614,19 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
+    }
+
+    public void showProgress(Context view) {
+        final int THREE_SECONDS = 2*5000;
+        final ProgressDialog dlg = new ProgressDialog(this);
+        dlg.setMessage("Find Players...");
+        dlg.setCancelable(false);
+        dlg.show();
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                dlg.dismiss();
+                showBattleDetail();
+            }
+        }, THREE_SECONDS);
     }
 }

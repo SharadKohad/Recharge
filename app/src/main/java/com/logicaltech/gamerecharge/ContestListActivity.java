@@ -157,7 +157,6 @@ public class ContestListActivity extends AppCompatActivity
                 {
                     progressBar.setVisibility(View.INVISIBLE);
                     arrayList.clear();
-                    battleList(gtype);
                     String res = response.toString();
                     if (res.equals("[]"))
                     {
@@ -167,11 +166,11 @@ public class ContestListActivity extends AppCompatActivity
                     }
                     else
                     {
+                        topScorePerticulerContst(srno);
                         for (int i = 0; i < response.length(); i++)
                         {
                             JSONObject jsonObject2 = response.getJSONObject(i);
                             srno = jsonObject2.getString("srno");
-                            topScorePerticulerContst(srno);
                             String total_Memb = jsonObject2.getString("total_Memb");
                             String total_time = jsonObject2.getString("max_time");
                             winning_amt = jsonObject2.getString("winning_amt");
@@ -199,9 +198,11 @@ public class ContestListActivity extends AppCompatActivity
                             model.setPayout_status(payout_status);
                             arrayList.add(model);
                         }
+
                         CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
                         RecyclerView_Contest_Type.setAdapter(operator_adapter);
                     }
+                    battleList(gtype);
                 }
                 catch (JSONException e)
                 {
@@ -613,7 +614,6 @@ public class ContestListActivity extends AppCompatActivity
                 {
                     progressBar.setVisibility(View.INVISIBLE);
                     arrayList.clear();
-
                     String res = response.toString();
                     if (res.equals("[]"))
                     {
@@ -621,6 +621,7 @@ public class ContestListActivity extends AppCompatActivity
                     }
                     else
                     {
+                        topScorePerticulerContst(srno);
                         LL_Battle.setVisibility(View.VISIBLE);
                         for (int i = 0; i < response.length(); i++)
                         {
@@ -628,7 +629,6 @@ public class ContestListActivity extends AppCompatActivity
                             if (jsonObject2.getString("flag").equals("Active"))
                             {
                                 srno = jsonObject2.getString("srno");
-                                topScorePerticulerContst(srno);
                                 String total_Memb = jsonObject2.getString("total_Memb");
                                 String total_time = jsonObject2.getString("max_time");
                                 winning_amt = jsonObject2.getString("winning_amt");

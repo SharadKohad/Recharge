@@ -31,7 +31,6 @@ public class JumpFishActivity extends AppCompatActivity
         GTYPE = getIntent().getExtras().getString("gtype");
         COB = getIntent().getExtras().getString("cob");
 
-
         timer.schedule(new TimerTask()
         {
             @Override

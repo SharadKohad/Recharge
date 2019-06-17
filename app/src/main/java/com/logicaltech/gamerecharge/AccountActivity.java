@@ -20,7 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import util.Constant;
 import util.SessionManeger;
 
@@ -32,9 +37,10 @@ public class AccountActivity extends AppCompatActivity
     RelativeLayout LL_Point_History;
     LinearLayout LL_ProfileDetail,LL_Paytm_Getway,LL_Main_Bal_TermAndCondition,LL_Deposit_Cash,LL_Bounce_cash,LL_Share,LL_Add_Paytm,LL_Trancation_History;
     Dialog dialog;
+    CircleImageView ImgView;
     WindowManager.LayoutParams lp;
     TextView TV_Coin,TV_Total_Cash,TV_Bounce_Cash,TV_Deposit_Cash;
-    String userName;
+    String userName,photo;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -43,6 +49,7 @@ public class AccountActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         userName = hashMap.get(SessionManeger.KEY_NAME);
+        photo = hashMap.get(SessionManeger.KEY_PHOTO);
         init();
     }
 
@@ -56,6 +63,16 @@ public class AccountActivity extends AppCompatActivity
         LL_Deposit_Cash = (LinearLayout) findViewById(R.id.ll_deposit);
         LL_Bounce_cash = (LinearLayout) findViewById(R.id.ll_bounce_cash);
         LL_Share = (LinearLayout) findViewById(R.id.ll_earn_more);
+        ImgView = (CircleImageView) findViewById(R.id.image_view_profile);
+        if (photo.equals(""))
+        {
+
+        }
+        else
+        {
+            Picasso.with(getApplicationContext()).load(photo).into(ImgView);
+        }
+
         TV_Coin = (TextView) findViewById(R.id.textview_coin);
         TV_Total_Cash = (TextView) findViewById(R.id.tv_total_Cash);
         TV_Bounce_Cash = (TextView) findViewById(R.id.tv_bounce_cash);

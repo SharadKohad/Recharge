@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -52,8 +54,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import util.Constant;
 import util.MySingalton;
 import util.SessionManeger;
@@ -61,17 +74,18 @@ import util.SessionManeger;
 public class ProfileDetailActivity extends AppCompatActivity
 {
     SessionManeger sessionManeger;
-    EditText ET_Name,ET_Email,ET_MobileNo,ET_MemberName;
+    EditText ET_Email,ET_MobileNo,ET_MemberName;
+    TextView TV_Name;
     Button Btn_Profile_Save,Btn_Change_Password;
     private String membercode,userMobile,userName,userEmail,userMemberName;
     ImageView IV_Back_Arrow;
     CircleImageView Cimg;
-    private String imgPath = null,base64Sting = null;
+    private String imgPath = "";
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 7;
-    private InputStream inputStreamImg;
     private Bitmap bitmap;
     private File destination = null;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,7 +98,7 @@ public class ProfileDetailActivity extends AppCompatActivity
 
     public void init()
     {
-        ET_Name = (EditText) findViewById(R.id.EditText_ProfileName);
+        TV_Name = (TextView) findViewById(R.id.txt_ProfileName);
         ET_Email = (EditText) findViewById(R.id.EditText_ProfileEmailId);
         ET_MobileNo = (EditText) findViewById(R.id.EditText_PhoneNumber);
         ET_MemberName = (EditText) findViewById(R.id.EditText_MemberName);
@@ -92,15 +106,17 @@ public class ProfileDetailActivity extends AppCompatActivity
         Btn_Change_Password = (Button) findViewById(R.id.button_change_password);
         IV_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_profile_detail);
         Cimg = (CircleImageView) findViewById(R.id.image_view_profile_edit);
+        progressBar = (ProgressBar) findViewById(R.id.progress_profile);
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
-        userMemberName = hashMap.get(SessionManeger.KEY_ID);
+        userName = hashMap.get(SessionManeger.KEY_ID);
         userMobile = hashMap.get(SessionManeger.KEY_PHONE);
-        userName = hashMap.get(SessionManeger.KEY_NAME);
+        userMemberName = hashMap.get(SessionManeger.KEY_NAME);
         userEmail = hashMap.get(SessionManeger.KEY_EMAIL);
         membercode = hashMap.get(SessionManeger.MEMBER_ID);
+     //   imgPath = hashMap.get(SessionManeger.KEY_PHOTO);
 
-        ET_Name.setText(userName);
+        TV_Name.setText(userName);
         ET_Email.setText(userEmail);
         ET_MobileNo.setText(userMobile);
         ET_MemberName.setText(userMemberName);
@@ -128,7 +144,7 @@ public class ProfileDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                putEditProfile(membercode,ET_Name.getText().toString(),ET_Email.getText().toString(),ET_MobileNo.getText().toString(),"","7276612632","7276612632","7276612632");
+                uploadCheckInMultiFile();
             }
         });
 
@@ -152,68 +168,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         });
     }
 
-   /* public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay)
-    {
-        String url = "http://site17.bidbch.com/api/editProfile";
-        StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
-        {
-            @Override
-            public void onResponse(String response)
-            {
-                try
-                {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String status = jsonObject.getString("status");
-                    String message = jsonObject.getString("msg");
-                    if (status.equals("1"))
-                    {
-                        Toast.makeText(ProfileDetailActivity.this,"Profile Update",Toast.LENGTH_SHORT).show();
-                      //  sessionManeger.createSession(userId,userName,userEmail,userMobile,userMemberName);
-                    }
-                    else
-                    {
-                        Toast.makeText(ProfileDetailActivity.this," "+message,Toast.LENGTH_SHORT).show();
-                    }
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        VolleyLog.d("volley", "Error: " + error.getMessage());
-                        error.printStackTrace();
-                    }
-                }) {
-            @Override
-            public String getBodyContentType()
-            {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("membercode", memberId);
-                params.put("Memb_Name", Member_name);
-                params.put("EmailID", emailId);
-                params.put("Mobile_No",mobileNo);
-                params.put("userFile",userfile);
-                params.put("Paytm_no",payTmno);
-                params.put("Phonepe_no", phonePay);
-                params.put("Googlepe_no", googlePay);
-                return params;
-            }
-        };
-        MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
-    }*/
-
-    public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay) {
+   /* public void putEditProfile(final String memberId,final String Member_name,final String emailId,final String mobileNo,final String userfile,final String payTmno,final String phonePay,final String googlePay) {
         //progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"editProfile";
@@ -278,12 +233,11 @@ public class ProfileDetailActivity extends AppCompatActivity
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
-    }
+    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
     private boolean checkAndRequestPermissions() {
         int camera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
@@ -296,6 +250,21 @@ public class ProfileDetailActivity extends AppCompatActivity
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
             selectImage();
         }
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            // Permission is not granted
+        }
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+          //  selectImage();
+            // Permission is not granted
+        }
+
+
         if (!listPermissionsNeeded.isEmpty())
         {
             ActivityCompat.requestPermissions(ProfileDetailActivity.this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
@@ -303,7 +272,6 @@ public class ProfileDetailActivity extends AppCompatActivity
         }
         return true;
     }
-
     private void selectImage() {
         try
         {
@@ -343,11 +311,9 @@ public class ProfileDetailActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        inputStreamImg = null;
         if (requestCode == PICK_IMAGE_CAMERA)
         {
             try
@@ -395,7 +361,7 @@ public class ProfileDetailActivity extends AppCompatActivity
                 imgPath = getRealPathFromURI(selectedImage);
                 destination = new File(imgPath.toString());
                 Cimg.setImageBitmap(bitmap);
-                getBase64(imgPath);
+               // getBase64(imgPath);
             }
             catch (Exception e)
             {
@@ -412,22 +378,86 @@ public class ProfileDetailActivity extends AppCompatActivity
         return cursor.getString(column_index);
     }
 
-    public String getBase64(String filePath){
-        Bitmap bmp = null;
-        ByteArrayOutputStream bos = null;
-        byte[] bt = null;
-     //   String encodeString = null;
-        try{
-            bmp = BitmapFactory.decodeFile(filePath);
-            bos = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bt = bos.toByteArray();
-            base64Sting = Base64.encodeToString(bt, Base64.DEFAULT);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.print(" My URL"+base64Sting);
-        return base64Sting;
+    public interface WebServicesCheckInAPI {
+        @PUT("editProfile")
+        Call<ResponseBody> uploadMultiFile(@Body RequestBody file);
     }
 
+    private void uploadCheckInMultiFile()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+      //  final JSONObject jsonObject = new JSONObject();
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM);
+        try
+        {
+            builder.addFormDataPart("membercode", membercode);
+            builder.addFormDataPart("Mobile_No", ET_MobileNo.getText().toString());
+            builder.addFormDataPart("Memb_Name", ET_MemberName.getText().toString());
+            builder.addFormDataPart("EmailID", ET_Email.getText().toString());
+
+            if (imgPath.equals(""))
+            {
+
+            }
+            else
+            {
+                File file = new File(imgPath.toString());
+                builder.addFormDataPart("userFile", file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+            }
+
+            // Map is used to multipart the file using okhttp3.RequestBody
+            // Multiple Images
+           /* try {
+               // String[] filePaths = jsonObject.getString("photo_list").split(",");
+
+             *//*   for (int i = 0; i < filePaths.length; i++) {
+                    File file = new File(filePaths[i]);
+                    builder.addFormDataPart("package_images[]", file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+                }*//*
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Constant.URL).build();
+            WebServicesCheckInAPI uploadService = retrofit.create(WebServicesCheckInAPI.class);
+            MultipartBody requestBody = builder.build();
+            Call<ResponseBody> call = uploadService.uploadMultiFile(requestBody);
+            call.enqueue(new Callback<ResponseBody>()
+            {
+                @Override
+                public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                    try
+                    {
+                        progressBar.setVisibility(View.GONE);
+                        JSONObject json = new JSONObject(response.body().string());
+                        if (json.getString("status").equals("1"))
+                        {
+                            Toast.makeText(getApplicationContext(), json.getString("msg"), Toast.LENGTH_LONG).show();
+                            sessionManeger.createSession(json.getString("Memb_Name"),json.getString("username"),json.getString("EmailID"),json.getString("Mobile_No"),membercode,json.getString("userFile"));
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), json.getString("msg"), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        progressBar.setVisibility(View.GONE);
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t)
+                {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ProfileDetailActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

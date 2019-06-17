@@ -64,6 +64,7 @@
         <activity android:name=".WebView2048Activity" />
         <activity android:name=".ChecksumActivity" />
         <activity android:name=".SpashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

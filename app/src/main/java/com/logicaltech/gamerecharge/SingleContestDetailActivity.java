@@ -608,6 +608,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("3"))
@@ -616,6 +617,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/catchdots/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("4"))
@@ -624,6 +626,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/fastarrow/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("5"))
@@ -632,6 +635,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("6"))
@@ -640,6 +644,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("7"))
@@ -648,6 +653,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("8"))
@@ -656,6 +662,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("9"))
@@ -664,6 +671,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("11"))
@@ -672,6 +680,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("12"))
@@ -680,6 +689,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/FlyingTriangle/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("13"))
@@ -688,6 +698,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/CrazyChicks/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("14"))
@@ -696,6 +707,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/BrightBall/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                             else if(gametype.equals("15"))
@@ -704,6 +716,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
                                 intent.putExtra("url","http://site0.bidbch.com/games/penaltykick/index.html");
                                 intent.putExtra("gtype",gametype);
                                 intent.putExtra("srno",srno);
+                                intent.putExtra("cob","0");
                                 startActivity(intent);
                             }
                         }

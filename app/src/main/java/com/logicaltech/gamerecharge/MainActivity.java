@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String membercode,userName;
     RelativeLayout RL_Game_Info;
     Dialog dialog;
+    CircleImageView CimgView;
     WindowManager.LayoutParams lp;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TextViewTotalIncome = (TextView) findViewById(R.id.tv_total_income);
         TextView_Total_Coin = (TextView) findViewById(R.id.tv_total_coin);
+        CimgView = (CircleImageView) findViewById(R.id.imgprofile_home);
+
         RL_Game_Info = (RelativeLayout) findViewById(R.id.rl_game_info);
 
         LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
@@ -128,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
         {
             Picasso.with(getApplicationContext()).load(photo).into(ImgPhoto);
+//            Picasso.with(getApplicationContext()).load(photo).into(CimgView);
         }
         getBanner();
         dashBoardData(membercode);
@@ -241,10 +245,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elite Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
             startActivity(Intent.createChooser(intent, "Share"));
-            intent = new Intent(MainActivity.this,ShareAppActivity.class);
-            startActivity(intent);
-            /*intent = new Intent(MainActivity.this,Battle_ResultActivity.class);
+           /* intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
             startActivity(intent);*/
+
         }
         else if (id == R.id.nav_logout)
         {

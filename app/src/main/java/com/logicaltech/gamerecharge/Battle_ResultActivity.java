@@ -55,6 +55,12 @@ public class Battle_ResultActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle__result);
        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        p1scorevalue = getIntent().getExtras().getInt("score");
+        srno = getIntent().getExtras().getString("srno");
+        gtype = getIntent().getExtras().getString("gtype");
+
+
         init();
     }
 
@@ -89,24 +95,17 @@ public class Battle_ResultActivity extends AppCompatActivity
             Picasso.with(context).load(hashMap.get(SessionManeger.KEY_PHOTO)).into(imgPlayer1);
         }
 
-
         TV_P2_Name = findViewById(R.id.txt_player2name);
         TV_P1_Name = findViewById(R.id.txt_player1name);
 
         TV_P2_Score = findViewById(R.id.txt_Player2_score);
         Img_player2 = findViewById(R.id.img_player2);
 
-        p1scorevalue = getIntent().getExtras().getInt("score");
-        srno = getIntent().getExtras().getString("srno");
-        gtype = getIntent().getExtras().getString("gtype");
-
         TV_P1_Score.setText("SCORED: "+p1scorevalue);
         TV_P1_Name.setText(""+userName);
 
-
-        clickeable();
-
         battleList(srno);
+        clickeable();
 
     }
 
@@ -128,8 +127,6 @@ public class Battle_ResultActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
     }
 
     public void battleList(final String bId ) {
@@ -144,7 +141,6 @@ public class Battle_ResultActivity extends AppCompatActivity
             {
                 try
                 {
-                    submitScoreInBattle(userId,srno,Integer.toString(p1scorevalue));
                     progressBar.setVisibility(View.INVISIBLE);
                     String res = response.toString();
                     if (res.equals("[]"))
@@ -163,12 +159,32 @@ public class Battle_ResultActivity extends AppCompatActivity
                             }
                             else
                             {
-                                String p2_score = jsonObject2.getString("memb_name");
-                                TV_P2_Name.setText(""+p2_score);
-                                TV_P2_Score.setText("SCORE: "+jsonObject2.getString("Score"));
+                                String p2_name = jsonObject2.getString("memb_name");
+                                TV_P2_Name.setText(p2_name);
                                 Picasso.with(context).load(jsonObject2.getString("userFile")).into(Img_player2);
 
-                                if (Integer.parseInt(jsonObject2.getString("Score"))<p1scorevalue)
+                                String score = jsonObject2.getString("Score");
+                                if (i==0 ||i==1)
+                                {
+                                    TV_P2_Score.setText(score);
+                                    if (i==1)
+                                    {
+                                        int per = Integer.parseInt(score);
+                                        int more20 = (int) Math.ceil(((per/100)*10)+per);
+                                        TV_P2_Score.setText("SCORE "+more20);
+                                        score = String.valueOf(more20);
+                                        TV_P2_Score.setText(score);
+                                    }
+                                }
+                                else if(i==2)
+                                {
+                                    int per = Integer.parseInt(score);
+                                    int more20 = (int) Math.ceil(((per/100)*20)+per);
+                                    TV_P2_Score.setText("SCORE "+more20);
+                                    score = String.valueOf(more20);
+                                }
+
+                                if (Integer.parseInt(score)<p1scorevalue)
                                 {
                                     Toast.makeText(context,"You Win",Toast.LENGTH_SHORT).show();
                                     TVp1_Wining_Amt.setText(jsonObject2.getString("winning_amt"));
@@ -186,6 +202,7 @@ public class Battle_ResultActivity extends AppCompatActivity
                             }
                         }
                     }
+                    submitScoreInBattle(userId,srno,Integer.toString(p1scorevalue));
                 }
                 catch (JSONException e)
                 {
