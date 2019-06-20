@@ -17,9 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import util.Constant;
 import util.SessionManeger;
 
@@ -32,6 +35,7 @@ public class ShareAppActivity extends AppCompatActivity
     SessionManeger sessionManeger;
     TextView TV_Ref_Code,TV_Coin,TV_Total_Balance;
     LinearLayout LL_whatsapp,LL_Invite_Contact;
+    CircleImageView CimgView;
     ImageView img_copyText;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +51,7 @@ public class ShareAppActivity extends AppCompatActivity
         //   HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
         //userId = hashMap.get(SessionManeger.MEMBER_ID);
         userName = hashMap.get(SessionManeger.KEY_NAME);
+
         context = this;
         IV_Back_Arrow = findViewById(R.id.img_back_arrow_share_app);
         RL_share_whatsapp = findViewById(R.id.rl_share_whatsapp);
@@ -55,10 +60,20 @@ public class ShareAppActivity extends AppCompatActivity
         TV_Total_Balance = findViewById(R.id.tv_total_income);
         img_copyText = findViewById(R.id.img_copytext);
         LL_whatsapp = findViewById(R.id.ll_whatupp);
+        CimgView = findViewById(R.id.imgprofile_share);
         LL_Invite_Contact = findViewById(R.id.ll_invite_contact);
         TV_Ref_Code.setText(userName);
         TV_Coin.setText(""+ Constant.TOTAL_COIN);
         TV_Total_Balance.setText(""+ Constant.TOTAL_BALANCE);
+
+        if (hashMap.get(SessionManeger.KEY_PHOTO).equals(""))
+        {
+
+        }
+        else
+        {
+            Picasso.with(context).load(hashMap.get(SessionManeger.KEY_PHOTO)).into(CimgView);
+        }
         cliable();
     }
 

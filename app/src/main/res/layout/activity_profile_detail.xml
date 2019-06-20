@@ -119,6 +119,7 @@
                     android:inputType="number"
                     android:textColor="@color/grey_60"
                     android:paddingLeft="@dimen/_10sdp"
+                    android:maxLength="10"
                     android:textSize="@dimen/_12sdp"
                     android:background="#0000" />
 
@@ -162,8 +163,8 @@
                     android:text="Save"
                     android:textSize="@dimen/_8sdp"
                     android:textColor="@color/white"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="@dimen/_50sdp"/>
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_centerInParent="true"/>
 
                 <Button
                     android:id="@+id/button_change_password"
@@ -176,7 +177,8 @@
                     android:padding="@dimen/_10sdp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_50sdp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
 

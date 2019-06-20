@@ -77,7 +77,7 @@ public class ProfileDetailActivity extends AppCompatActivity
     EditText ET_Email,ET_MobileNo,ET_MemberName;
     TextView TV_Name;
     Button Btn_Profile_Save,Btn_Change_Password;
-    private String membercode,userMobile,userName,userEmail,userMemberName;
+    private String membercode,userMobile,userName,userEmail,userMemberName,photo;
     ImageView IV_Back_Arrow;
     CircleImageView Cimg;
     private String imgPath = "";
@@ -121,7 +121,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         ET_MobileNo.setText(userMobile);
         ET_MemberName.setText(userMemberName);
 
-        String photo = hashMap.get(SessionManeger.KEY_PHOTO);
+        photo = hashMap.get(SessionManeger.KEY_PHOTO);
         if (photo.equals(""))
         {
 
@@ -129,6 +129,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         else
         {
             Picasso.with(getApplicationContext()).load(photo).into(Cimg);
+            imgPath = photo;
         }
         Cimg.setOnClickListener(new View.OnClickListener()
         {
@@ -337,7 +338,8 @@ public class ProfileDetailActivity extends AppCompatActivity
                 catch (FileNotFoundException e)
                 {
                     e.printStackTrace();
-                } catch (IOException e)
+                }
+                catch (IOException e)
                 {
                     e.printStackTrace();
                 }
@@ -383,8 +385,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         Call<ResponseBody> uploadMultiFile(@Body RequestBody file);
     }
 
-    private void uploadCheckInMultiFile()
-    {
+    private void uploadCheckInMultiFile() {
         progressBar.setVisibility(View.VISIBLE);
       //  final JSONObject jsonObject = new JSONObject();
         MultipartBody.Builder builder = new MultipartBody.Builder();
@@ -395,6 +396,7 @@ public class ProfileDetailActivity extends AppCompatActivity
             builder.addFormDataPart("Mobile_No", ET_MobileNo.getText().toString());
             builder.addFormDataPart("Memb_Name", ET_MemberName.getText().toString());
             builder.addFormDataPart("EmailID", ET_Email.getText().toString());
+            builder.addFormDataPart("username", TV_Name.getText().toString());
 
             if (imgPath.equals(""))
             {

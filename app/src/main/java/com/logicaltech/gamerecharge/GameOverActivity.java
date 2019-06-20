@@ -110,6 +110,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/2048/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("3"))
@@ -118,6 +119,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/catchdots/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("4"))
@@ -126,6 +128,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/fastarrow/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("5"))
@@ -134,6 +137,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/pingpong/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("7"))
@@ -142,6 +146,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/DotsPong/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("8"))
@@ -150,6 +155,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/DotsAttack/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("9"))
@@ -158,6 +164,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/JumpNinjaHero/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("11"))
@@ -166,6 +173,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/ShotPong/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("12"))
@@ -174,6 +182,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/FlyingTriangle/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("13"))
@@ -182,6 +191,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/CrazyChicks/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("14"))
@@ -190,6 +200,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/BrightBall/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
                 else if(gtype.equals("15"))
@@ -198,6 +209,7 @@ public class GameOverActivity extends AppCompatActivity
                     intent.putExtra("url","http://site0.bidbch.com/games/penaltykick/index.html");
                     intent.putExtra("gtype",gtype);
                     intent.putExtra("srno",srno);
+                    intent.putExtra("cob","0");
                     startActivity(intent);
                 }
             }
@@ -359,7 +371,7 @@ public class GameOverActivity extends AppCompatActivity
                     else
                     {
                         RL_Top_Score.setVisibility(View.VISIBLE);
-                        String tempscore="0",temprank="0",tempusername = "";
+                        String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
                         arrayList.clear();
                         for (int i = 0; i < response.length(); i++)
                         {
@@ -368,35 +380,46 @@ public class GameOverActivity extends AppCompatActivity
                             {
                                 String score = jsonObject2.getString("score");
                                 String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
                                 TopScoreModel model = new TopScoreModel();
                                 temprank = "1";
                                 tempscore = score;
                                 tempusername = username;
+                                tempUserfile = userFile;
+
                             }
                             else if (i==1)
                             {
                                 String score = jsonObject2.getString("score");
                                 String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
                                 TopScoreModel model = new TopScoreModel();
                                 model.setRank("2");
                                 model.setScore(score);
                                 model.setUsername(username);
+                                model.setUserFile(userFile);
                                 arrayList.add(model);
 
                                 TopScoreModel model1 = new TopScoreModel();
                                 model1.setRank(temprank);
                                 model1.setScore(tempscore);
                                 model1.setUsername(tempusername);
+                                model1.setUserFile(tempUserfile);
                                 arrayList.add(model1);
                             }
                             else
                             {
                                 String score = jsonObject2.getString("score");
                                 String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
                                 TopScoreModel model = new TopScoreModel();
                                 model.setRank("3");
                                 model.setScore(score);
                                 model.setUsername(username);
+                                model.setUserFile(userFile);
                                 arrayList.add(model);
                             }
                         }

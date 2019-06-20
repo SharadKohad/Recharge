@@ -6,6 +6,15 @@ public class TopScoreModel
     String score;
     String rank;
     String price;
+    String userFile;
+
+    public String getUserFile() {
+        return userFile;
+    }
+
+    public void setUserFile(String userFile) {
+        this.userFile = userFile;
+    }
 
     public String getPrice() {
         return price;

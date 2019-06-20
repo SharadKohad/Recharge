@@ -9,9 +9,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.logicaltech.gamerecharge.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import model.TopScoreModel;
 
 public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.RecyclerViewHolder>
@@ -37,6 +39,16 @@ public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.Recycler
         holder.TV_Top_User_Name.setText(account_model.getUsername());
         holder.TV_Top_Score.setText(account_model.getScore());
         holder.TV_Price.setText(account_model.getPrice()+" \u20B9");
+
+        if (account_model.getUserFile().equals("null"))
+        {
+
+        }
+        else
+        {
+            Picasso.with(mContext).load(account_model.getUserFile()).into(holder.CimgView);
+        }
+
         count++;
         holder.TV_Top_Rank.setText(""+count);
         if (count%2==0)
@@ -53,6 +65,7 @@ public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.Recycler
     {
         TextView TV_Top_Rank,TV_Top_User_Name,TV_Top_Score,TV_Price;
         RelativeLayout rl_top_score;
+        CircleImageView CimgView;
         public RecyclerViewHolder(View itemView)
         {
             super(itemView);
@@ -61,6 +74,7 @@ public class TopScoreAdpter extends RecyclerView.Adapter<TopScoreAdpter.Recycler
             TV_Top_Score = (TextView) itemView.findViewById(R.id.tv_top_userscore);
             TV_Price = (TextView) itemView.findViewById(R.id.tv_top_price);
             rl_top_score = (RelativeLayout) itemView.findViewById(R.id.rl_top_score);
+            CimgView = (CircleImageView) itemView.findViewById(R.id.img_topscore_profile);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.logicaltech.gamerecharge;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,11 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class WebView2048Activity extends AppCompatActivity
 {
     WebView mywebview;
     String current_url,srno,gtype,cob="0";
+    int count=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -61,18 +65,26 @@ public class WebView2048Activity extends AppCompatActivity
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url)
                 {
-                    String numberOnly= url.replaceAll("[^0-9]", "");
-                    Intent intent = new Intent(WebView2048Activity.this,Battle_ResultActivity.class);
-                    intent.putExtra("score",Integer.parseInt(numberOnly));
-                    intent.putExtra("gtype",gtype);
-                    intent.putExtra("srno",srno);
-                    startActivity(intent);
+                    count++;
+                    if (count==1)
+                    {
+                        String numberOnly= url.replaceAll("[^0-9]", "");
+                        Intent intent = new Intent(WebView2048Activity.this,Battle_ResultActivity.class);
+                        intent.putExtra("score",Integer.parseInt(numberOnly));
+                        intent.putExtra("gtype",gtype);
+                        intent.putExtra("srno",srno);
+                        startActivity(intent);
+                        System.out.println("if Count "+count);
+                    }
+                    else
+                    {
+                        System.out.println("Else Count "+count);
+                    }
                     finish();
                     return super.shouldOverrideUrlLoading(view,url);
                 }
             });
         }
-
     }
     @Override
     public void onBackPressed()

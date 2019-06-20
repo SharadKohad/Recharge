@@ -16,7 +16,8 @@
         android:paddingTop="@dimen/_5sdp">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_topscore_profile"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:src="@drawable/icon_profile"

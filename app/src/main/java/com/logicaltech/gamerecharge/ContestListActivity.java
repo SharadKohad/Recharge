@@ -53,7 +53,6 @@ public class ContestListActivity extends AppCompatActivity
     ArrayList<ContestModel> arrayList =new ArrayList<>();
     ArrayList<TopScoreModel> arrayList1 =new ArrayList<>();
     ArrayList<BattleModel> arrBattle =new ArrayList<>();
-
     RecyclerView RecyclerView_Contest_Type,RecyclerView_Top_Three_Contest,RecyclerView_Contest_Type1,RecyclerView_Battle;
     GridLayoutManager mGridLayoutManagerBrand,mGridLayoutManagerBrand1,mGridLayoutManagerBattle;
     LinearLayout LL_Current_Tournaments,LL_Current_Heroes,LL_Show_Tournaments,LL_show_heroes,LL_Battle;
@@ -82,8 +81,6 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Contest_Type.setLayoutManager(mGridLayoutManagerBrand);
 
 
-
-
         TV_gametitle = (TextView) findViewById(R.id.tv_game_title);
         TV_game_Name = (TextView) findViewById(R.id.tv_game_name);
         TV_Tournament = (TextView) findViewById(R.id.txtview_tournament);
@@ -97,7 +94,6 @@ public class ContestListActivity extends AppCompatActivity
         RecyclerView_Battle = (RecyclerView) findViewById(R.id.rv_contest_ballte);
         LL_Battle = (LinearLayout) findViewById(R.id.ll_battle);
         Img_Tournament = (ImageView) findViewById(R.id.img_comming_soon_tournament);
-
 
         mGridLayoutManagerBattle = new GridLayoutManager(ContestListActivity.this, 1);
         RecyclerView_Battle.setLayoutManager(mGridLayoutManagerBattle);
@@ -198,7 +194,6 @@ public class ContestListActivity extends AppCompatActivity
                             model.setPayout_status(payout_status);
                             arrayList.add(model);
                         }
-
                         CotestAdpter operator_adapter = new CotestAdpter(arrayList,getApplicationContext());
                         RecyclerView_Contest_Type.setAdapter(operator_adapter);
                     }

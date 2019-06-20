@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.logicaltech.gamerecharge.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.TopScoreModel;
+import util.SessionManeger;
 
 public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdapter.RecyclerViewHolder>
 {
@@ -38,6 +41,18 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
         count++;
         holder.TV_Topthree_Rank.setText("#"+account_model.getRank());
         holder.TV_Score.setText(""+account_model.getScore());
+
+        System.out.println("Img URL: "+account_model.getUserFile());
+
+        if (account_model.getUserFile().equals("null"))
+        {
+
+        }
+        else
+        {
+            Picasso.with(mContext).load(account_model.getUserFile()).into(holder.circularImageView);
+        }
+
         if (count==2)
         {
             /*holder.rl_top_score.setVisibility(View.INVISIBLE);
@@ -46,6 +61,7 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
             */
             ((RelativeLayout.LayoutParams) holder.rl_top_score.getLayoutParams()).setMargins(0, 5, 0, 0);
         }
+
     }
     @Override
     public int getItemCount()

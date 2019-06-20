@@ -85,10 +85,13 @@ public class TopScoreActivity extends AppCompatActivity
                         JSONObject jsonObject2 = response.getJSONObject(i);
                         String score = jsonObject2.getString("score");
                         String username = jsonObject2.getString("username");
+                        String userFile = jsonObject2.getString("userFile");
+
                         TopScoreModel model = new TopScoreModel();
                         model.setScore(score);
                         model.setUsername(username);
                         model.setPrice(price);
+                        model.setUserFile(userFile);
                         arrayList.add(model);
                     }
                     TopScoreAdpter operator_adapter = new TopScoreAdpter(arrayList,getApplicationContext());

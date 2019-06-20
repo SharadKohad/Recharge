@@ -81,6 +81,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         singleContestDetail(gametype,srno,"1");
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
+
     }
 
     public void init() {
@@ -105,9 +106,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         LL_Bonus_Cash = (LinearLayout) findViewById(R.id.ll_bounce_cash1);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
-
         clickable();
-
     }
 
     public void clickable() {
@@ -289,8 +288,8 @@ public class SingleContestDetailActivity extends AppCompatActivity
             }
         });
     }
-    public void singleContestDetail(final String gametype,final String srno,final String status)
-    {
+
+    public void singleContestDetail(final String gametype,final String srno,final String status) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -395,7 +394,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
             {
                 try
                 {
-                    String tempscore="0",temprank="0",tempusername = "";
+                    String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
                     arrayList.clear();
                     for (int i = 0; i < response.length(); i++)
                     {
@@ -404,36 +403,45 @@ public class SingleContestDetailActivity extends AppCompatActivity
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
                             TopScoreModel model = new TopScoreModel();
                             temprank = "1";
                             tempscore = score;
                             tempusername = username;
+                            tempUserfile = userFile;
                         }
 
                         else if (i==1)
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
+
                             TopScoreModel model = new TopScoreModel();
                             model.setRank("2");
                             model.setScore(score);
                             model.setUsername(username);
+                            model.setUserFile(userFile);
                             arrayList.add(model);
 
                             TopScoreModel model1 = new TopScoreModel();
                             model1.setRank(temprank);
                             model1.setScore(tempscore);
                             model1.setUsername(tempusername);
+                            model1.setUserFile(tempUserfile);
                             arrayList.add(model1);
                         }
                         else
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
+
                             TopScoreModel model = new TopScoreModel();
                             model.setRank("3");
                             model.setScore(score);
                             model.setUsername(username);
+                            model.setUserFile(userFile);
                             arrayList.add(model);
                         }
                     }

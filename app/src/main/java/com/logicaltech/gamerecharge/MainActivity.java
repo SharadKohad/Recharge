@@ -68,14 +68,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail,TextViewTotalBalance,TextViewDirectIncome,TextViewRefernce,TextViewTotalIncome,TextView_Total_Coin;
-    CircleImageView ImgPhoto;
+    CircleImageView ImgProfilePhoto,ImgHomePhoto;
     RecyclerView recyclerView_Game_type;
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<GameModel> arrayList =new ArrayList<>();
     String membercode,userName;
     RelativeLayout RL_Game_Info;
     Dialog dialog;
-    CircleImageView CimgView;
+  //  CircleImageView CimgView;
     WindowManager.LayoutParams lp;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -86,43 +86,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         sessionManeger = new SessionManeger(getApplicationContext());
         sliderLayout = (SliderLayout)findViewById(R.id.banner_slider1);
-
         TextViewTotalIncome = (TextView) findViewById(R.id.tv_total_income);
         TextView_Total_Coin = (TextView) findViewById(R.id.tv_total_coin);
-        CimgView = (CircleImageView) findViewById(R.id.imgprofile_home);
-
+        ImgHomePhoto = (CircleImageView) findViewById(R.id.imgprofile_home);
         RL_Game_Info = (RelativeLayout) findViewById(R.id.rl_game_info);
-
         LL_Refernce = (LinearLayout) findViewById(R.id.linear_layout_refer_and_earn);
         LL_Super_team = (LinearLayout)findViewById(R.id.linear_layout_super_team);
         TextViewTotalBalance = (TextView) findViewById(R.id.tv_total_income);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         recyclerView_Game_type = (RecyclerView) findViewById(R.id.rv_gametype);
         mGridLayoutManagerBrand = new GridLayoutManager(MainActivity.this, 3);
-
         recyclerView_Game_type.setLayoutManager(mGridLayoutManagerBrand);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View hView = navigationView.getHeaderView(0);
         Menu nav_Menu = navigationView.getMenu();
-
         TextViewUserName = (TextView)  hView.findViewById(R.id.tv_profile_name);
         TextViewUserEmail = (TextView)  hView.findViewById(R.id.tv_email_id);
-        ImgPhoto = (CircleImageView) hView.findViewById(R.id.imgPhoto);
-
+        ImgProfilePhoto = (CircleImageView) hView.findViewById(R.id.imgPhoto);
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         userName = hashMap.get(SessionManeger.KEY_NAME);
         String userEmail = hashMap.get(SessionManeger.KEY_EMAIL);
         membercode = hashMap.get(SessionManeger.MEMBER_ID);
-
         TextViewUserName.setText(userName);
         TextViewUserEmail.setText(userEmail);
-
         String photo = hashMap.get(SessionManeger.KEY_PHOTO);
         if (photo.equals(""))
         {
@@ -130,14 +120,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else
         {
-            Picasso.with(getApplicationContext()).load(photo).into(ImgPhoto);
-//            Picasso.with(getApplicationContext()).load(photo).into(CimgView);
+            Picasso.with(getApplicationContext()).load(photo).into(ImgProfilePhoto);
+            Picasso.with(getApplicationContext()).load(photo).into(ImgHomePhoto);
         }
         getBanner();
         dashBoardData(membercode);
         //contestList("1");
         gameList();
-
         RL_Game_Info.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -240,13 +229,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.nav_share)
         {
-            intent = new Intent(Intent.ACTION_SEND);
+            /*intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elite Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
-            startActivity(Intent.createChooser(intent, "Share"));
-           /* intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
-            startActivity(intent);*/
+            startActivity(Intent.createChooser(intent, "Share"));*/
+            intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
+            startActivity(intent);
 
         }
         else if (id == R.id.nav_logout)

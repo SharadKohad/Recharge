@@ -14,6 +14,8 @@ public class Constant
     public static int TOTAL_COIN = 0;
     public static int TOTAL_DEPOSIT_CASH = 0;
     public static JSONArray jsonObjectmatch ;
+    public static JSONArray jsonArrayBattleList ;
+
     public static JSONArray jsonArrayPlayerList ;
     public static JSONObject jsonObjectmatchSummery;
     public static String DIRECT_INCOME = "";
