@@ -162,11 +162,11 @@ public class ContestListActivity extends AppCompatActivity
                     }
                     else
                     {
-                        topScorePerticulerContst(srno);
                         for (int i = 0; i < response.length(); i++)
                         {
                             JSONObject jsonObject2 = response.getJSONObject(i);
                             srno = jsonObject2.getString("srno");
+                            topScorePerticulerContst(srno);
                             String total_Memb = jsonObject2.getString("total_Memb");
                             String total_time = jsonObject2.getString("max_time");
                             winning_amt = jsonObject2.getString("winning_amt");
@@ -477,7 +477,7 @@ public class ContestListActivity extends AppCompatActivity
             {
                 try
                 {
-                    String tempscore="0",temprank="0",tempusername = "";
+                    String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
                     arrayList1.clear();
                     jsonArray = response;
                     for (int i = 0; i < response.length(); i++)
@@ -487,36 +487,44 @@ public class ContestListActivity extends AppCompatActivity
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
                             TopScoreModel model = new TopScoreModel();
                             temprank = "1";
                             tempscore = score;
                             tempusername = username;
+                            tempUserfile = userFile;
                         }
 
                         else if (i==1)
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
+
                             TopScoreModel model = new TopScoreModel();
                             model.setRank("2");
                             model.setScore(score);
                             model.setUsername(username);
+                            model.setUserFile(userFile);
                             arrayList1.add(model);
 
                             TopScoreModel model1 = new TopScoreModel();
                             model1.setRank(temprank);
                             model1.setScore(tempscore);
                             model1.setUsername(tempusername);
+                            model1.setUserFile(tempUserfile);
                             arrayList1.add(model1);
                         }
                         else if(i==2)
                         {
                             String score = jsonObject2.getString("score");
                             String username = jsonObject2.getString("username");
+                            String userFile = jsonObject2.getString("userFile");
                             TopScoreModel model = new TopScoreModel();
                             model.setRank("3");
                             model.setScore(score);
                             model.setUsername(username);
+                            model.setUserFile(userFile);
                             arrayList1.add(model);
                         }
                         else
@@ -579,10 +587,13 @@ public class ContestListActivity extends AppCompatActivity
                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                     String score = jsonObject2.getString("score");
                     String username = jsonObject2.getString("username");
+                    String userFile = jsonObject2.getString("userFile");
+
                     TopScoreModel model = new TopScoreModel();
                     model.setScore(score);
                     model.setUsername(username);
                     model.setPrice(winning_amt);
+                    model.setUserFile(userFile);
                     arrayList2.add(model);
                 }
             }

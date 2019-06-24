@@ -6,6 +6,24 @@ public class GameModel
     public String game_type;
     public String flag;
     public String logo;
+    public int joinMember;
+    public int winner;
+
+    public int getJoinMember() {
+        return joinMember;
+    }
+
+    public void setJoinMember(int joinMember) {
+        this.joinMember = joinMember;
+    }
+
+    public int getWinner() {
+        return winner;
+    }
+
+    public void setWinner(int winner) {
+        this.winner = winner;
+    }
 
     public String getLogo() {
         return logo;

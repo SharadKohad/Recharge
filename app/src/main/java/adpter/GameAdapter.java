@@ -41,6 +41,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.RecyclerViewHo
         final GameModel account_model = orderList.get(position);
         holder.TV_Game_Name.setText(account_model.getGame_type());
         Picasso.with(mContext).load(account_model.getLogo()).into(holder.IV_Game_Logo);
+        holder.TV_JoinMember.setText(""+account_model.getJoinMember());
+        holder.TV_Winner.setText("Won by "+account_model.getWinner()+" player");
 
         holder.LL_game_type.setOnClickListener(new View.OnClickListener()
         {
@@ -71,7 +73,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.RecyclerViewHo
     }
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView TV_Game_Name;
+        TextView TV_Game_Name,TV_JoinMember,TV_Winner;
         ImageView IV_Game_Logo;
         LinearLayout LL_game_type;
 
@@ -79,6 +81,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.RecyclerViewHo
         {
             super(itemView);
             TV_Game_Name = (TextView) itemView.findViewById(R.id.tv_game_name);
+            TV_JoinMember = (TextView) itemView.findViewById(R.id.txtjoinmember);
+            TV_Winner = (TextView) itemView.findViewById(R.id.txtwinner);
             IV_Game_Logo = (ImageView) itemView.findViewById(R.id.img_game_logo);
             LL_game_type = (LinearLayout) itemView.findViewById(R.id.linear_layout_jump_fish_home);
         }

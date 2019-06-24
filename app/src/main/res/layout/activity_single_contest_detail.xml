@@ -268,7 +268,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_170sdp">
 
-                    <TextView
+                    <RelativeLayout
+                        android:id="@+id/rl_name_t"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@color/light_blue_200">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/award"
+                            android:padding="@dimen/_3sdp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/_20sdp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CURRENT HEROS"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_centerInParent="true" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/award"
+                            android:padding="@dimen/_3sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/_20sdp"/>
+
+                    </RelativeLayout>
+
+                    <!--<TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_100sdp"
@@ -276,7 +311,7 @@
                         android:padding="@dimen/_2sdp"
                         android:text="CURRENT HEROS"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp" />-->
                     
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_top_three_score"

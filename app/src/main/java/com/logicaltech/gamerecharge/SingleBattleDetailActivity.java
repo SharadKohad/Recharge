@@ -8,6 +8,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -33,16 +35,16 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import adpter.TopthreeScoreAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
+import model.TopScoreModel;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -66,23 +68,24 @@ public class SingleBattleDetailActivity extends AppCompatActivity
     private String game_amt_type,srno,gametype,userId,userName,p1_Image;
     private int join_contest_amt;
     private TextView TV_Remaing_Time,TV_Game_Name,TV_Price,TV_Total_Player;
+    CardView CV_Top_Three;
     private Button Btn_play;
     Dialog dialog,dialogBattle;
     WindowManager.LayoutParams lp;
     SessionManeger sessionManeger;
+    ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     private String p2_Name,p2_Image,ded_mainbal_amt,ded_boncash_amt;
     private RelativeLayout RL_Video_Game,RL_Game_List;
     int findplayerFlag = 0;
+    RecyclerView RecyclerView_Top_Three_Contest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_battle_detail);
-
         init();
     }
-
     private void init() {
         context = this;
         sessionManeger = new SessionManeger(getApplicationContext());
@@ -99,10 +102,17 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         Btn_play = (Button) findViewById(R.id.rl_play_game);
         RL_Game_List = findViewById(R.id.rl_all_game);
         RL_Video_Game = findViewById(R.id.rl_all_how_to_play);
+        RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
+        CV_Top_Three = (CardView) findViewById(R.id.cv_top_three_score);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
+
         srno = getIntent().getExtras().getString("srno");
         gametype = getIntent().getExtras().getString("gametype");
         battleList(srno);
         singleContestDetail(gametype,srno,"1");
+        topScoreInBattle(srno);
         clicklisner();
     }
 
@@ -341,6 +351,8 @@ public class SingleBattleDetailActivity extends AppCompatActivity
                     String  msg = jsonObject.getString("msg");
                     if (pstatus.equals("1"))
                     {
+                        Constant.HashId = jsonObject.getString("hash");
+                        System.out.println("My HashTag: "+Constant.HashId);
                         showProgress(context);
                     }
                     else
@@ -780,4 +792,116 @@ public class SingleBattleDetailActivity extends AppCompatActivity
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
+    public void topScoreInBattle(final String srno) {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
+        String url = Constant.URL+"getBattleWinAmtByBID?BattleID="+srno;
+        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
+        {
+            @Override
+            public void onResponse(JSONArray response)
+            {
+                try
+                {
+                  //  Constant.jsonArrayTopThreePlayer = response;
+                    String res = response.toString();
+                    if (res.equals("[]"))
+                    {
+                        CV_Top_Three.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
+                        arrayList.clear();
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject2 = response.getJSONObject(i);
+                            if (i==0)
+                            {
+                                String score = jsonObject2.getString("totalwincount");
+                                String username = jsonObject2.getString("Memb_Name");
+                                String userFile = jsonObject2.getString("userFile");
+                                TopScoreModel model = new TopScoreModel();
+                                temprank = "1";
+                                tempscore = score;
+                                tempusername = username;
+                                tempUserfile = userFile;
+                            }
+
+                            else if (i==1)
+                            {
+                                String score = jsonObject2.getString("totalwincount");
+                                String username = jsonObject2.getString("Memb_Name");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("2");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+
+                                TopScoreModel model1 = new TopScoreModel();
+                                model1.setRank(temprank);
+                                model1.setScore(tempscore);
+                                model1.setUsername(tempusername);
+                                model1.setUserFile(tempUserfile);
+                                arrayList.add(model1);
+                            }
+                            else
+                            {
+                                String score = jsonObject2.getString("totalwincount");
+                                String username = jsonObject2.getString("Memb_Name");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("3");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+                            }
+                        }
+                        TopthreeScoreAdapter operator_adapter = new TopthreeScoreAdapter(arrayList,getApplicationContext());
+                        RecyclerView_Top_Three_Contest.setAdapter(operator_adapter);
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
+    }
+
 }

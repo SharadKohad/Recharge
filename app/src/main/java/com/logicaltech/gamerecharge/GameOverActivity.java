@@ -28,6 +28,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -216,7 +217,6 @@ public class GameOverActivity extends AppCompatActivity
         });
 
         tvscore.setText(""+scorevalue);
-
         Btn_Home.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -353,6 +353,82 @@ public class GameOverActivity extends AppCompatActivity
     }
 
     public void topScorePerticulerContst(final String srno) {
+        try
+            {
+                JSONArray response = Constant.jsonArrayTopThreePlayer;
+                String res = response.toString();
+                if (res.equals("[]"))
+                {
+
+                }
+                else
+                {
+                        RL_Top_Score.setVisibility(View.VISIBLE);
+                        String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
+                        arrayList.clear();
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject2 = response.getJSONObject(i);
+                            if (i==0)
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                temprank = "1";
+                                tempscore = score;
+                                tempusername = username;
+                                tempUserfile = userFile;
+
+                            }
+                            else if (i==1)
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("2");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+
+                                TopScoreModel model1 = new TopScoreModel();
+                                model1.setRank(temprank);
+                                model1.setScore(tempscore);
+                                model1.setUsername(tempusername);
+                                model1.setUserFile(tempUserfile);
+                                arrayList.add(model1);
+                            }
+                            else
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("3");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+                            }
+                        }
+                    }
+
+                    TopthreeScoreAdapter operator_adapter = new TopthreeScoreAdapter(arrayList,getApplicationContext());
+                    RecyclerView_Top_Three_Contest.setAdapter(operator_adapter);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+
+    }
+
+    /*public void topScorePerticulerContst(final String srno) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getHighestScoreByContest?ContestID="+srno;
@@ -363,6 +439,7 @@ public class GameOverActivity extends AppCompatActivity
             {
                 try
                 {
+
                     String res = response.toString();
                     if (res.equals("[]"))
                     {
@@ -463,7 +540,7 @@ public class GameOverActivity extends AppCompatActivity
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
-    }
+    }*/
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

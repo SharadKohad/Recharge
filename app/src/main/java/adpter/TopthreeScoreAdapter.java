@@ -21,29 +21,23 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
     public ArrayList<TopScoreModel> orderList;
     public Context mContext;
     int count=0;
-
-    public TopthreeScoreAdapter(ArrayList<TopScoreModel> orderList , Context context)
-    {
+    public TopthreeScoreAdapter(ArrayList<TopScoreModel> orderList , Context context) {
         this.orderList = orderList;
         mContext = context;
     }
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_top_three_score, parent, false);
         return new RecyclerViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(final RecyclerViewHolder holder, final int position)
-    {
+    public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
         final TopScoreModel account_model = orderList.get(position);
         holder.TV_Topthree_User_Name.setText(account_model.getUsername());
         count++;
         holder.TV_Topthree_Rank.setText("#"+account_model.getRank());
         holder.TV_Score.setText(""+account_model.getScore());
-
         System.out.println("Img URL: "+account_model.getUserFile());
-
         if (account_model.getUserFile().equals("null"))
         {
 
@@ -52,7 +46,6 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
         {
             Picasso.with(mContext).load(account_model.getUserFile()).into(holder.circularImageView);
         }
-
         if (count==2)
         {
             /*holder.rl_top_score.setVisibility(View.INVISIBLE);
@@ -61,15 +54,14 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
             */
             ((RelativeLayout.LayoutParams) holder.rl_top_score.getLayoutParams()).setMargins(0, 5, 0, 0);
         }
-
     }
     @Override
     public int getItemCount()
     {
         return orderList.size();
     }
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder
-    {
+
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView TV_Topthree_User_Name,TV_Topthree_Rank,TV_Score;
         RelativeLayout rl_top_score;
         CircleImageView circularImageView;
@@ -83,4 +75,5 @@ public class TopthreeScoreAdapter extends RecyclerView.Adapter<TopthreeScoreAdap
             rl_top_score = (RelativeLayout) itemView.findViewById(R.id.rl_top_three);
         }
     }
+
 }

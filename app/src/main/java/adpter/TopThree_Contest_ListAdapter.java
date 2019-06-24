@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.logicaltech.gamerecharge.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,9 +41,18 @@ public class TopThree_Contest_ListAdapter extends RecyclerView.Adapter<TopThree_
         count++;
         holder.TV_Topthree_Rank.setText("#"+account_model.getRank());
         holder.TV_Score.setText(""+account_model.getScore());
+
+        if (account_model.getUserFile().equals("null"))
+        {
+
+        }
+        else
+        {
+            Picasso.with(mContext).load(account_model.getUserFile()).into(holder.circularImageView);
+        }
         if (count==2)
         {
-            ((RelativeLayout.LayoutParams) holder.rl_top_score.getLayoutParams()).setMargins(0, 10, 0, 0);
+            ((RelativeLayout.LayoutParams) holder.rl_top_score.getLayoutParams()).setMargins(0, 5, 0, 0);
         }
     }
     @Override

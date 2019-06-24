@@ -49,122 +49,143 @@ public class GameZoneActivity extends AppCompatActivity
         });
     }
 
-    public void buttonClicked(View view)
-    {
+    public void buttonClicked(View view) {
         if (view.getId() == R.id.linear_layout_jump_fish)
         {
-            intent = new Intent(GameZoneActivity.this,ContestListActivity.class);
-            intent.putExtra("gtype","1");
+            Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
+            intent.putExtra("url","http://preview.codecanyon.net/item/snake-html5-game/full_screen_preview/13266764");
+            intent.putExtra("gtype","4");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_2048)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://showcase.codethislab.com/games/penalty_kicks/");
+            intent.putExtra("url","http://showcase.codethislab.com/games/katana_fruit/");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","2");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
             //button2 action
         }
         else if (view.getId() == R.id.linear_layout_three_game)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://buy-instant-html5games.com/games/56_books_tower/");
+            intent.putExtra("url","https://polargames.com.br/preview/cannonball/");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","3");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if(view.getId() == R.id.linear_layout_jump_game_four)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://showcase.codethislab.com/games/duck_shooter/");
+            intent.putExtra("url","http://showcase.codethislab.com/games/brick_out/");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","4");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if(view.getId() == R.id.linear_layout_game_five)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://showcase.codethislab.com/games/car_rush/");
+            intent.putExtra("url","http://preview.codecanyon.net/item/jumpy-car-html5-game-admob-construct-2-capx/full_screen_preview/17236957");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","5");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if(view.getId() == R.id.linear_layout_six)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/254442999/index.html");
+            intent.putExtra("url","http://preview.codecanyon.net/item/fruit-matching-html5-matching-game/full_screen_preview/13885226");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","6");
+            intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_jump_game_seven)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/254446182/index.html");
+            intent.putExtra("url","https://preview.codecanyon.net/item/monster-truck-soccer/full_screen_preview/21094890");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","7");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_game_eight)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/250619512/index.html");
+            intent.putExtra("url","http://preview.codecanyon.net/item/run-into-death-html5-shooter-game/full_screen_preview/18486533");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_nine)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/236792895/index.html");
+            intent.putExtra("url","http://preview.codecanyon.net/item/playful-kitty-html5-construct-game/full_screen_preview/13731155");
             intent.putExtra("gtype","4");
-            intent.putExtra("srno","9");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_jump_game_ten)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-                intent.putExtra("url","https://previews.envatousercontent.com/files/249530437/index.html");
-            intent.putExtra("srno","10");
+            intent.putExtra("url","http://preview.codecanyon.net/item/super-titagon-html5-game-admob/full_screen_preview/16889568");
             intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_game_eleven)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://buy-instant-html5games.com/games/58_santa_runner/");
-            intent.putExtra("srno","11");
+            intent.putExtra("url","http://preview.codecanyon.net/item/little-world-jellys/full_screen_preview/19183089");
             intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_twelve)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/236564753/index.html");
-            intent.putExtra("srno","12");
+            intent.putExtra("url","https://preview.codecanyon.net/item/ninja-action-2-html5-game-capx/full_screen_preview/22060541");
+            intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_jump_game_thirteen)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/236824092/index.html");
-            intent.putExtra("srno","13");
+            intent.putExtra("url","http://preview.codecanyon.net/item/knife-break/full_screen_preview/21381690");
+            intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_game_fourteen)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/237134900/index.html");
-            intent.putExtra("srno","14");
+            intent.putExtra("url","https://preview.codecanyon.net/item/piggy-night-html5-game-capx/full_screen_preview/23243816");
+            intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
         else if (view.getId() == R.id.linear_layout_fiftheen)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","https://previews.envatousercontent.com/files/237155457/index.html");
-            intent.putExtra("srno","15");
+            intent.putExtra("url","http://showcase.codethislab.com/games/cricket_batter_challenge/");
+            intent.putExtra("gtype","4");
+            intent.putExtra("srno","8");
+            intent.putExtra("cob","0");
             startActivity(intent);
         }
     }
+
 }

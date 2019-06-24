@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import adpter.GameAdapter;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String membercode,userName;
     RelativeLayout RL_Game_Info;
     Dialog dialog;
+    int random = 10000;
   //  CircleImageView CimgView;
     WindowManager.LayoutParams lp;
     @Override
@@ -420,6 +422,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     arrayList.clear();
                     for (int i = 0; i < response.length(); i++)
                     {
+                        Random rand = new Random();
+                        int join = rand.nextInt(random);
                         JSONObject jsonObject2 = response.getJSONObject(i);
                         String srno = jsonObject2.getString("srno");
                         String game_name = jsonObject2.getString("game_name");
@@ -430,6 +434,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         gameModel.setGame_type(game_name);
                         gameModel.setFlag(flag);
                         gameModel.setLogo("http://site17.bidbch.com/"+logo);
+                        gameModel.setJoinMember(join);
+                        gameModel.setWinner(join*75/100);
                         arrayList.add(gameModel);
                     }
                     GameAdapter gameAdapter = new GameAdapter(arrayList,getApplicationContext());

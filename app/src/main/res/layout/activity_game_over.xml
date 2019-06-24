@@ -132,21 +132,25 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:text="LATEST SCORE:"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/_20sdp"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/light_blue_50"
+            android:layout_marginLeft="@dimen/_30sdp"
             android:layout_below="@+id/play_again_btn"
+            android:gravity="center"
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/_20sdp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:text="HIGH SCORE:"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginRight="@dimen/_20sdp"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/light_blue_50"
+            android:layout_marginRight="@dimen/_35sdp"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/play_again_btn"
+            android:gravity="center"
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/_20sdp"/>
 
         <ImageView

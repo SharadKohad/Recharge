@@ -2,11 +2,13 @@ package com.logicaltech.gamerecharge;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -36,6 +38,7 @@ public class HighScoreActivity extends AppCompatActivity
     int topScore=0;
     SessionManeger sessionManeger;
     Handler handler;
+  //  int counter =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +57,33 @@ public class HighScoreActivity extends AppCompatActivity
         srno = getIntent().getExtras().getString("srno");
         gtype = getIntent().getExtras().getString("gtype");
         getHighScoreByContest(userId,srno);
+        /*new Thread(new Runnable()
+        {
+            public void run()
+            {
+                while (counter < scorevalue)
+                {
+                    try
+                    {
+                        Thread.sleep(50);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    TV_HighScore_Text.post(new Runnable()
+                    {
+                        public void run()
+                        {
+                            TV_HighScore_Text.setText("" + counter);
+                        }
+                    });
+                    counter++;
+                }
+                Toast.makeText(getApplicationContext(),"This Toast",Toast.LENGTH_SHORT).show();
+            }
+        }).start();*/
     }
 
     public void getHighScoreByContest(final String MemberCode, final String Srno) {
@@ -151,4 +181,7 @@ public class HighScoreActivity extends AppCompatActivity
                     }
                 }).create().show();
     }
+
+
+    //My extra code
 }

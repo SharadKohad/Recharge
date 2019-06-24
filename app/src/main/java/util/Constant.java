@@ -15,6 +15,7 @@ public class Constant
     public static int TOTAL_DEPOSIT_CASH = 0;
     public static JSONArray jsonObjectmatch ;
     public static JSONArray jsonArrayBattleList ;
+    public static JSONArray jsonArrayTopThreePlayer ;
 
     public static JSONArray jsonArrayPlayerList ;
     public static JSONObject jsonObjectmatchSummery;
@@ -22,6 +23,7 @@ public class Constant
     public static String TOTAL_REF = "";
     public static int HIGH_SCORE=0;
     public static String APIKEY="sO54esYqnjhWuDoYlrNhjC67Gt93";//"JCr0JOu28XgyHTuHz5BJ6TWWuVV2";//"TmQf9rBDhAcsi2IRaCnzSwKJGeH2";
+    public static String HashId = "";
     public static final String URL = " http://site17.bidbch.com/api/";
     public static boolean isValidEmail(String email)
     {

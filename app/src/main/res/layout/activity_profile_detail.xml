@@ -39,7 +39,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:src="@drawable/icon_profile" />
+        android:src="@drawable/icon_man" />
 
     <ScrollView
         android:layout_width="match_parent"

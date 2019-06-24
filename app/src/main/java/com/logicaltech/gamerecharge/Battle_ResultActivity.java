@@ -125,123 +125,10 @@ public class Battle_ResultActivity extends AppCompatActivity
             }
         });
 
-        submitScoreInBattle(userId,srno,Integer.toString(p1scorevalue));
+        submitScoreInBattle(userId,srno,Integer.toString(p1scorevalue),Constant.HashId);
     }
 
-    /*public void battleList(final String bId ) {
-        progressBar.setVisibility(View.VISIBLE);
-        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getBattlePlayerDetails?BattleID="+bId;
-        JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
-        {
-            @Override
-            public void onResponse(JSONArray response)
-            {
-                try
-                {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    String res = response.toString();
-                    if (res.equals("[]"))
-                    {
-                        battleList("0");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < response.length(); i++)
-                        {
-                            JSONObject jsonObject2 = response.getJSONObject(i);
-                            String membercode = jsonObject2.getString("membercode");
-                            if (userId.equals(membercode))
-                            {
-
-                            }
-                            else
-                            {
-                                String p2_name = jsonObject2.getString("memb_name");
-                                TV_P2_Name.setText(p2_name);
-                                Picasso.with(context).load(jsonObject2.getString("userFile")).into(Img_player2);
-
-                                String score = jsonObject2.getString("Score");
-                                if (i==0 ||i==1)
-                                {
-                                    TV_P2_Score.setText(score);
-                                    if (i==1)
-                                    {
-                                        int per = Integer.parseInt(score);
-                                        int more20 = (int) Math.ceil(((per/100)*10)+per);
-                                        TV_P2_Score.setText("SCORE "+more20);
-                                        score = String.valueOf(more20);
-                                        TV_P2_Score.setText(score);
-                                    }
-                                }
-                                else if(i==2)
-                                {
-                                    int per = Integer.parseInt(score);
-                                    int more20 = (int) Math.ceil(((per/100)*20)+per);
-                                    TV_P2_Score.setText("SCORE "+more20);
-                                    score = String.valueOf(more20);
-                                }
-
-                                if (Integer.parseInt(score)<p1scorevalue)
-                                {
-                                    Toast.makeText(context,"You Win",Toast.LENGTH_SHORT).show();
-                                    TVp1_Wining_Amt.setText(jsonObject2.getString("winning_amt"));
-                                    TVp2_Wining_Amt.setText("0");
-                                    Img_Result.setImageResource(R.drawable.won);
-                                }
-                                else
-                                {
-                                    TVp1_Wining_Amt.setText("0");
-                                    TVp2_Wining_Amt.setText(jsonObject2.getString("winning_amt"));
-                                    Toast.makeText(context,"You Loss",Toast.LENGTH_SHORT).show();
-                                    Img_Result.setImageResource(R.drawable.loose);
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-                catch (JSONException e)
-                {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener()
-        { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                progressBar.setVisibility(View.INVISIBLE);
-                //This code is executed if there is an error.
-                String message= "";
-                if (error instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                }
-                else if (error instanceof TimeoutError)
-                {
-                    message = "Connection TimeOut! Please check your internet connection.";
-                }
-                System.out.println("error........"+error);
-            }
-        })
-        {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError
-            {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Accept","application/json");
-                headers.put("Content-Type","application/json");
-                return headers;
-            }
-        };
-        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MyRequest Queue.add(MyStringRequest);
-    }*/
-
-    public void submitScoreInBattle(final String MemberCode, final String Srno, final String Score) {
+    public void submitScoreInBattle(final String MemberCode, final String Srno, final String Score,final String hash) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addBattlePlayedScore";
@@ -294,6 +181,7 @@ public class Battle_ResultActivity extends AppCompatActivity
                 params.put("membercode", MemberCode);
                 params.put("bid",Srno);
                 params.put("score",Score);
+                params.put("hash",hash);
                 return params;
             }
         };
@@ -308,40 +196,47 @@ public class Battle_ResultActivity extends AppCompatActivity
             progressBar.setVisibility(View.INVISIBLE);
             JSONArray response = Constant.jsonArrayBattleList;
 
-                for (int i = 0; i < response.length(); i++) {
+                for (int i = 0; i < response.length(); i++)
+                {
                     JSONObject jsonObject2 = response.getJSONObject(i);
                     String membercode = jsonObject2.getString("membercode");
-                    if (userId.equals(membercode)) {
+                    if (userId.equals(membercode))
+                    {
 
-                    } else {
+                    }
+                    else
+                    {
                         String p2_name = jsonObject2.getString("memb_name");
                         TV_P2_Name.setText(p2_name);
                         Picasso.with(context).load(jsonObject2.getString("userFile")).into(Img_player2);
-
                         String score = jsonObject2.getString("Score");
                         if (i == 0 || i == 1) {
                             TV_P2_Score.setText(score);
-                            if (i == 1) {
+                            if (i == 1)
+                            {
                                 int per = Integer.parseInt(score);
-                                int more20 = (int) Math.ceil(((per / 100) * 10) + per);
+                                int more20 = (int) Math.ceil(((per / 100) * 10) + per+5);
                                 TV_P2_Score.setText("SCORE " + more20);
                                 score = String.valueOf(more20);
                                 TV_P2_Score.setText(score);
                             }
-                        } else if (i == 2) {
+                        } else if (i == 2)
+                        {
                             int per = Integer.parseInt(score);
-                            int more20 = (int) Math.ceil(((per / 100) * 20) + per);
+                            int more20 = (int) Math.ceil(((per / 100) * 20) + per+10);
                             TV_P2_Score.setText("SCORE " + more20);
-                            score = String.valueOf(more20);
+                            score = String.valueOf(more20+10);
                         }
-
-                        if (Integer.parseInt(score) < p1scorevalue) {
+                        if (Integer.parseInt(score) < p1scorevalue)
+                        {
                             Toast.makeText(context, "You Win", Toast.LENGTH_SHORT).show();
                             TVp1_Wining_Amt.setText(jsonObject2.getString("winning_amt"));
                             TVp2_Wining_Amt.setText("0");
                             Img_Result.setImageResource(R.drawable.won);
-                            AddBattleWiningAmount(membercode,srno);
-                        } else {
+                            AddBattleWiningAmount(userId,srno,Constant.HashId);
+                        }
+                        else
+                        {
                             TVp1_Wining_Amt.setText("0");
                             TVp2_Wining_Amt.setText(jsonObject2.getString("winning_amt"));
                             Toast.makeText(context, "You Loss", Toast.LENGTH_SHORT).show();
@@ -350,13 +245,14 @@ public class Battle_ResultActivity extends AppCompatActivity
                         break;
                     }
                 }
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
             progressBar.setVisibility(View.INVISIBLE);
             e.printStackTrace();
         }
     }
 
-    public void AddBattleWiningAmount(final String MemberCode, final String Srno) {
+    public void AddBattleWiningAmount(final String MemberCode, final String Srno,final String hash) {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addBattleWinningAmt";
@@ -371,9 +267,10 @@ public class Battle_ResultActivity extends AppCompatActivity
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     String message = jsonObject.getString("msg");
+                    System.out.println("My Amount "+ Constant.HashId+" "+message+" Srno"+srno+" membercode "+MemberCode);
                     if (status.equals("1"))
                     {
-                        Toast.makeText(Battle_ResultActivity.this,"Your score submit "+message,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Battle_ResultActivity.this,"Amount Add successfully "+message,Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -408,6 +305,7 @@ public class Battle_ResultActivity extends AppCompatActivity
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("membercode", MemberCode);
                 params.put("bid",Srno);
+                params.put("hash",hash);
                 return params;
             }
         };

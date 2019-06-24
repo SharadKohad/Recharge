@@ -50,7 +50,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
     String srno,userId,playerstatus="0",message,gametype,game_amt_type,ded_mainbal_amt,ded_boncash_amt;
     ArrayList<TopScoreModel> arrayList =new ArrayList<>();
     ArrayList<PriceModel> arrayList1 =new ArrayList<>();
-    CardView CV_Price_Dis;
+    CardView CV_Price_Dis,CV_Top_Three;
     RecyclerView RecyclerView_Top_Three_Contest,RV_Price_Distribution;
     ProgressBar progressBar;
     TextView TV_Price,TV_Total_Player,TV_Game_Name,TV_Remaing_Time,TV_Contest_Amount_List,TV_Dis_Player,TV_Dis_Price,TV_Bonus_Cash;
@@ -73,17 +73,14 @@ public class SingleContestDetailActivity extends AppCompatActivity
         userId = hashMap.get(SessionManeger.MEMBER_ID);
   //      progressBar = (ProgressBar) findViewById(R.id.progrebar_contest_detail);
         init();
-
         srno = getIntent().getExtras().getString("srno");
         gametype = getIntent().getExtras().getString("gametype");
-
         joinContestStatus(userId,srno);
         singleContestDetail(gametype,srno,"1");
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
 
     }
-
     public void init() {
         TV_Price = (TextView) findViewById(R.id.tv_wining_price);
         TV_Total_Player  = (TextView) findViewById(R.id.tv_total_player);
@@ -94,6 +91,7 @@ public class SingleContestDetailActivity extends AppCompatActivity
         img_back_arrow = (ImageView) findViewById(R.id.img_back_arrow_contest_detail);
         Btn_playGame = (Button) findViewById(R.id.rl_play_game);
         CV_Price_Dis = (CardView) findViewById(R.id.cv_cotest_price_distribution);
+        CV_Top_Three = (CardView) findViewById(R.id.cv_top_three_score);
         progressBar = (ProgressBar) findViewById(R.id.progrebar_single_contest);
         RL_Video_Game = (RelativeLayout) findViewById(R.id.rl_all_how_to_play);
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score);
@@ -394,59 +392,69 @@ public class SingleContestDetailActivity extends AppCompatActivity
             {
                 try
                 {
-                    String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
-                    arrayList.clear();
-                    for (int i = 0; i < response.length(); i++)
+                    Constant.jsonArrayTopThreePlayer = response;
+                    String res = response.toString();
+                    if (res.equals("[]"))
                     {
-                        JSONObject jsonObject2 = response.getJSONObject(i);
-                        if (i==0)
-                        {
-                            String score = jsonObject2.getString("score");
-                            String username = jsonObject2.getString("username");
-                            String userFile = jsonObject2.getString("userFile");
-                            TopScoreModel model = new TopScoreModel();
-                            temprank = "1";
-                            tempscore = score;
-                            tempusername = username;
-                            tempUserfile = userFile;
-                        }
-
-                        else if (i==1)
-                        {
-                            String score = jsonObject2.getString("score");
-                            String username = jsonObject2.getString("username");
-                            String userFile = jsonObject2.getString("userFile");
-
-                            TopScoreModel model = new TopScoreModel();
-                            model.setRank("2");
-                            model.setScore(score);
-                            model.setUsername(username);
-                            model.setUserFile(userFile);
-                            arrayList.add(model);
-
-                            TopScoreModel model1 = new TopScoreModel();
-                            model1.setRank(temprank);
-                            model1.setScore(tempscore);
-                            model1.setUsername(tempusername);
-                            model1.setUserFile(tempUserfile);
-                            arrayList.add(model1);
-                        }
-                        else
-                        {
-                            String score = jsonObject2.getString("score");
-                            String username = jsonObject2.getString("username");
-                            String userFile = jsonObject2.getString("userFile");
-
-                            TopScoreModel model = new TopScoreModel();
-                            model.setRank("3");
-                            model.setScore(score);
-                            model.setUsername(username);
-                            model.setUserFile(userFile);
-                            arrayList.add(model);
-                        }
+                        CV_Top_Three.setVisibility(View.GONE);
                     }
-                    TopthreeScoreAdapter operator_adapter = new TopthreeScoreAdapter(arrayList,getApplicationContext());
-                    RecyclerView_Top_Three_Contest.setAdapter(operator_adapter);
+                    else
+
+                    {
+                        String tempscore="0",temprank="0",tempusername = "",tempUserfile = "";
+                        arrayList.clear();
+                        for (int i = 0; i < response.length(); i++)
+                        {
+                            JSONObject jsonObject2 = response.getJSONObject(i);
+                            if (i==0)
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+                                TopScoreModel model = new TopScoreModel();
+                                temprank = "1";
+                                tempscore = score;
+                                tempusername = username;
+                                tempUserfile = userFile;
+                            }
+
+                            else if (i==1)
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("2");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+
+                                TopScoreModel model1 = new TopScoreModel();
+                                model1.setRank(temprank);
+                                model1.setScore(tempscore);
+                                model1.setUsername(tempusername);
+                                model1.setUserFile(tempUserfile);
+                                arrayList.add(model1);
+                            }
+                            else
+                            {
+                                String score = jsonObject2.getString("score");
+                                String username = jsonObject2.getString("username");
+                                String userFile = jsonObject2.getString("userFile");
+
+                                TopScoreModel model = new TopScoreModel();
+                                model.setRank("3");
+                                model.setScore(score);
+                                model.setUsername(username);
+                                model.setUserFile(userFile);
+                                arrayList.add(model);
+                            }
+                        }
+                        TopthreeScoreAdapter operator_adapter = new TopthreeScoreAdapter(arrayList,getApplicationContext());
+                        RecyclerView_Top_Three_Contest.setAdapter(operator_adapter);
+                    }
                 }
                 catch (JSONException e)
                 {
