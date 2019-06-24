@@ -238,8 +238,8 @@ public class ProfileDetailActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-    private boolean checkAndRequestPermissions()
-    {
+
+    private boolean checkAndRequestPermissions() {
         int camera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (camera != PackageManager.PERMISSION_GRANTED)
@@ -257,14 +257,13 @@ public class ProfileDetailActivity extends AppCompatActivity
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             // Permission is not granted
         }
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        {
             listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
           //  selectImage();
             // Permission is not granted
         }
-
         if (!listPermissionsNeeded.isEmpty())
         {
             ActivityCompat.requestPermissions(ProfileDetailActivity.this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
@@ -272,6 +271,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         }
         return true;
     }
+
     private void selectImage() {
         try
         {

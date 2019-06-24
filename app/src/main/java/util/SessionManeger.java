@@ -53,8 +53,7 @@ public class SessionManeger
         // open SQLite when login user.
     }
 
-    public  void createSession(String userId, String name, String email, String phone, String member_id,String photo)
-    {
+    public  void createSession(String userId, String name, String email, String phone, String member_id,String photo) {
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(KEY_ID, userId);
         editor.putString(KEY_NAME, name);
@@ -66,23 +65,19 @@ public class SessionManeger
         //  getWishListVolley(userId);
     }
 
-    public void createSessionFlyFish(String highScore)
-    {
+    public void createSessionFlyFish(String highScore) {
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(FLY_FISH_SCORE,highScore);
         editor.commit();
     }
 
-    public void createSessionSrno(String Srno)
-    {
+    public void createSessionSrno(String Srno) {
         editor.putBoolean(IS_LOGIN,true);
         editor.putString(SRNO,Srno);
         editor.commit();
     }
 
-
-    public boolean checkLogin()
-    {
+    public boolean checkLogin() {
         if (!this.isLoggedIn())
         {
             Intent intent=new Intent(context, LoginActivity.class);
@@ -99,8 +94,7 @@ public class SessionManeger
         return preferences.getBoolean(IS_LOGIN, false);
     }
 
-    public HashMap<String,String> getUserDetails()
-    {
+    public HashMap<String,String> getUserDetails() {
         HashMap<String,String> hashMap=new HashMap<>();
         hashMap.put(KEY_ID,preferences.getString(KEY_ID,null));
         hashMap.put(KEY_NAME,preferences.getString(KEY_NAME,null));
@@ -114,15 +108,13 @@ public class SessionManeger
 
     // Get mobile number to store in session
 
-    public HashMap<String,String> getFlyFishHighScore()
-    {
+    public HashMap<String,String> getFlyFishHighScore() {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put(FLY_FISH_SCORE,preferences.getString(FLY_FISH_SCORE,"0"));
         return hashMap;
     }
 
-    public HashMap<String,String> getCurrentSrno()
-    {
+    public HashMap<String,String> getCurrentSrno() {
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put(SRNO,preferences.getString(SRNO,"0"));
         return hashMap;
@@ -179,7 +171,6 @@ public class SessionManeger
         editor.commit();
     }
 
-
     public void remoteLogout()
     {
         editor.clear();
@@ -191,7 +182,6 @@ public class SessionManeger
         editor.putBoolean(FIRST_LAUNCH, false);
         editor.commit();
     }
-
 
     public boolean getFirstLaunch()
     {

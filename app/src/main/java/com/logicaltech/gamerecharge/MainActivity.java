@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra(Intent.EXTRA_TEXT, "Here get 50 Tokens And 50 Rs to play with me to Elite Play. Click the link "+"http://www.arenaitech.com/"+ " to download the App and use my invite code "+userName+ " to register.");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this site!");
             startActivity(Intent.createChooser(intent, "Share"));*/
-            intent = new Intent(MainActivity.this,SpinnerWebActivity.class);
+            intent = new Intent(MainActivity.this,ShareAppActivity.class);
             startActivity(intent);
 
         }
