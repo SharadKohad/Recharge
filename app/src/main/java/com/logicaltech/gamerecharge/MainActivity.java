@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String photo = hashMap.get(SessionManeger.KEY_PHOTO);
         if (photo.equals(""))
         {
-
+            
         }
         else
         {
@@ -126,9 +126,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Picasso.with(getApplicationContext()).load(photo).into(ImgHomePhoto);
         }
         getBanner();
+
         dashBoardData(membercode);
         //contestList("1");
         gameList();
+
         RL_Game_Info.setOnClickListener(new View.OnClickListener()
         {
             @Override

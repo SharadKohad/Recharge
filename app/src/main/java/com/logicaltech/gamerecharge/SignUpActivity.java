@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity
     ImageView Img_SignUp_Close;
     String fname,lname,email,token="0";
     SessionManeger sessionManeger;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,9 +50,7 @@ public class SignUpActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
         token = getIntent().getExtras().getString("token");
-
-        if (token.equals("1"))
-        {
+        if (token.equals("1")) {
             fname = getIntent().getExtras().getString("first_name");
             lname = getIntent().getExtras().getString("last_name");
             email = getIntent().getExtras().getString("email");
@@ -312,4 +309,5 @@ public class SignUpActivity extends AppCompatActivity
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
+
 }

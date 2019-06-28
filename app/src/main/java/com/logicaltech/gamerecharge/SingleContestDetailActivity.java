@@ -79,7 +79,6 @@ public class SingleContestDetailActivity extends AppCompatActivity
         singleContestDetail(gametype,srno,"1");
         topScorePerticulerContst(srno);
         topScorePriceDistribution(srno);
-
     }
     public void init() {
         TV_Price = (TextView) findViewById(R.id.tv_wining_price);

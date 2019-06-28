@@ -25,6 +25,16 @@
         android:layout_marginRight="@dimen/_30sdp"
         android:layout_alignParentRight="true"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leader Board"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        android:layout_below="@+id/img_scoreladder"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_27sdp"/>
+
     <ProgressBar
         android:id="@+id/progrebar_gameover"
         android:layout_width="wrap_content"
@@ -32,11 +42,11 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/img_home">
+        android:layout_below="@+id/img_home"
+        android:layout_marginTop="@dimen/_10sdp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,7 +64,7 @@
         android:textStyle="bold"
         android:visibility="gone"/>
 
-        <android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView
             android:id="@+id/cv_top_three_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +105,6 @@
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
-
 
         <Button
             android:id="@+id/play_again_btn"
@@ -156,7 +165,7 @@
         <ImageView
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/scoreboard1"
+            android:src="@drawable/score"
             android:layout_below="@+id/play_again_btn"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="@dimen/_50sdp"
@@ -164,19 +173,22 @@
 
         <TextView
             android:id="@+id/score"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/play_again_btn"
-            android:layout_marginTop="@dimen/_68sdp"
-            android:layout_marginLeft="@dimen/_60sdp"
-            android:textSize="20dp"
+            android:layout_marginTop="@dimen/_77sdp"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="1000"
+            android:background="@color/white"
             android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/img_high_score"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/scoreboard1"
+            android:src="@drawable/score"
             android:layout_below="@+id/play_again_btn"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/_50sdp"
@@ -184,13 +196,16 @@
 
         <TextView
             android:id="@+id/highscore"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/play_again_btn"
-            android:layout_marginTop="@dimen/_68sdp"
-            android:layout_marginRight="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_77sdp"
+            android:layout_marginRight="@dimen/_50sdp"
             android:layout_alignParentRight="true"
-            android:textSize="20dp"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="1000"
+            android:background="@color/white"
             android:textColor="@color/black"/>
 
         <LinearLayout
@@ -201,7 +216,8 @@
             android:layout_below="@+id/img_high_score"
             android:paddingLeft="@dimen/_20sdp"
             android:paddingRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp">
+            android:layout_marginTop="@dimen/_20sdp"
+            >
 
             <View
                 android:layout_width="@dimen/_90sdp"
@@ -306,6 +322,8 @@
 
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
     </ScrollView>
+
 </RelativeLayout>

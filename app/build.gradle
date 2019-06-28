@@ -10,13 +10,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         useLibrary 'org.apache.http.legacy'
+        resConfigs "en"
     }
     buildTypes
             {
                 release
                         {
-                            minifyEnabled false
+                            minifyEnabled true
                             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                            shrinkResources true
                         }
             }
 
@@ -53,17 +55,12 @@ dependencies
             implementation 'commons-io:commons-io:2.4'   // Base 64......
             implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
             implementation 'com.henryblue.mxvideoplayer:xvideoplayer:1.2.1'
-
             implementation 'com.squareup.retrofit2:retrofit:2.1.0'
             implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-
             implementation('com.paytm:pgplussdk:1.3.3')
                     {
                         transitive = true;
                     }
             implementation 'com.google.android.gms:play-services-auth:16.0.0'
-
-
-
         }
 apply plugin: 'com.google.gms.google-services'

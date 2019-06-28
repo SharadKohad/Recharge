@@ -297,7 +297,6 @@
 
     </ScrollView>
 
-
     <ProgressBar
         android:id="@+id/progress_bar_signup"
         android:layout_width="wrap_content"
@@ -305,6 +304,5 @@
         android:layout_centerInParent="true"
         android:theme="@style/ProgressBar.Green"
         android:visibility="gone" />
-
 
 </RelativeLayout>

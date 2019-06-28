@@ -51,7 +51,6 @@ public class ShareAppActivity extends AppCompatActivity
         //   HashMap<String, String> hashMap1 = sessionManeger.getFlyFishHighScore();
         //userId = hashMap.get(SessionManeger.MEMBER_ID);
         userName = hashMap.get(SessionManeger.KEY_NAME);
-
         context = this;
         IV_Back_Arrow = findViewById(R.id.img_back_arrow_share_app);
         RL_share_whatsapp = findViewById(R.id.rl_share_whatsapp);
@@ -65,7 +64,6 @@ public class ShareAppActivity extends AppCompatActivity
         TV_Ref_Code.setText(userName);
         TV_Coin.setText(""+ Constant.TOTAL_COIN);
         TV_Total_Balance.setText(""+ Constant.TOTAL_BALANCE);
-
         if (hashMap.get(SessionManeger.KEY_PHOTO).equals(""))
         {
 
@@ -132,5 +130,4 @@ public class ShareAppActivity extends AppCompatActivity
             }
         });*/
     }
-
 }

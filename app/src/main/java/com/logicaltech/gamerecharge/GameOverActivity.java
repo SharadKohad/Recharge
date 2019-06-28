@@ -82,12 +82,15 @@ public class GameOverActivity extends AppCompatActivity
         LL_share = (LinearLayout) findViewById(R.id.ll_share);
         IV_Close = (ImageView) findViewById(R.id.img_home);
         IV_ScoreBoard = (ImageView) findViewById(R.id.img_scoreladder);
+
         scorevalue = getIntent().getExtras().getInt("score");
         srno = getIntent().getExtras().getString("srno");
         gtype = getIntent().getExtras().getString("gtype");
+
         RecyclerView_Top_Three_Contest = (RecyclerView) findViewById(R.id.rv_top_three_score_gover);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView_Top_Three_Contest.setLayoutManager(horizontalLayoutManagaer);
+
         topScorePerticulerContst(srno);
 
         getHighScoreByContest(userId,srno);
@@ -217,6 +220,7 @@ public class GameOverActivity extends AppCompatActivity
         });
 
         tvscore.setText(""+scorevalue);
+
         Btn_Home.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -277,6 +281,7 @@ public class GameOverActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+
         LL_share.setOnClickListener(new View.OnClickListener()
         {
             @Override

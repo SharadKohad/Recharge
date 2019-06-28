@@ -53,7 +53,7 @@ public class GameZoneActivity extends AppCompatActivity
         if (view.getId() == R.id.linear_layout_jump_fish)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://preview.codecanyon.net/item/snake-html5-game/full_screen_preview/13266764");
+            intent.putExtra("url","http://preview.codecanyon.net/item/roulette-royale-html5-casino-game/full_screen_preview/17072843?_ga=2.1022705.1756668802.1561538048-465826215.1561186759");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","7");
             intent.putExtra("cob","0");
@@ -62,7 +62,7 @@ public class GameZoneActivity extends AppCompatActivity
         else if (view.getId() == R.id.linear_layout_2048)
         {
             Intent intent = new Intent(GameZoneActivity.this,WebView2048Activity.class);
-            intent.putExtra("url","http://showcase.codethislab.com/games/katana_fruit/");
+            intent.putExtra("url","https://preview.codecanyon.net/item/mad-shark-html5-game-mobile-version-admob-construct2-capx/full_screen_preview/13223104?_ga=2.3790643.2099751640.1561538723-465826215.1561186759");
             intent.putExtra("gtype","4");
             intent.putExtra("srno","7");
             intent.putExtra("cob","0");
