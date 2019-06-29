@@ -18,7 +18,6 @@ public class WebView2048Activity extends AppCompatActivity
     WebView mywebview;
     String current_url,srno,gtype,cob="0";
     int count=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,13 +34,11 @@ public class WebView2048Activity extends AppCompatActivity
         mywebview.getSettings().setJavaScriptEnabled(true); // enable javascript
         mywebview .loadUrl(current_url);
         setContentView(mywebview);
-
         if (gtype.equals("9")||gtype.equals("15"))
         {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-        if (cob.equals("0"))
-        {
+        if (cob.equals("0")) {
             mywebview.setWebViewClient(new WebViewClient()
             {
                 @Override
@@ -58,8 +55,7 @@ public class WebView2048Activity extends AppCompatActivity
                 }
             });
         }
-        else
-        {
+        else {
             mywebview.setWebViewClient(new WebViewClient()
             {
                 @Override

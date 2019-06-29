@@ -31,8 +31,8 @@ import util.Constant;
 import util.MySingalton;
 import util.SessionManeger;
 
-public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentTransactionCallback {
-
+public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentTransactionCallback
+{
     String custid="", orderId="", mid="",CHECKSUMHASH = "",varifyurl="",amount;
     String memberId,token="0";
     SessionManeger sessionManeger;
@@ -47,7 +47,6 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         memberId = hashMap.get(SessionManeger.MEMBER_ID);
 
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         amount = getIntent().getExtras().getString("paytmamount");
      //   custid = intent.getExtras().getString("custid");
@@ -60,8 +59,7 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
         addMoney(amount,"7777777777","usertemail@provider.com",orderId,memberId);
     }
 
-    public void addMoney(final String amt, final String mobile_no,final String email,final String unique,final String memberId)
-    {
+    public void addMoney(final String amt, final String mobile_no,final String email,final String unique,final String memberId) {
         String url = Constant.URL+"addPaytmMoney";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url, new Response.Listener<String>()
         {
@@ -105,8 +103,7 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
                         Log.e("checksum ", "param "+ paramMap.toString());
                         Service.initialize(Order,null);
                         // start payment service call here
-                        Service.startPaymentTransaction(ChecksumActivity.this, true, true,
-                                ChecksumActivity.this  );
+                        Service.startPaymentTransaction(ChecksumActivity.this, true, true, ChecksumActivity.this  );
                     }
                     else
                     {
@@ -145,8 +142,6 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
                 return params;
             }
         };
-        /*MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
-        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
@@ -341,7 +336,7 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
             }
         };
         MySingalton.getInstance(getApplicationContext()).addRequestQueue(jsonObjRequest);
-        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(200000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(jsonObjRequest);
     }
 }

@@ -50,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
         token = getIntent().getExtras().getString("token");
+
         if (token.equals("1")) {
             fname = getIntent().getExtras().getString("first_name");
             lname = getIntent().getExtras().getString("last_name");
