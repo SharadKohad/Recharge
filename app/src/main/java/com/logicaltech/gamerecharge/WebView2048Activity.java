@@ -55,8 +55,9 @@ public class WebView2048Activity extends AppCompatActivity
                 }
             });
         }
-        else {
-            mywebview.setWebViewClient(new WebViewClient()
+        else
+            {
+                mywebview.setWebViewClient(new WebViewClient()
             {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url)

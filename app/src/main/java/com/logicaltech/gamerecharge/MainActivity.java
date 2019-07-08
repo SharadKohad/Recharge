@@ -2,6 +2,7 @@ package com.logicaltech.gamerecharge;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String photo = hashMap.get(SessionManeger.KEY_PHOTO);
         if (photo.equals(""))
         {
-            
+
         }
         else
         {
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view)
             {
-                showBounceCash();
+                showBounceCash(MainActivity.this);
             }
         });
 
@@ -604,8 +605,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MyRequestQueue.add(jsonObjRequest);
     }
 */
-    private void showBounceCash() {
-        dialog = new Dialog(this);
+    public void showBounceCash(Context context) {
+        dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_tournament_info);
         dialog.setCancelable(true);

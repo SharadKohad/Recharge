@@ -25,7 +25,7 @@ public class SpashActivity extends AppCompatActivity
         //It's enough to remove the line
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//But if you want to display  full screen (without action bar) write too
+        //But if you want to display  full screen (without action bar) write too
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

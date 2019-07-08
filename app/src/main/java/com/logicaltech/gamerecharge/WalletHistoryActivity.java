@@ -41,7 +41,6 @@ public class WalletHistoryActivity extends AppCompatActivity
     ProgressBar progressBar;
     SessionManeger sessionManeger;
     String memberCode;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

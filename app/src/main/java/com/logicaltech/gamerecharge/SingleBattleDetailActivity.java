@@ -78,6 +78,7 @@ public class SingleBattleDetailActivity extends AppCompatActivity
     private RelativeLayout RL_Video_Game,RL_Game_List;
     int findplayerFlag = 0;
     RecyclerView RecyclerView_Top_Three_Contest;
+    MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -715,7 +716,8 @@ public class SingleBattleDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                showBounceCash();
+                mainActivity = new MainActivity();
+                mainActivity.showBounceCash(context);
             }
         });
         if (Constant.TOTAL_BALANCE<join_contest_amt)

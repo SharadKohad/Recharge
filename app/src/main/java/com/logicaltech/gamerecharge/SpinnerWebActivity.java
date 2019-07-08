@@ -71,8 +71,7 @@ public class SpinnerWebActivity extends AppCompatActivity
             }
         });
     }
-    public void addPoint(final String memberCode, final String point, final String type)
-    {
+    public void addPoint(final String memberCode, final String point, final String type) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addSpinnerAmt";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>()
@@ -132,8 +131,7 @@ public class SpinnerWebActivity extends AppCompatActivity
         jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
-    private void showCustomDialog()
-    {
+    private void showCustomDialog() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_spin_add);

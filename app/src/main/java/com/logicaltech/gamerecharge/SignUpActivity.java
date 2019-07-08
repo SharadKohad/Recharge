@@ -1,5 +1,4 @@
 package com.logicaltech.gamerecharge;
-
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -32,7 +31,6 @@ import java.util.Map;
 import util.Constant;
 import util.MySingalton;
 import util.SessionManeger;
-
 public class SignUpActivity extends AppCompatActivity
 {
     TextInputEditText TIET_MemberName,TIET_name,TIET_email_id,TIET_mobileNo,TIET_sponsorId,TIET_password;
@@ -50,8 +48,8 @@ public class SignUpActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
         token = getIntent().getExtras().getString("token");
-
-        if (token.equals("1")) {
+        if (token.equals("1"))
+        {
             fname = getIntent().getExtras().getString("first_name");
             lname = getIntent().getExtras().getString("last_name");
             email = getIntent().getExtras().getString("email");

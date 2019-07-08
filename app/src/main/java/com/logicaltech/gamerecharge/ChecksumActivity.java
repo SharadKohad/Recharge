@@ -37,7 +37,6 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
     String memberId,token="0";
     SessionManeger sessionManeger;
     int count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,7 +45,6 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
         sessionManeger = new SessionManeger(getApplicationContext());
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         memberId = hashMap.get(SessionManeger.MEMBER_ID);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         amount = getIntent().getExtras().getString("paytmamount");
      //   custid = intent.getExtras().getString("custid");
@@ -58,7 +56,6 @@ public class ChecksumActivity extends AppCompatActivity implements PaytmPaymentT
         orderId = "ORDER@"+Integer.toString(randomInt)+memberId;
         addMoney(amount,"7777777777","usertemail@provider.com",orderId,memberId);
     }
-
     public void addMoney(final String amt, final String mobile_no,final String email,final String unique,final String memberId) {
         String url = Constant.URL+"addPaytmMoney";
         StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url, new Response.Listener<String>()

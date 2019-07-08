@@ -41,6 +41,7 @@ public class AccountActivity extends AppCompatActivity
     WindowManager.LayoutParams lp;
     TextView TV_Coin,TV_Total_Cash,TV_Bounce_Cash,TV_Deposit_Cash;
     String userName,photo;
+    Constant constant;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -158,7 +159,8 @@ public class AccountActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                showBounceCash();
+                constant = new Constant(AccountActivity.this);
+                constant.showBounceCash();
             }
         });
 

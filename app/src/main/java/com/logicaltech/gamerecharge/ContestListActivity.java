@@ -112,7 +112,6 @@ public class ContestListActivity extends AppCompatActivity
 
         contestList(gtype);
 
-
         LL_Current_Tournaments.setOnClickListener(new View.OnClickListener()
         {
             @Override
